@@ -14,8 +14,9 @@ class PlayerMovementComponent: GKComponent
 {
     var physics : PhysicsComponent
     var mesh : MeshRendererComponent
+    var airControlIndex : Float = 0.7
     
-    var speed : Float = 10
+    var speed : Float = 6
     var isGrounded : Bool = false
     
     init(_ physicsComponent : PhysicsComponent, _ meshComponent: MeshRendererComponent){
@@ -38,17 +39,16 @@ class PlayerMovementComponent: GKComponent
             isGrounded = true
         }
         
-        if isGrounded {
-            moveDelta(GameViewController.LeftStick!.direction, Float(seconds))
-            physics.body.velocity = SCNVector3(0,0,0)
-        }
+        moveDelta(GameViewController.LeftStick!.direction, Float(seconds))
     }
     
     func moveDelta(_ direction: simd_float2, _ deltaTime: Float)
     {
+        
+        let actualSpeed = isGrounded ? speed : speed * airControlIndex
 //        let movement = simd_float3.zero
-        let right = Vector3(GameViewController.SceneCamera!.simdWorldRight * direction.x * deltaTime * speed * 1000)
-        let forward = Vector3(-GameViewController.SceneCamera!.simdWorldFront * direction.y * deltaTime * speed * 1000)
+        let right = Vector3(GameViewController.SceneCamera!.simdWorldRight * direction.x * deltaTime * actualSpeed * 1000)
+        let forward = Vector3(-GameViewController.SceneCamera!.simdWorldFront * direction.y * deltaTime * actualSpeed * 1000)
         
         right.y = 0
         forward.y = 0
@@ -58,6 +58,7 @@ class PlayerMovementComponent: GKComponent
         
         mesh.node.look(at:direction.getScnVector3())
         physics.body.applyForce(direction.getScnVector3(),asImpulse: false)
+        physics.body.velocity = physics.body.velocity * SCNVector3(0,1,0)
     }
     
     func jump()

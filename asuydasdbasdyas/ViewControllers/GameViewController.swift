@@ -17,6 +17,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     static var LeftStick : ControllerStick?
     static var SceneCamera : SCNNode?
     
+    var scene : SCNScene?
+    var overlayScene : SKScene?
+    
     var lastUpdate : Double = 0.0
     var deltaTime : Double = 0.0
     
@@ -48,20 +51,26 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         sceneView.allowsCameraControl = false
         sceneView.showsStatistics = true
         
-        sceneView.scene = SCNScene(named: "art.scnassets/test.scn")
-        sceneView.scene!.physicsWorld.contactDelegate = self
-        GameViewController.SceneCamera = sceneView.scene!.rootNode.childNode(withName: "camera", recursively: false)
+
+        overlayScene = SKScene(fileNamed: "HUD.sks")!
+        overlayScene?.isUserInteractionEnabled = false
+        overlayScene?.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         
+        scene = SCNScene(named: "art.scnassets/test.scn")!
+        sceneView.scene = scene
+        sceneView.scene!.physicsWorld.contactDelegate = self
         sceneView.delegate = self
+        
+        sceneView.overlaySKScene = overlayScene
+
+        GameViewController.SceneCamera = sceneView.scene!.rootNode.childNode(withName: "camera", recursively: false)
         
         playerEntity = Player(100, 5)
         playerEntity!.mainNode.position = SCNVector3(0, 0.3, 0)
-        
-        
-        sceneView.scene?.rootNode.addChildNode(playerEntity!.mainNode)
     
+        sceneView.scene?.rootNode.addChildNode(playerEntity!.mainNode)
         
-        GameViewController.LeftStick = ControllerStick()
+        GameViewController.LeftStick = ControllerStick(overlayScene!)
     }
   
     
@@ -71,6 +80,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         for touch in touches {
             let position = touch.location(in: sceneView)
             if isScreenLeftSideLandscape(position){
+                
                 GameViewController.LeftStick?.pressed(position)
             }
             else{

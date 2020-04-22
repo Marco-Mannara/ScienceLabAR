@@ -16,18 +16,45 @@ class ControllerStick{
     var deadZoneRadius : Float = 30.0
     var maxRadius : Float = 50.0
     
-    func pressed(_ point: CGPoint){
+    var hudScene : SKNode?
+    var stickBaseNode : SKNode?
+    var stickTopNode : SKNode?
+    
+    init()
+    {
+    }
+    
+    init(_ hudScene : SKNode){
+        self.hudScene = hudScene
+        self.stickBaseNode = hudScene.childNode(withName: "ControllerStickBase")!
+        self.stickTopNode = self.stickBaseNode!.childNode(withName: "ControllerStickTop")!
+    }
+    
+    func pressed(_ point: CGPoint)
+    {
         
-        center = simd_float2(Float(point.x),Float(point.y))
+        center = simd_float2(point.x, point.y)
+        
+        stickBaseNode?.position = CGPoint(x: point.x - UIScreen.main.bounds.width / 2,y: UIScreen.main.bounds.height / 2 - point.y)
+        
+        stickTopNode?.position = CGPoint.zero
+        
         isPressed = true
-        print("stick pressed.")
+        //print("stick pressed.")
     }
     
     func updateState(_ updatedPosition: CGPoint){
         if isPressed {
-            let simdPosition = simd_float2(Float(updatedPosition.x), Float(updatedPosition.y))
+            
+            let topNodePosition = updatedPosition - center
+            let simdPosition = simd_float2(updatedPosition.x, updatedPosition.y)
+            
+            stickTopNode?.position = CGPoint(x: topNodePosition.x, y: -topNodePosition.y)
+            
             direction = simdPosition - center
+            
             let magnitude = Vector3(direction.x,direction.y,0.0).magnitude()
+            
             //print(magnitude)
             if magnitude <= deadZoneRadius{
                 direction = simd_float2.zero
@@ -40,8 +67,10 @@ class ControllerStick{
     
     func released()
     {
-        print("stick released.")
+        //print("stick released.")
+        stickTopNode?.position = CGPoint.zero
         direction = simd_float2.zero
+        
         isPressed = false
     }
 }

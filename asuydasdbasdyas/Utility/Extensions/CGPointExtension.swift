@@ -9,9 +9,35 @@ import GameplayKit
 
 extension CGPoint
 {
+
+    init(_ x: Float, _ y: Float){
+        self.init()
+        self.x = CGFloat(x)
+        self.y = CGFloat(y)
+    }
+    
+    init(_ x: Double, _ y: Float){
+        self.init()
+        self.x = CGFloat(x)
+        self.y = CGFloat(y)
+    }
+    
+    
     func toSimdFloat2() -> simd_float2{
         return simd_float2(Float(x),Float(y))
     }
+    
+    static func -(_ lhs: CGPoint, rhs: CGPoint) -> CGPoint{
+        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+    
+    static func -(_ lhs: CGPoint, rhs: simd_float2) -> CGPoint{
+        return CGPoint(x: lhs.x - CGFloat(rhs.x),y: lhs.y - CGFloat(rhs.y))
+    }
+    
+    static prefix func -(_ lhs: CGPoint) -> CGPoint{
+        return CGPoint( x: -lhs.x, y: -lhs.y)
+   }
 }
 
 
