@@ -10,11 +10,16 @@ import UIKit
 import SceneKit
 import GameplayKit
 
-class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
+class GameViewController: UIViewController, SCNSceneRendererDelegate {
 
     @IBOutlet var sceneView: SCNView!
     
     static var LeftStick : ControllerStick?
+    static var JumpButton : ControllerButton?
+    static var AttackButton : ControllerButton?
+    
+    var buttons : [ControllerButton?] = []
+    
     static var SceneCamera : SCNNode?
     
     var scene : SCNScene?
@@ -25,54 +30,40 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     
     var isFirstUpdate : Bool = true
     
-    var tapAction : (CGPoint) -> () = { (position) -> Void in
-    }
     var playerEntity : Player?
+    var enemyEntity : Enemy?
+    
+    var gameManager : GameManager?
+    var updateManager : UpdateManager?
     
     override public var shouldAutorotate: Bool{
         return true
     }
     
     override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
-        return .landscapeLeft
+        return .landscapeRight
     }
     
     override public var supportedInterfaceOrientations: UIInterfaceOrientationMask{
-        return .landscapeLeft
+        return .landscapeRight
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-          let value = UIInterfaceOrientation.landscapeLeft.rawValue
-         UIDevice.current.setValue(value, forKey: "orientation")
+        let value = UIInterfaceOrientation.landscapeRight.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
         
-        sceneView.allowsCameraControl = false
+        sceneView.allowsCameraControl = true
         sceneView.showsStatistics = true
-        
-
-        overlayScene = SKScene(fileNamed: "HUD.sks")!
-        overlayScene?.isUserInteractionEnabled = false
-        overlayScene?.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        
-        scene = SCNScene(named: "art.scnassets/test.scn")!
-        sceneView.scene = scene
-        sceneView.scene!.physicsWorld.contactDelegate = self
         sceneView.delegate = self
+        sceneView.debugOptions = .showPhysicsShapes
         
-        sceneView.overlaySKScene = overlayScene
-
-        GameViewController.SceneCamera = sceneView.scene!.rootNode.childNode(withName: "camera", recursively: false)
-        
-        playerEntity = Player(100, 5)
-        playerEntity!.mainNode.position = SCNVector3(0, 0.3, 0)
-    
-        sceneView.scene?.rootNode.addChildNode(playerEntity!.mainNode)
-        
-        GameViewController.LeftStick = ControllerStick(overlayScene!)
+        gameManager = GameManager(sceneView)
+        GameManager.sceneManager?.loadScene("first_level", "HUD")
+        gameManager!.instantiatePlayer()
     }
-  
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -80,10 +71,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         for touch in touches {
             let position = touch.location(in: sceneView)
             if isScreenLeftSideLandscape(position){
-                
-                GameViewController.LeftStick?.pressed(position)
+                GameManager.sceneManager?.touchController?.leftStick?.pressed(position)
             }
-            else{
+            else
+            {
                 playerEntity?.movement!.jump()
             }
         }
@@ -94,7 +85,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         for touch in touches{
             let location = touch.location(in: sceneView)
             if isScreenLeftSideLandscape(location){
-                GameViewController.LeftStick?.updateState(location)
+                GameManager.sceneManager?.touchController?.leftStick?.updateState(location)
             }
         }
     }
@@ -104,30 +95,18 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
       for touch in touches{
             let location = touch.location(in: sceneView)
             if isScreenLeftSideLandscape(location){
-                GameViewController.LeftStick?.released()
+                GameManager.sceneManager?.touchController?.leftStick?.released()
             }
         }
     }
-    
     
     func isScreenLeftSideLandscape(_ location: CGPoint) -> Bool{
         return location.x <= UIScreen.main.bounds.width / 2
     }
     
-    
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        if isFirstUpdate {
-            
-            lastUpdate = time
-            isFirstUpdate = false
-            return
-        }
-        
-        deltaTime = time - lastUpdate
-        lastUpdate = time
-        if let player = playerEntity{
-            player.update(deltaTime: deltaTime)
-        }
+        GameManager.updateManager?.update(time)
+        //print(gameManager?.playerEntity?.mainNode.presentation.simdPosition ?? "")
     }
     
     /*

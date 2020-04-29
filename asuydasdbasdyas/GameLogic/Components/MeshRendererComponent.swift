@@ -22,4 +22,21 @@ class MeshRendererComponent: GKComponent {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    static func Box() -> MeshRendererComponent
+    {
+        return MeshRendererComponent.Box(0.01, UIColor.red)
+    }
+    
+    static func Box(_ color: UIColor) -> MeshRendererComponent{
+        MeshRendererComponent.Box(0.01, color)
+    }
+    
+    static func Box(_ size : Float,_ color: UIColor) -> MeshRendererComponent{
+        let dimension = CGFloat(size)
+        let geom = SCNBox(width: dimension, height: dimension, length: dimension, chamferRadius: dimension / 10)
+        geom.materials.first?.diffuse.contents = color
+        return MeshRendererComponent(geom)
+    }
 }

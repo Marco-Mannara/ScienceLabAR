@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9006559A244F80470090BEF2 /* HUD.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90065599244F80470090BEF2 /* HUD.sks */; };
+		900EB1C224548BB100CDBA39 /* MainContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB1C124548BB100CDBA39 /* MainContactDelegate.swift */; };
+		900EB1C424548E9800CDBA39 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB1C324548E9800CDBA39 /* GameManager.swift */; };
+		900EB1C62454A38E00CDBA39 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB1C52454A38E00CDBA39 /* UpdateManager.swift */; };
 		90107392244DF85D00305E9F /* SCNVector3Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90107391244DF85C00305E9F /* SCNVector3Extension.swift */; };
 		90296AA8244F052400FB7A0F /* ControllerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90296AA7244F052400FB7A0F /* ControllerButton.swift */; };
 		90296AAB244F0F1200FB7A0F /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90296AAA244F0F1200FB7A0F /* CGPointExtension.swift */; };
@@ -17,6 +20,7 @@
 		905AF156244CDFDE00010E06 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF155244CDFDE00010E06 /* Vector3.swift */; };
 		9065ECC5244A0E7C0035AC37 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */; };
 		906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906EB3CD2445C6410067B607 /* Matrix4Extension.swift */; };
+		90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B200552459AF5600C0DD86 /* SceneManager.swift */; };
 		90BBAB872443C57B001BEC81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBAB862443C57B001BEC81 /* AppDelegate.swift */; };
 		90BBAB892443C57B001BEC81 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 90BBAB882443C57B001BEC81 /* art.scnassets */; };
 		90BBAB8B2443C57B001BEC81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBAB8A2443C57B001BEC81 /* ViewController.swift */; };
@@ -31,7 +35,10 @@
 		90CCE9912445B8C0000F7C62 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CCE98F2445B8C0000F7C62 /* Plane.swift */; };
 		90DF67BB2449F32600D57233 /* SimdFloat3Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DF67BA2449F32600D57233 /* SimdFloat3Extension.swift */; };
 		90DF67BD244A01E700D57233 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DF67BC244A01E700D57233 /* GameViewController.swift */; };
+		90E52653245739D5005B35A1 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E52652245739D5005B35A1 /* GameLevel.swift */; };
 		90F7CE012450723700851518 /* SimdFloat2Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE002450723700851518 /* SimdFloat2Extension.swift */; };
+		90F7CE042450802900851518 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE032450802900851518 /* Controller.swift */; };
+		90F7CE072450C0AC00851518 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE062450C0AC00851518 /* Enemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +60,9 @@
 
 /* Begin PBXFileReference section */
 		90065599244F80470090BEF2 /* HUD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HUD.sks; sourceTree = "<group>"; };
+		900EB1C124548BB100CDBA39 /* MainContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContactDelegate.swift; sourceTree = "<group>"; };
+		900EB1C324548E9800CDBA39 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		900EB1C52454A38E00CDBA39 /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		90107391244DF85C00305E9F /* SCNVector3Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3Extension.swift; sourceTree = "<group>"; };
 		90296AA7244F052400FB7A0F /* ControllerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerButton.swift; sourceTree = "<group>"; };
 		90296AAA244F0F1200FB7A0F /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
@@ -62,7 +72,8 @@
 		905AF155244CDFDE00010E06 /* Vector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		906EB3CD2445C6410067B607 /* Matrix4Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4Extension.swift; sourceTree = "<group>"; };
-		90BBAB832443C57B001BEC81 /* asuydasdbasdyas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = asuydasdbasdyas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B200552459AF5600C0DD86 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
+		90BBAB832443C57B001BEC81 /* ARGameIOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGameIOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90BBAB862443C57B001BEC81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90BBAB882443C57B001BEC81 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		90BBAB8A2443C57B001BEC81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; tabWidth = 1; };
@@ -82,7 +93,10 @@
 		90CCE98F2445B8C0000F7C62 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		90DF67BA2449F32600D57233 /* SimdFloat3Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimdFloat3Extension.swift; sourceTree = "<group>"; };
 		90DF67BC244A01E700D57233 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		90E52652245739D5005B35A1 /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		90F7CE002450723700851518 /* SimdFloat2Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimdFloat2Extension.swift; sourceTree = "<group>"; };
+		90F7CE032450802900851518 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		90F7CE062450C0AC00851518 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +124,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		900EB1C024548B9E00CDBA39 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				900EB1C124548BB100CDBA39 /* MainContactDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		90296AA9244F0EEE00FB7A0F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +176,7 @@
 		90BBAB842443C57B001BEC81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90BBAB832443C57B001BEC81 /* asuydasdbasdyas.app */,
+				90BBAB832443C57B001BEC81 /* ARGameIOs.app */,
 				90BBAB992443C57D001BEC81 /* asuydasdbasdyasTests.xctest */,
 				90BBABA42443C57D001BEC81 /* asuydasdbasdyasUITests.xctest */,
 			);
@@ -198,6 +220,7 @@
 		90CCE9922445BCB9000F7C62 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				90F7CE052450C09F00851518 /* AI */,
 				90BBABB62443CB23001BEC81 /* Player.swift */,
 			);
 			path = Entities;
@@ -217,10 +240,12 @@
 		90CCE9942445BCD9000F7C62 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
+				90E52654245739DC005B35A1 /* Managers */,
+				900EB1C024548B9E00CDBA39 /* Delegates */,
+				90F7CE022450801A00851518 /* Controller */,
 				90CCE9932445BCC5000F7C62 /* Components */,
 				90CCE9922445BCB9000F7C62 /* Entities */,
-				905AF151244B664C00010E06 /* ControllerStick.swift */,
-				90296AA7244F052400FB7A0F /* ControllerButton.swift */,
+				90E52652245739D5005B35A1 /* GameLevel.swift */,
 			);
 			path = GameLogic;
 			sourceTree = "<group>";
@@ -243,6 +268,34 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		90E52654245739DC005B35A1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				90B200552459AF5600C0DD86 /* SceneManager.swift */,
+				900EB1C324548E9800CDBA39 /* GameManager.swift */,
+				900EB1C52454A38E00CDBA39 /* UpdateManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		90F7CE022450801A00851518 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				905AF151244B664C00010E06 /* ControllerStick.swift */,
+				90296AA7244F052400FB7A0F /* ControllerButton.swift */,
+				90F7CE032450802900851518 /* Controller.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		90F7CE052450C09F00851518 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				90F7CE062450C0AC00851518 /* Enemy.swift */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -260,7 +313,7 @@
 			);
 			name = asuydasdbasdyas;
 			productName = asuydasdbasdyas;
-			productReference = 90BBAB832443C57B001BEC81 /* asuydasdbasdyas.app */;
+			productReference = 90BBAB832443C57B001BEC81 /* ARGameIOs.app */;
 			productType = "com.apple.product-type.application";
 		};
 		90BBAB982443C57D001BEC81 /* asuydasdbasdyasTests */ = {
@@ -376,8 +429,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				900EB1C224548BB100CDBA39 /* MainContactDelegate.swift in Sources */,
 				90BBAB8B2443C57B001BEC81 /* ViewController.swift in Sources */,
 				90296AA8244F052400FB7A0F /* ControllerButton.swift in Sources */,
+				900EB1C424548E9800CDBA39 /* GameManager.swift in Sources */,
+				90E52653245739D5005B35A1 /* GameLevel.swift in Sources */,
 				90BBABB92443D0A4001BEC81 /* MeshRendererComponent.swift in Sources */,
 				905AF152244B664C00010E06 /* ControllerStick.swift in Sources */,
 				906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */,
@@ -390,10 +446,14 @@
 				9065ECC5244A0E7C0035AC37 /* PhysicsComponent.swift in Sources */,
 				90107392244DF85D00305E9F /* SCNVector3Extension.swift in Sources */,
 				90BBAB872443C57B001BEC81 /* AppDelegate.swift in Sources */,
+				90F7CE042450802900851518 /* Controller.swift in Sources */,
 				90DF67BB2449F32600D57233 /* SimdFloat3Extension.swift in Sources */,
+				90F7CE072450C0AC00851518 /* Enemy.swift in Sources */,
+				900EB1C62454A38E00CDBA39 /* UpdateManager.swift in Sources */,
 				905AF150244B5D2200010E06 /* PlayerMovementComponent.swift in Sources */,
 				90F7CE012450723700851518 /* SimdFloat2Extension.swift in Sources */,
 				905AF154244CC38200010E06 /* PlayerCameraComponent.swift in Sources */,
+				90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +635,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = iosacademy.asuydasdbasdyas;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ARGameIOs;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -594,7 +654,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = iosacademy.asuydasdbasdyas;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ARGameIOs;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

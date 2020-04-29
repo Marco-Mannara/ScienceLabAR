@@ -16,6 +16,20 @@ extension simd_float4x4
                   SIMD4<Float>(vector.x, vector.y, vector.z, 1))
     }
     
+    var translation : simd_float3 {
+        return getPosition()
+    }
+    var front : simd_float3 {
+        return simd_make_float3(self.columns.2)
+    }
+    var up : simd_float3 {
+        return simd_make_float3(self.columns.1)
+    }
+    var right : simd_float3 {
+        return simd_make_float3(self.columns.0)
+    }
+    
+    
     func getPosition() -> SIMD3<Float>{
         let lastCol = self.columns.3
         return SIMD3<Float>(lastCol.x,lastCol.y,lastCol.z)
@@ -25,4 +39,5 @@ extension simd_float4x4
         let trans = getPosition()
         return SCNVector3(trans.x,trans.y,trans.z)
     }
+    
 }

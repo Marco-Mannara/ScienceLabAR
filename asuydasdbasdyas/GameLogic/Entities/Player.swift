@@ -18,6 +18,8 @@ class Player: GKEntity {
     
     
     var mainNode : SCNNode
+    var agent : GKAgent2D
+    
     var mesh : MeshRendererComponent?
     var physics : PhysicsComponent?
     var movement : PlayerMovementComponent?
@@ -28,18 +30,18 @@ class Player: GKEntity {
         self.health = maxHealth
         self.speed = speed
         self.mainNode = SCNNode()
+        self.agent = GKAgent2D()
         
         super.init()
         
-        self.mesh = MeshRendererComponent(self.createMesh())
-        self.physics = PhysicsComponent(self.createPhysics(mesh!.node.geometry!), false)
+        self.mesh = MeshRendererComponent.Box(0.01,UIColor.red)
+        self.physics = PhysicsComponent(SCNPhysicsShape(geometry: self.mesh!.node.geometry!), false)
         self.movement = PlayerMovementComponent(self.physics!, self.mesh!)
         
         self.addComponent(mesh!)
         self.addComponent(physics!)
         self.addComponent(movement!)
         
-            
         self.physics?.body.mass = CGFloat(self.mass)
         self.physics?.body.isAffectedByGravity = true
         self.physics?.body.angularVelocityFactor = SCNVector3Zero
@@ -48,22 +50,20 @@ class Player: GKEntity {
         self.mainNode.addChildNode(mesh!.node)
     }
     
+    override func update(deltaTime seconds: TimeInterval)
+    {
+        agent.position = simd_float2(mainNode.presentation.position.x, mainNode.presentation.position.z)
+        movement!.update(deltaTime: seconds)
+    }
+    
+    func spawn(_ scene: SCNScene, _ position: simd_float3){
+        agent.position = simd_float2(position.x,position.z)
+        mainNode.simdPosition = position
+        scene.rootNode.addChildNode(mainNode)
+    }
+    
     required init?(coder: NSCoder)
     {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    func createMesh() -> SCNGeometry
-    {
-        let dimension = CGFloat(0.1)
-        let geom = SCNBox(width: dimension, height: dimension, length: dimension, chamferRadius: dimension / 10)
-        geom.materials.first?.diffuse.contents = UIColor.red
-        return geom
-    }
-    
-    func createPhysics (_ physicsShape : SCNGeometry) -> SCNPhysicsShape
-    {
-        return SCNPhysicsShape(geometry: physicsShape)
     }
 }

@@ -12,7 +12,7 @@ import ARKit
 import GameplayKit
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SCNPhysicsContactDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -24,35 +24,103 @@ class ViewController: UIViewController {
     var isAreaLargeEnough : Bool = false
     var worldOriginSet : Bool = false
     
+    //var scene : SCNScene?
+    //var overlayScene : SKScene?
+    
+    var playerEntity : Player?
+    var enemyEntity : Enemy?
+    
+    var gameManager : GameManager?
+    
+    var initialPosition : simd_float3?
+    var initialRotation : simd_float3?
+    
+    override public var shouldAutorotate: Bool{
+        return true
+    }
+    
+    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        return .landscapeRight
+    }
+    
+    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        return .landscapeRight
+    }
+    
     var tapAction : (CGPoint) -> () = { (position) -> Void in
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view's delegate
-        sceneView.delegate = self
+        let value = UIInterfaceOrientation.landscapeRight.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+
+        gameManager = GameManager(sceneView)
+        
         sceneView.session.delegate = self
-        
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
         sceneView.debugOptions = [.showWorldOrigin]
-        
-        sceneView.scene = SCNScene()
-        
-        tapAction = setWorldOrigin(_:)
+        sceneView.allowsCameraControl = false
+        sceneView.showsStatistics = true
+        sceneView.delegate = self
     }
+    
+    private func setupGameControlsRecognizers(){
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(leftStickPanHandler(_:)))
+        sceneView.addGestureRecognizer(panGestureRecognizer)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(rightButtonsTapHandler(_:)))
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func leftStickPanHandler(_ gesture: UIPanGestureRecognizer){
+    
+        switch gesture.state{
+        case .began:
+            GameManager.TouchController?.leftStick?.pressed(gesture.location(in: sceneView))
+        case .changed:
+            GameManager.TouchController?.leftStick?.updateState(gesture.location(in: sceneView))
+        case .ended:
+            GameManager.TouchController?.leftStick?.released()
+        default:
+            GameManager.TouchController?.leftStick?.released()
+        }
+    }
+    
+    @objc func rightButtonsTapHandler(_ gesture: UITapGestureRecognizer)
+    {
+    }
+    /*
+    private func loadGameScene(_ name: String = "test")
+    {
+        
+        let overlayScene = SKScene(fileNamed: "HUD.sks")!
+        overlayScene.isUserInteractionEnabled = false
+        overlayScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+           
+        let scene = SCNScene(named: "art.scnassets/"+name+".scn")
+        
+        self.sceneView.scene = scene!
+        self.sceneView.scene.physicsWorld.contactDelegate = self
+        self.sceneView.overlaySKScene = overlayScene
+        
+      
+    }*/
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.horizontal,.vertical]
-        
+        configuration.planeDetection = [.horizontal]
         
         // Run the view's session
         sceneView.session.run(configuration)
+        
+        sceneView.session.getCurrentWorldMap(completionHandler: {(worldMap, error) -> Void in
+            self.initialPosition = worldMap?.center
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,7 +129,7 @@ class ViewController: UIViewController {
         // Pause the view's session
         sceneView.session.pause()
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         if let point = touches.first?.location(in: sceneView){
@@ -70,22 +138,17 @@ class ViewController: UIViewController {
     }
     
     @objc
-    func setWorldOrigin(_ point: CGPoint)
+    func projectWorldOrigin(_ point: CGPoint)
     {
         if let transform  = raycastFirstHit(point){
             if !worldOriginSet{
                 
                 let anchor = ARAnchor(name: "worldOrigin",transform: transform)
                 sceneView.session.add(anchor: anchor)
-                sceneView.session.setWorldOrigin(relativeTransform: transform)
-                worldOriginSet = true
+                setWorldOrigin(transform)
                 
-                instantiateGameScene("test")
-                
-                tapAction = createCube(_:)
+                //instantiateGameScene("test")
                 print("Added World Root.")
-                
-                
             }
         }
         else
@@ -94,27 +157,17 @@ class ViewController: UIViewController {
         }
     }
     
-    func instantiateGameScene(_ name: String)
-    {
-        if let scene = SCNScene(named: "art.scnassets/" + name + ".scn"){
-            sceneView.scene = scene
-        }
-    }
-    
-    
-    func createCube(_ point: CGPoint){
+    func setWorldOrigin(_ transform: simd_float4x4){
+        //print(transform)
+        sceneView.session.setWorldOrigin(relativeTransform: transform)
+        worldOriginSet = true
         
-        if let transform = raycastFirstHit(point){
-            let box = SCNBox(width: 0.05,height: 0.05,length: 0.05,chamferRadius: 0)
-            let node = SCNNode(geometry: box)
-            node.simdPosition =  transform.getPosition() + simd_float3(0.0, 0.025, 0.0)
-            sceneView.scene.rootNode.addChildNode(node)
-        }
-        else{
-            print("Raycast missed.")
+        DispatchQueue.main.async {
+            GameManager.sceneManager!.loadScene("first_level", "HUD")
+            self.setupGameControlsRecognizers()
+            self.gameManager?.instantiatePlayer(simd_float3(0,1,-2))
         }
     }
-    
     
     func raycastFirstHit(_ point: CGPoint) -> simd_float4x4? {
         let query = sceneView.raycastQuery(from: point, allowing: .estimatedPlane, alignment: .horizontal)
@@ -123,6 +176,8 @@ class ViewController: UIViewController {
         return results.first?.worldTransform
     }
 }
+
+
 
 // MARK: - ARSCNViewDelegate
 
@@ -143,6 +198,11 @@ extension ViewController:ARSCNViewDelegate
            // Reset tracking and/or remove existing anchors if consistent tracking is required
            
        }
+    
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        GameManager.updateManager?.update(time)
+    }
     
     /*
         // Override to create and configure nodes for anchors added to the view's session.
@@ -177,21 +237,25 @@ extension ViewController: ARSessionDelegate{
             if let plane = node.childNodes.first as? Plane
             {
                 updateDebugPlane(planeAnchor, plane)
+                
                 let planeAnchorArea = planeAnchor.extent.x * planeAnchor.extent.z
                 
                 //print(planeAnchorArea)
-                /*
+                
                 if  planeAnchorArea >= minimumAreaRequired{
-                    
-                    
+                            
                     isAreaLargeEnough = true
-                    
+        
                     let config = ARWorldTrackingConfiguration()
                     config.planeDetection = []
                     sceneView.session.run(config)
                     
+                    print(planeAnchor.transform)
+                    
+                    setWorldOrigin(planeAnchor.transform)
+                    
                     print("Area is large enough.")
-                }*/
+                }
             }
         }
     }

@@ -32,14 +32,14 @@ class PlayerMovementComponent: GKComponent
     
     override func update(deltaTime seconds: TimeInterval)
     {
-        if(physics.body.velocity.y >= 0.01 || physics.body.velocity.y <= -0.01){
+        if(physics.body.velocity.y >= 0.001 || physics.body.velocity.y <= -0.001){
             isGrounded = false
         }
         else{
             isGrounded = true
         }
         
-        moveDelta(GameViewController.LeftStick!.direction, Float(seconds))
+        moveDelta(GameManager.sceneManager!.touchController!.leftStick!.direction, Float(seconds))
     }
     
     func moveDelta(_ direction: simd_float2, _ deltaTime: Float)
@@ -47,8 +47,8 @@ class PlayerMovementComponent: GKComponent
         
         let actualSpeed = isGrounded ? speed : speed * airControlIndex
 //        let movement = simd_float3.zero
-        let right = Vector3(GameViewController.SceneCamera!.simdWorldRight * direction.x * deltaTime * actualSpeed * 1000)
-        let forward = Vector3(-GameViewController.SceneCamera!.simdWorldFront * direction.y * deltaTime * actualSpeed * 1000)
+        let right = Vector3(GameManager.arCameraTransform?.right ?? simd_float3.zero * direction.x * deltaTime * actualSpeed * 1000)
+        let forward = Vector3(GameManager.arCameraTransform?.front ?? simd_float3.zero * direction.y * deltaTime * actualSpeed * 1000)
         
         right.y = 0
         forward.y = 0

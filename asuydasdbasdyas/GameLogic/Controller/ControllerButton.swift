@@ -21,10 +21,15 @@ class ControllerButton {
                                                         position.y - size.y / 2,
                                                         position.x + size.x / 2,
                                                         position.y + size.y / 2)
-    init(_ scene: SKScene, _ nodeName : String, _ positionFromScreenCenter : CGPoint)
-    {
+    
+    init(_ scene:SKScene, _ nodeName: String){
         self.scene = scene
         self.node = scene.childNode(withName: nodeName)!
+    }
+    
+    convenience init(_ scene: SKScene, _ nodeName : String, _ positionFromScreenCenter : CGPoint)
+    {
+        self.init(scene,nodeName)
         self.node.position = positionFromScreenCenter
     }
     

@@ -11,14 +11,15 @@ import GameplayKit
 class ControllerStick{
     
     var isPressed : Bool = false
-    var center: simd_float2 = simd_float2.zero
     var direction : simd_float2 = simd_float2.zero
-    var deadZoneRadius : Float = 30.0
-    var maxRadius : Float = 50.0
     
-    var hudScene : SKNode?
-    var stickBaseNode : SKNode?
-    var stickTopNode : SKNode?
+    private var center: simd_float2 = simd_float2.zero
+    private var deadZoneRadius : Float = 30.0
+    private var maxRadius : Float = 50.0
+    
+    private var hudScene : SKNode?
+    private var stickBaseNode : SKNode?
+    private var stickTopNode : SKNode?
     
     init()
     {
