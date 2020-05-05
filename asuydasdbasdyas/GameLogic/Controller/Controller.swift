@@ -14,7 +14,10 @@ class Controller
     var leftStick : ControllerStick?
     var rightStick : ControllerStick?
     
-    var buttons : [ControllerButton] = []
+    var jumpButton : ControllerButton?
+    var attackButton : ControllerButton?
+    
+    private var buttons : [ControllerButton] = []
     
     init(_ overlayScene: SKScene?){
         if let scene = overlayScene{
@@ -22,10 +25,12 @@ class Controller
         }
     }
     
+    
     func checkButtonHit(_ point: CGPoint)
     {
         for button in buttons {
-            if button.checkHit(point.toSimdFloat2()) {
+            if button.checkHit(point) {
+                //print("button hit: " + (button.node.name ?? "Unnamed Node"))
                 button.action!()
             }
         }
@@ -34,14 +39,14 @@ class Controller
     private func setupController(_ overlayScene: SKScene)
     {
         leftStick = ControllerStick(overlayScene)
-        let jumpButton = ControllerButton(overlayScene, "ControllerJumpButton")
-        let attackButton = ControllerButton(overlayScene, "ControllerAttackButton")
+        jumpButton = ControllerButton(overlayScene, "ControllerJumpButton")
+        attackButton = ControllerButton(overlayScene, "ControllerAttackButton")
         
-        jumpButton.action = {() -> Void in return}
-        attackButton.action = {() -> Void in return}
+        jumpButton!.action = {() -> Void in print("Jump Button Pressed")}
+        attackButton!.action = {() -> Void in return}
         
-        buttons.append(jumpButton)
-        buttons.append(attackButton)
+        buttons.append(jumpButton!)
+        buttons.append(attackButton!)
     }
 }
 

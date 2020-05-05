@@ -56,7 +56,7 @@ class ViewController: UIViewController, SCNPhysicsContactDelegate {
         let value = UIInterfaceOrientation.landscapeRight.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
 
-        gameManager = GameManager(sceneView)
+        GameManager.initialize(sceneView)
         
         sceneView.session.delegate = self
         sceneView.debugOptions = [.showWorldOrigin]
@@ -77,13 +77,13 @@ class ViewController: UIViewController, SCNPhysicsContactDelegate {
     
         switch gesture.state{
         case .began:
-            GameManager.TouchController?.leftStick?.pressed(gesture.location(in: sceneView))
+            GameManager.getInstance().TouchController?.leftStick?.pressed(gesture.location(in: sceneView))
         case .changed:
-            GameManager.TouchController?.leftStick?.updateState(gesture.location(in: sceneView))
+            GameManager.getInstance().TouchController?.leftStick?.updateState(gesture.location(in: sceneView))
         case .ended:
-            GameManager.TouchController?.leftStick?.released()
+            GameManager.getInstance().TouchController?.leftStick?.released()
         default:
-            GameManager.TouchController?.leftStick?.released()
+            GameManager.getInstance().TouchController?.leftStick?.released()
         }
     }
     
@@ -163,7 +163,7 @@ class ViewController: UIViewController, SCNPhysicsContactDelegate {
         worldOriginSet = true
         
         DispatchQueue.main.async {
-            GameManager.sceneManager!.loadScene("first_level", "HUD")
+            GameManager.getInstance().sceneManager!.loadScene("first_level", "HUD")
             self.setupGameControlsRecognizers()
             self.gameManager?.instantiatePlayer(simd_float3(0,1,-2))
         }
@@ -201,7 +201,7 @@ extension ViewController:ARSCNViewDelegate
     
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        GameManager.updateManager?.update(time)
+        GameManager.getInstance().updateManager?.update(time)
     }
     
     /*

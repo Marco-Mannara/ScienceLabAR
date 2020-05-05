@@ -12,19 +12,19 @@ class GameLevel{
     
     private var chunks : [SCNNode]
     var spawnPoint : simd_float3
+    var camera : SCNNode
 //    private var endLevelTrigger :
     
     init(_ scene : SCNScene)
     {
         spawnPoint = scene.rootNode.childNode(withName: "spawn_point", recursively: false)?.simdPosition ?? simd_float3(0,0,0)
+        camera = scene.rootNode.childNode(withName: "camera",recursively: false)!
         chunks = scene.rootNode.childNodes(passingTest: {(node, pointer) -> Bool in
             let name = node.name ?? ""
             return name.hasPrefix("spawn_point")
         })
-        
-        
-        print(spawnPoint)
-        print(chunks)
+        //print(spawnPoint)
+        //print(chunks)
     }
     
     convenience init(_ sceneName: String){

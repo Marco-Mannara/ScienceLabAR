@@ -46,6 +46,10 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
+        //print("began contact.")
+        if (contact.nodeB.entity as? Player) != nil, contact.nodeA.name == "trigger"{
+            print("player entered trigger.")
+        }
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didUpdate contact: SCNPhysicsContact) {

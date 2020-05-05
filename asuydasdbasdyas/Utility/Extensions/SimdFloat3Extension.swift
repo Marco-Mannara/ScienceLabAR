@@ -23,8 +23,13 @@ extension simd_float3{
     }
     */
     func normalized() -> simd_float3{
-        let mag = self.magnitude
-        return simd_float3(self.x / mag, self.y / mag, self.z / mag)
+        let mag = magnitude
+        if mag != 0.0{
+            return simd_float3(x/mag,y/mag,z/mag)
+        }
+        else{
+            return simd_float3(0.0,0.0,0.0)
+        }
     }
     
     func distance(_ other: simd_float3) -> Float{

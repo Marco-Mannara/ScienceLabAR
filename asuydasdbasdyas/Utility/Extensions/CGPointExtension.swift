@@ -21,11 +21,15 @@ extension CGPoint
         self.x = CGFloat(x)
         self.y = CGFloat(y)
     }
-    
-    
+
     func toSimdFloat2() -> simd_float2{
         return simd_float2(Float(x),Float(y))
     }
+    
+    static func screenToSpriteSceneCoordinates(_ point: CGPoint) -> CGPoint{
+        return CGPoint(x: point.x - UIScreen.main.bounds.width / 2,y: UIScreen.main.bounds.height / 2 - point.y)
+    }
+    
     
     static func -(_ lhs: CGPoint, rhs: CGPoint) -> CGPoint{
         return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)

@@ -36,7 +36,7 @@ class ControllerStick{
         
         center = simd_float2(point.x, point.y)
         
-        stickBaseNode?.position = CGPoint(x: point.x - UIScreen.main.bounds.width / 2,y: UIScreen.main.bounds.height / 2 - point.y)
+        stickBaseNode?.position = CGPoint.screenToSpriteSceneCoordinates(point)
         
         stickTopNode?.position = CGPoint.zero
         

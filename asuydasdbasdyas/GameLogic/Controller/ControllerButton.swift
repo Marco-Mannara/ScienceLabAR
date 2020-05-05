@@ -7,34 +7,25 @@
 //
 
 import GameplayKit
+import SpriteKit
 
 class ControllerButton {
     
     var scene : SKScene
-    var node: SKNode
-    var size: simd_float2 = simd_float2.zero
-    var position: simd_float2 = simd_float2.zero
+    var node: SKSpriteNode
     
     var action: (() -> Void)?
     
-    private lazy var bounds : simd_float4 = simd_float4(position.x - size.x / 2,
-                                                        position.y - size.y / 2,
-                                                        position.x + size.x / 2,
-                                                        position.y + size.y / 2)
     
     init(_ scene:SKScene, _ nodeName: String){
         self.scene = scene
-        self.node = scene.childNode(withName: nodeName)!
+        self.node = scene.childNode(withName: nodeName) as! SKSpriteNode
+        //self.node.isUserInteractionEnabled = true
     }
-    
-    convenience init(_ scene: SKScene, _ nodeName : String, _ positionFromScreenCenter : CGPoint)
-    {
-        self.init(scene,nodeName)
-        self.node.position = positionFromScreenCenter
-    }
-    
-    
-    func checkHit(_ point: simd_float2) -> Bool{
-        return point.x >= bounds.x && point.x <= bounds.z && point.y >= bounds.y && point.y <= bounds.w
+
+    func checkHit(_ point: CGPoint) -> Bool{
+        let position = CGPoint.screenToSpriteSceneCoordinates(point)
+        return position.x >= node.frame.minX && position.x <= node.frame.maxX &&
+            position.y >= node.frame.minY && position.y <= node.frame.maxY
     }
 }

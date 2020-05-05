@@ -20,7 +20,11 @@
 		905AF156244CDFDE00010E06 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF155244CDFDE00010E06 /* Vector3.swift */; };
 		9065ECC5244A0E7C0035AC37 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */; };
 		906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906EB3CD2445C6410067B607 /* Matrix4Extension.swift */; };
+		908288F1245CA61A003C7DFE /* SKButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908288F0245CA61A003C7DFE /* SKButtonNode.swift */; };
 		90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B200552459AF5600C0DD86 /* SceneManager.swift */; };
+		90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2CC5D2460648C0088727B /* MainMenuViewController.swift */; };
+		90B2CC60246069000088727B /* OptionsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2CC5F246069000088727B /* OptionsMenuViewController.swift */; };
+		90B2CC622460690C0088727B /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2CC612460690C0088727B /* AchievementsViewController.swift */; };
 		90BBAB872443C57B001BEC81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBAB862443C57B001BEC81 /* AppDelegate.swift */; };
 		90BBAB892443C57B001BEC81 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 90BBAB882443C57B001BEC81 /* art.scnassets */; };
 		90BBAB8B2443C57B001BEC81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBAB8A2443C57B001BEC81 /* ViewController.swift */; };
@@ -72,7 +76,11 @@
 		905AF155244CDFDE00010E06 /* Vector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		906EB3CD2445C6410067B607 /* Matrix4Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4Extension.swift; sourceTree = "<group>"; };
+		908288F0245CA61A003C7DFE /* SKButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKButtonNode.swift; sourceTree = "<group>"; };
 		90B200552459AF5600C0DD86 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
+		90B2CC5D2460648C0088727B /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		90B2CC5F246069000088727B /* OptionsMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenuViewController.swift; sourceTree = "<group>"; };
+		90B2CC612460690C0088727B /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
 		90BBAB832443C57B001BEC81 /* ARGameIOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGameIOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90BBAB862443C57B001BEC81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90BBAB882443C57B001BEC81 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -264,6 +272,9 @@
 			children = (
 				90BBAB8A2443C57B001BEC81 /* ViewController.swift */,
 				90DF67BC244A01E700D57233 /* GameViewController.swift */,
+				90B2CC5D2460648C0088727B /* MainMenuViewController.swift */,
+				90B2CC5F246069000088727B /* OptionsMenuViewController.swift */,
+				90B2CC612460690C0088727B /* AchievementsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -284,6 +295,7 @@
 				905AF151244B664C00010E06 /* ControllerStick.swift */,
 				90296AA7244F052400FB7A0F /* ControllerButton.swift */,
 				90F7CE032450802900851518 /* Controller.swift */,
+				908288F0245CA61A003C7DFE /* SKButtonNode.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -431,6 +443,7 @@
 			files = (
 				900EB1C224548BB100CDBA39 /* MainContactDelegate.swift in Sources */,
 				90BBAB8B2443C57B001BEC81 /* ViewController.swift in Sources */,
+				90B2CC60246069000088727B /* OptionsMenuViewController.swift in Sources */,
 				90296AA8244F052400FB7A0F /* ControllerButton.swift in Sources */,
 				900EB1C424548E9800CDBA39 /* GameManager.swift in Sources */,
 				90E52653245739D5005B35A1 /* GameLevel.swift in Sources */,
@@ -438,6 +451,7 @@
 				905AF152244B664C00010E06 /* ControllerStick.swift in Sources */,
 				906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */,
 				90BBABB72443CB23001BEC81 /* Player.swift in Sources */,
+				90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */,
 				90DF67BD244A01E700D57233 /* GameViewController.swift in Sources */,
 				905AF156244CDFDE00010E06 /* Vector3.swift in Sources */,
 				90CCE9902445B8C0000F7C62 /* Utilities.swift in Sources */,
@@ -448,6 +462,8 @@
 				90BBAB872443C57B001BEC81 /* AppDelegate.swift in Sources */,
 				90F7CE042450802900851518 /* Controller.swift in Sources */,
 				90DF67BB2449F32600D57233 /* SimdFloat3Extension.swift in Sources */,
+				908288F1245CA61A003C7DFE /* SKButtonNode.swift in Sources */,
+				90B2CC622460690C0088727B /* AchievementsViewController.swift in Sources */,
 				90F7CE072450C0AC00851518 /* Enemy.swift in Sources */,
 				900EB1C62454A38E00CDBA39 /* UpdateManager.swift in Sources */,
 				905AF150244B5D2200010E06 /* PlayerMovementComponent.swift in Sources */,

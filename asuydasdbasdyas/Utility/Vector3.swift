@@ -5,8 +5,6 @@
 //  Created by Marco Mannara on 19/04/2020.
 //  Copyright © 2020 Marco Mannara. All rights reserved.
 //
-
-import Foundation
 import GameplayKit
 
 
@@ -42,7 +40,12 @@ class Vector3
     
     func normalized() -> Vector3{
         let mag = magnitude()
-        return Vector3(x/mag,y/mag,z/mag)
+        if mag != 0.0{
+            return Vector3(x/mag,y/mag,z/mag)
+        }
+        else{
+            return Vector3(0.0,0.0,0.0)
+        }
     }
     
     static func +(_ lhs: Vector3, _ rhs: Vector3) -> Vector3{

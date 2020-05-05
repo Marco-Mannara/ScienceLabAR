@@ -12,47 +12,57 @@ import SpriteKit
 
 class GameManager {
     
-    static var SceneCamera : SCNNode?
-    static var TouchController : Controller?
-    
-    static var arScene : ARSCNView?
+    private static var instance : GameManager?
     
     var playerEntity : Player?
+    var updateManager : UpdateManager?
+    var sceneManager : SceneManager?
+    var TouchController : Controller?
+    var arScene : ARSCNView?
     
-    static var updateManager : UpdateManager?
-    static var sceneManager : SceneManager?
-    
-    
-    static var arCameraTransform : simd_float4x4?{
-        return arScene?.session.currentFrame?.camera.transform ?? GameManager.SceneCamera?.simdTransform
+    var arCameraTransform : simd_float4x4?{
+        return arScene?.session.currentFrame?.camera.transform ?? sceneManager?.currentGameLevel?.camera.simdTransform
     }
     
-    init(_ sceneView : SCNView)
-    {
-        GameManager.updateManager = UpdateManager()
-        GameManager.sceneManager = SceneManager(sceneView)
+    private init(){
+        updateManager = UpdateManager()
     }
     
-    init(_ arSceneView : ARSCNView)
-    {
-        GameManager.updateManager = UpdateManager()
-        GameManager.sceneManager = SceneManager(arSceneView)
+    static func getInstance() -> GameManager{
+        if GameManager.instance == nil{
+            GameManager.instance = GameManager()
+        }
+        return GameManager.instance!
+    }
+    
+    static func initialize(_ sceneView : SCNView){
+        let instance = getInstance()
+        instance.sceneManager = SceneManager(sceneView)
+    }
+    
+    static func initialize(_ arSceneView : ARSCNView){
+        let instance = getInstance()
+        instance.sceneManager = SceneManager(arSceneView)
     }
     
     func instantiatePlayer(){
-        if let spawnPoint = GameManager.sceneManager?.currentGameLevel?.spawnPoint{
-            instantiatePlayer(spawnPoint)
+        guard let gameLevel = sceneManager?.currentGameLevel else {
+            print("There's no level loaded. Aborting player spawn")
+            return
         }
-        else{
-            print("Couldn't find level player spawn point. Spawning at (0,0,0).")
-        }
+        
+        let spawnPoint = gameLevel.spawnPoint
+        instantiatePlayer(spawnPoint)
     }
     
     func instantiatePlayer(_ position: simd_float3, _ rotation: simd_float3 = simd_float3.zero)
     {
-        playerEntity = Player(100,5)
-        playerEntity!.spawn(GameManager.sceneManager!.currentScene!, position)
-        GameManager.updateManager!.subscribe(playerEntity!)
+        playerEntity = Player(100)
+        playerEntity!.spawn(sceneManager!.currentScene!, position)
+        sceneManager!.touchController!.jumpButton!.action = {() -> Void in
+            self.playerEntity!.movement!.jump()
+        }
+        updateManager!.subscribe(playerEntity!)
     }
         
     func destroyPlayer(){

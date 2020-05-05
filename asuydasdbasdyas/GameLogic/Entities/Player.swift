@@ -13,9 +13,7 @@ class Player: GKEntity {
     
     var maxHealth : Int
     var health : Int = 0
-    var speed : Float
-    var mass : Float = 20
-    
+
     
     var mainNode : SCNNode
     var agent : GKAgent2D
@@ -24,11 +22,10 @@ class Player: GKEntity {
     var physics : PhysicsComponent?
     var movement : PlayerMovementComponent?
     
-    init(_ maxHealth: Int, _ speed: Float )
+    init(_ maxHealth: Int )
     {
         self.maxHealth = maxHealth
         self.health = maxHealth
-        self.speed = speed
         self.mainNode = SCNNode()
         self.agent = GKAgent2D()
         
@@ -42,12 +39,16 @@ class Player: GKEntity {
         self.addComponent(physics!)
         self.addComponent(movement!)
         
-        self.physics?.body.mass = CGFloat(self.mass)
         self.physics?.body.isAffectedByGravity = true
         self.physics?.body.angularVelocityFactor = SCNVector3Zero
+        //self.physics?.body.velocityFactor = SCNVector3(1,0.4,1)
+        //self.physics?.body.damping = 0.3
+    
         
         self.mainNode = physics!.node
         self.mainNode.addChildNode(mesh!.node)
+        
+        self.mainNode.entity = self
     }
     
     override func update(deltaTime seconds: TimeInterval)
