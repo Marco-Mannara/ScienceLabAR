@@ -23,7 +23,6 @@ class MeshRendererComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     static func Box() -> MeshRendererComponent
     {
         return MeshRendererComponent.Box(0.01, UIColor.red)

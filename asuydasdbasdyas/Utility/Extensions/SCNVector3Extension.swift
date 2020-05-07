@@ -10,6 +10,9 @@ import SceneKit
 
 extension SCNVector3{
     
+    static var zero : SCNVector3 {
+        return SCNVector3(0,0,0)
+    }
     
     func magnitude()->Float{
         return sqrt(x*x + y*y + z*z)

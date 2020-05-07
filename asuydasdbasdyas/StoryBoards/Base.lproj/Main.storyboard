@@ -209,6 +209,9 @@
                         <viewLayoutGuide key="safeArea" id="DY9-wR-mlM"/>
                     </view>
                     <navigationItem key="navigationItem" title="Achievements" id="xaT-Fj-uo5"/>
+                    <connections>
+                        <outlet property="collectionView" destination="4nH-uf-B2H" id="Jsy-mO-65s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ao-2F-Lih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -217,7 +220,6 @@
         <!--Navigation Controller-->
         <scene sceneID="oP8-68-7le">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0yq-Y8-SNc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="bKr-gP-3yN" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8EC-Mz-cEC">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
@@ -227,6 +229,7 @@
                         <segue destination="xsp-fr-ZBm" kind="relationship" relationship="rootViewController" id="xs3-IO-x4s"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0yq-Y8-SNc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="50" y="-859"/>
         </scene>

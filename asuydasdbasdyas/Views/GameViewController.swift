@@ -41,8 +41,16 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         GameManager.initialize(sceneView)
         GameManager.getInstance().sceneManager?.loadScene("first_level", "HUD")
         GameManager.getInstance().instantiatePlayer()
-    }
-    
+        
+        /*
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(5000)) {
+            let node = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+            node.position = SCNVector3(0,0.2,0)
+            GameManager.getInstance().sceneManager?.currentScene?.rootNode.addChildNode(node)
+            let actionTester = ActionTest(node)
+            actionTester.executeAction()
+        }*/
+    }    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
@@ -86,8 +94,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         GameManager.getInstance().updateManager?.update(time)
-        //print(gameManager?.playerEntity?.mainNode.presentation.simdPosition ?? "")
     }
+
     
     /*
     // MARK: - Navigation

@@ -12,7 +12,7 @@ import ARKit
 import GameplayKit
 
 
-class ViewController: UIViewController, SCNPhysicsContactDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -74,7 +74,6 @@ class ViewController: UIViewController, SCNPhysicsContactDelegate {
     }
     
     @objc func leftStickPanHandler(_ gesture: UIPanGestureRecognizer){
-    
         switch gesture.state{
         case .began:
             GameManager.getInstance().TouchController?.leftStick?.pressed(gesture.location(in: sceneView))

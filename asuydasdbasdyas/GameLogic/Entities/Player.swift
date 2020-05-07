@@ -9,12 +9,11 @@
 import UIKit
 import GameplayKit
 
-class Player: GKEntity {
-    
+class Player: GKEntity, EntityCollisionDelegate {
+
     var maxHealth : Int
     var health : Int = 0
 
-    
     var mainNode : SCNNode
     var agent : GKAgent2D
     
@@ -41,30 +40,41 @@ class Player: GKEntity {
         
         self.physics?.body.isAffectedByGravity = true
         self.physics?.body.angularVelocityFactor = SCNVector3Zero
-        //self.physics?.body.velocityFactor = SCNVector3(1,0.4,1)
-        //self.physics?.body.damping = 0.3
+        //self.physics?.body.continuousCollisionDetectionThreshold = 0.1
     
-        
         self.mainNode = physics!.node
         self.mainNode.addChildNode(mesh!.node)
         
         self.mainNode.entity = self
     }
     
-    override func update(deltaTime seconds: TimeInterval)
-    {
+    required init?(coder: NSCoder){
+       fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func update(deltaTime seconds: TimeInterval){
         agent.position = simd_float2(mainNode.presentation.position.x, mainNode.presentation.position.z)
         movement!.update(deltaTime: seconds)
+    }
+    
+    func collisionBegin(_ contact: SCNPhysicsContact, _ otherNode : SCNNode)
+    {
+        
+    }
+    
+    func collisionUpdate(_ contact: SCNPhysicsContact, _ otherNode : SCNNode)
+    {
+        
+    }
+    
+    func collisionEnd(_ contact: SCNPhysicsContact, _ otherNode: SCNNode)
+    {
+
     }
     
     func spawn(_ scene: SCNScene, _ position: simd_float3){
         agent.position = simd_float2(position.x,position.z)
         mainNode.simdPosition = position
         scene.rootNode.addChildNode(mainNode)
-    }
-    
-    required init?(coder: NSCoder)
-    {
-        fatalError("init(coder:) has not been implemented")
     }
 }

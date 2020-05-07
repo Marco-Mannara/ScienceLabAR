@@ -43,20 +43,38 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
         touchController = Controller(currentOverlayScene)
         currentGameLevel = GameLevel(scene!)
     }
+    /*
+    private func setupGameControlsRecognizers(){
+         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(leftStickPanHandler(_:)))
+         sceneView.addGestureRecognizer(panGestureRecognizer)
+         
+         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(rightButtonsTapHandler(_:)))
+         sceneView.addGestureRecognizer(tapGestureRecognizer)
+     }*/
+     
+
+    
+    func isScreenLeftSideLandscape(_ location: CGPoint) -> Bool{
+        return location.x <= sceneView.bounds.width / 2
+    }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        
         //print("began contact.")
-        if (contact.nodeB.entity as? Player) != nil, contact.nodeA.name == "trigger"{
-            print("player entered trigger.")
+        if let delegate = contact.nodeB.entity as? EntityCollisionDelegate{
+            delegate.collisionBegin(contact, contact.nodeA)
         }
     }
     
-    func physicsWorld(_ world: SCNPhysicsWorld, didUpdate contact: SCNPhysicsContact) {
-    
+    func physicsWorld(_ world: SCNPhysicsWorld, didUpdate contact: SCNPhysicsContact)
+    {
+        if let delegate = contact.nodeB.entity as? EntityCollisionDelegate{
+            //delegate.collisionUpdate(contact, contact.nodeA)
+        }
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
-        
+        if let delegate = contact.nodeB.entity as? EntityCollisionDelegate{
+            delegate.collisionEnd(contact, contact.nodeA)
+        }
     }
 }
