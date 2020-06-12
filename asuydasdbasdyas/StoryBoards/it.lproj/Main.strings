@@ -1,0 +1,21 @@
+
+/* Class = "UINavigationItem"; title = "Stage Select"; ObjectID = "7SI-HC-gH4"; */
+"7SI-HC-gH4.title" = "Stage Select";
+
+/* Class = "UIButton"; normalTitle = "Achievements"; ObjectID = "Tng-fj-IwL"; */
+"Tng-fj-IwL.normalTitle" = "Achievements";
+
+/* Class = "UIButton"; normalTitle = "Play"; ObjectID = "eOr-KV-YVN"; */
+"eOr-KV-YVN.normalTitle" = "Play";
+
+/* Class = "UILabel"; text = "Game Title"; ObjectID = "g4q-s1-mPK"; */
+"g4q-s1-mPK.text" = "Game Title";
+
+/* Class = "UINavigationItem"; title = "Options"; ObjectID = "jCy-nh-H7o"; */
+"jCy-nh-H7o.title" = "Options";
+
+/* Class = "UIButton"; normalTitle = "Options"; ObjectID = "oQL-7X-7oe"; */
+"oQL-7X-7oe.normalTitle" = "Options";
+
+/* Class = "UINavigationItem"; title = "Achievements"; ObjectID = "xaT-Fj-uo5"; */
+"xaT-Fj-uo5.title" = "Achievements";

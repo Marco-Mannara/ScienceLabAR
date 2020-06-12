@@ -38,11 +38,37 @@ class GameManager {
     static func initialize(_ sceneView : SCNView){
         let instance = getInstance()
         instance.sceneManager = SceneManager(sceneView)
+        
+        if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
+                  if let dict = NSDictionary(contentsOfFile: path)  {
+                      let dict2 = dict as! [String : AnyObject]
+                      let technique = SCNTechnique(dictionary:dict2)
+
+                      // set the glow color to yellow
+                      let color = SCNVector3(0.0, 1.0, 1.0)
+                      technique?.setValue(NSValue(scnVector3: color), forKeyPath: "glowColorSymbol")
+
+                      sceneView.technique = technique
+                  }
+              }
     }
     
     static func initialize(_ arSceneView : ARSCNView){
         let instance = getInstance()
         instance.sceneManager = SceneManager(arSceneView)
+        
+        if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
+                  if let dict = NSDictionary(contentsOfFile: path)  {
+                      let dict2 = dict as! [String : AnyObject]
+                      let technique = SCNTechnique(dictionary:dict2)
+
+                      // set the glow color to yellow
+                      let color = SCNVector3(0.0, 1.0, 1.0)
+                      technique?.setValue(NSValue(scnVector3: color), forKeyPath: "glowColorSymbol")
+
+                      arSceneView.technique = technique
+                  }
+              }
     }
     
     func instantiatePlayer(){

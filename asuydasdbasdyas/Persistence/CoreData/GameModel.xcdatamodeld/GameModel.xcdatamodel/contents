@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Achievement" representedClassName="Achievement" syncable="YES" codeGenerationType="class">
+        <attribute name="dateUnlock" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="desctiption" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="achievement_goal" maxCount="1" deletionRule="Nullify" destinationEntity="Goal"/>
+        <relationship name="achievement_icon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Icon"/>
+    </entity>
+    <entity name="Goal" representedClassName="Goal" syncable="YES" codeGenerationType="class"/>
+    <entity name="Icon" representedClassName="Icon" syncable="YES" codeGenerationType="class">
+        <attribute name="assetName" optional="YES" attributeType="String"/>
+        <attribute name="credits" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PlayerData" representedClassName="PlayerData" syncable="YES">
+        <attribute name="dateOfCreation" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Achievement" positionX="-36" positionY="54" width="128" height="118"/>
+        <element name="Goal" positionX="-18" positionY="63" width="128" height="43"/>
+        <element name="Icon" positionX="-45" positionY="45" width="128" height="73"/>
+        <element name="PlayerData" positionX="160" positionY="192" width="128" height="73"/>
+    </elements>
+</model>

@@ -9,7 +9,7 @@
 import UIKit
 import GameplayKit
 
-class Player: GKEntity, EntityCollisionDelegate {
+class Player: GKEntity, EntityCollisionProtocol {
 
     var maxHealth : Int
     var health : Int = 0

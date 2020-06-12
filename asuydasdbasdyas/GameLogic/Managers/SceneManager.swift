@@ -18,6 +18,7 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
     var currentScene : SCNScene?
     var currentOverlayScene : SKScene?
     var currentGameLevel : GameLevel?
+    var currentExperiment : Experiment?
     
     init(_ sceneView : SCNView){
         self.sceneView = sceneView
@@ -34,14 +35,15 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
             sceneView.overlaySKScene = overlayScene
         }
        
-        let scene = SCNScene(named: "art.scnassets/"+named+".scn")
+        let scene = SCNScene(named: "art.scnassets/scenes/"+named+".scn")
         
         sceneView.scene = scene!
         sceneView.scene!.physicsWorld.contactDelegate = self
         
         currentScene = scene
-        touchController = Controller(currentOverlayScene)
-        currentGameLevel = GameLevel(scene!)
+        //touchController = Controller(currentOverlayScene)
+        //currentGameLevel = GameLevel(scene!)
+        currentExperiment = Experiment(scene!)
     }
     /*
     private func setupGameControlsRecognizers(){
@@ -60,20 +62,20 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         //print("began contact.")
-        if let delegate = contact.nodeB.entity as? EntityCollisionDelegate{
+        if let delegate = contact.nodeB.entity as? EntityCollisionProtocol{
             delegate.collisionBegin(contact, contact.nodeA)
         }
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didUpdate contact: SCNPhysicsContact)
     {
-        if let delegate = contact.nodeB.entity as? EntityCollisionDelegate{
+        if let delegate = contact.nodeB.entity as? EntityCollisionProtocol{
             //delegate.collisionUpdate(contact, contact.nodeA)
         }
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
-        if let delegate = contact.nodeB.entity as? EntityCollisionDelegate{
+        if let delegate = contact.nodeB.entity as? EntityCollisionProtocol{
             delegate.collisionEnd(contact, contact.nodeA)
         }
     }
