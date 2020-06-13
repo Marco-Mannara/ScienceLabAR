@@ -1,0 +1,10 @@
+{
+    "containers" : [
+        "becker" : {
+            "volumeCapacity" : "500"
+        }
+        "pipetta" : {
+            "volumeCapacity" : "5"
+        }
+    ]
+}

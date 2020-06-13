@@ -23,7 +23,12 @@
 		9095AEBE2493DA3E00271E31 /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9095AEBC2493DA3E00271E31 /* NodeTechnique.plist */; };
 		9095AEC12493DB5E00271E31 /* SCNNodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9095AEC02493DB5E00271E31 /* SCNNodeExtension.swift */; };
 		9095AEC224941BBD00271E31 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 90BBAB882443C57B001BEC81 /* art.scnassets */; };
+		9095AEC6249436C800271E31 /* ScanningOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9095AEC5249436C800271E31 /* ScanningOptionsViewController.swift */; };
 		909C99DC24643EDC00E41C4D /* EntityCollisionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C99DB24643EDC00E41C4D /* EntityCollisionProtocol.swift */; };
+		90A188E62495067E001A722C /* AppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90A188E42495067E001A722C /* AppModel.xcdatamodeld */; };
+		90A188E824951814001A722C /* AdjustController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188E724951814001A722C /* AdjustController.swift */; };
+		90A188EA2495409E001A722C /* Pipetta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188E92495409E001A722C /* Pipetta.swift */; };
+		90A188EC24954352001A722C /* ScnModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188EB24954352001A722C /* ScnModelLoader.swift */; };
 		90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B200552459AF5600C0DD86 /* SceneManager.swift */; };
 		90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2CC5D2460648C0088727B /* MainMenuViewController.swift */; };
 		90B2CC60246069000088727B /* OptionsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2CC5F246069000088727B /* OptionsMenuViewController.swift */; };
@@ -89,7 +94,13 @@
 		9095AEBB2493DA3E00271E31 /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
 		9095AEBC2493DA3E00271E31 /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
 		9095AEC02493DB5E00271E31 /* SCNNodeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNNodeExtension.swift; sourceTree = "<group>"; };
+		9095AEC5249436C800271E31 /* ScanningOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningOptionsViewController.swift; sourceTree = "<group>"; };
 		909C99DB24643EDC00E41C4D /* EntityCollisionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityCollisionProtocol.swift; sourceTree = "<group>"; };
+		90A188E324950495001A722C /* tools.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tools.json; sourceTree = "<group>"; };
+		90A188E52495067E001A722C /* AppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppModel.xcdatamodel; sourceTree = "<group>"; };
+		90A188E724951814001A722C /* AdjustController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustController.swift; sourceTree = "<group>"; };
+		90A188E92495409E001A722C /* Pipetta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pipetta.swift; sourceTree = "<group>"; };
+		90A188EB24954352001A722C /* ScnModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScnModelLoader.swift; sourceTree = "<group>"; };
 		90B200552459AF5600C0DD86 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		90B2CC5D2460648C0088727B /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		90B2CC5F246069000088727B /* OptionsMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenuViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +202,8 @@
 				90296AA9244F0EEE00FB7A0F /* Extensions */,
 				90CCE9952445BCE2000F7C62 /* Debug */,
 				905AF155244CDFDE00010E06 /* Vector3.swift */,
+				90A188E724951814001A722C /* AdjustController.swift */,
+				90A188EB24954352001A722C /* ScnModelLoader.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -200,6 +213,7 @@
 			children = (
 				9061C2442465EE9F00C66185 /* DBInit */,
 				9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */,
+				90A188E42495067E001A722C /* AppModel.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -307,6 +321,7 @@
 				9077B5122465B6AE0041FDBC /* CoreData */,
 				90C704882493B4CB001ADE03 /* substances.json */,
 				90C704872493B484001ADE03 /* firstExperiment.json */,
+				90A188E324950495001A722C /* tools.json */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -365,6 +380,7 @@
 				90C6621924620B2A006FB460 /* Achievements */,
 				90BBAB8A2443C57B001BEC81 /* ViewController.swift */,
 				90DF67BC244A01E700D57233 /* GameViewController.swift */,
+				9095AEC5249436C800271E31 /* ScanningOptionsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -375,6 +391,7 @@
 				90E4B60C2492995A00C36DCA /* Tool.swift */,
 				90E4B60F2492BE5C00C36DCA /* Becker.swift */,
 				90E4B6112492C46600C36DCA /* LiquidContainer.swift */,
+				90A188E92495409E001A722C /* Pipetta.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -552,6 +569,7 @@
 				90BBABB92443D0A4001BEC81 /* MeshRendererComponent.swift in Sources */,
 				90E4B60D2492995A00C36DCA /* Tool.swift in Sources */,
 				905AF152244B664C00010E06 /* ControllerStick.swift in Sources */,
+				90A188EA2495409E001A722C /* Pipetta.swift in Sources */,
 				906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */,
 				90BBABB72443CB23001BEC81 /* Player.swift in Sources */,
 				90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */,
@@ -565,12 +583,15 @@
 				90107392244DF85D00305E9F /* SCNVector3Extension.swift in Sources */,
 				90BBAB872443C57B001BEC81 /* AppDelegate.swift in Sources */,
 				9095AEBD2493DA3E00271E31 /* NodeRender.metal in Sources */,
+				9095AEC6249436C800271E31 /* ScanningOptionsViewController.swift in Sources */,
 				90C6621D24620B77006FB460 /* AchievementCollectionViewCell.swift in Sources */,
 				90F7CE042450802900851518 /* Controller.swift in Sources */,
 				9077B5172465B7B20041FDBC /* GamePersistenceManager.swift in Sources */,
 				90E4B6142492C54300C36DCA /* Substance.swift in Sources */,
 				90DF67BB2449F32600D57233 /* SimdFloat3Extension.swift in Sources */,
 				90E4B60B2492951A00C36DCA /* Experiment.swift in Sources */,
+				90A188EC24954352001A722C /* ScnModelLoader.swift in Sources */,
+				90A188E824951814001A722C /* AdjustController.swift in Sources */,
 				90B2CC622460690C0088727B /* AchievementsViewController.swift in Sources */,
 				90F7CE072450C0AC00851518 /* Enemy.swift in Sources */,
 				900EB1C62454A38E00CDBA39 /* UpdateManager.swift in Sources */,
@@ -581,6 +602,7 @@
 				90E4B6122492C46600C36DCA /* LiquidContainer.swift in Sources */,
 				905AF154244CC38200010E06 /* PlayerCameraComponent.swift in Sources */,
 				90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */,
+				90A188E62495067E001A722C /* AppModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,6 +937,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		90A188E42495067E001A722C /* AppModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				90A188E52495067E001A722C /* AppModel.xcdatamodel */,
+			);
+			currentVersion = 90A188E52495067E001A722C /* AppModel.xcdatamodel */;
+			path = AppModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 90BBAB7B2443C57B001BEC81 /* Project object */;
 }

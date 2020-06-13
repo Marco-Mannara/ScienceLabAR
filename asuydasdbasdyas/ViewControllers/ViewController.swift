@@ -18,28 +18,18 @@ class ViewController: UIViewController {
     @IBOutlet var promptView: UIView!
     @IBOutlet var scanView: UIView!
     @IBOutlet var scanProgressBar: UIProgressView!
+    @IBOutlet var controlsView: UIView!
     
-    let sceneName : String = "test"
-    let loadSceneWithName : Bool = false
     let debugPlaneDetection : Bool = true
-
     
     let minimumAreaRequired : Float = 0.5
     var isAreaLargeEnough : Bool = false
     var maxAreaFound : Float = 0.0
     
     var worldOriginSet : Bool = false
-    
-    //var scene : SCNScene?
-    //var overlayScene : SKScene?
-    
-    var playerEntity : Player?
-    var enemyEntity : Enemy?
+    var worldOriginTransform : simd_float4x4 = simd_float4x4.init(simd_float4.zero, simd_float4.zero, simd_float4.zero, simd_float4.zero)
     
     var gameManager : GameManager?
-    
-    var initialPosition : simd_float3?
-    var initialRotation : simd_float3?
     
     override public var shouldAutorotate: Bool{
         return true
@@ -53,9 +43,8 @@ class ViewController: UIViewController {
         return .landscapeRight
     }
     
-    var tapAction : (CGPoint) -> () = { (position) -> Void in
-    }
     
+    //MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,14 +64,33 @@ class ViewController: UIViewController {
         sceneView.isMultipleTouchEnabled = true
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Create a session configuration
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = [.horizontal]
+        
+        sceneView.session.run(configuration)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        sceneView.session.pause()
+    }
+    
+    
+    //MARK: - Gesture Recognizer Setup
     private func setupGameControlsRecognizers(){
         /*
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(leftStickPanHandler(_:)))
         sceneView.addGestureRecognizer(panGestureRecognizer)
         */
-        /*
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
-        sceneView.addGestureRecognizer(tapGestureRecognizer)*/
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     @objc func viewAdjustPanHandler(_ gesture: UIPanGestureRecognizer){
@@ -103,38 +111,59 @@ class ViewController: UIViewController {
         
     }
     
+    //MARK: - UIButtons Callbacks
+    
     @IBAction func promptYesTapped(_ sender: Any)
     {
-        print("Yes tapped")
+        //print("Yes tapped")
         promptView.isHidden = true
     }
     
     @IBAction func promptNoTapped(_ sender: Any)
     {
-        print("No tapped")
+        //print("No tapped")
+        let alert = UIAlertController(title: "Options", message: "Choose a method for retracking.", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Scan Again", style: .default, handler: {(action) -> Void in
+            
+            DispatchQueue.main.async {
+                //self.sceneView.scene = SCNScene()
+                self.sceneView.session.pause()
+                GameManager.getInstance().sceneManager?.hideScene()
+                
+                self.promptView.isHidden = true
+                self.scanProgressBar.isHidden = false
+                
+                self.maxAreaFound = 0.0
+                self.isAreaLargeEnough = false
+                
+                let config = ARWorldTrackingConfiguration()
+                config.planeDetection = .horizontal
+                self.sceneView.session.run(config,options: [.removeExistingAnchors,.resetTracking])
+            }
+            }))
+        alert.addAction(UIAlertAction(title: "Adjust Manually", style: .default, handler: {(action) -> Void in
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+
+        self.present(alert, animated: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.horizontal]
-        
-        // Run the view's session
-        sceneView.session.run(configuration)
-        
-        sceneView.session.getCurrentWorldMap(completionHandler: {(worldMap, error) -> Void in
-            self.initialPosition = worldMap?.center
-        })
+    @IBAction func inspectButtonTapped(_ sender: Any) {
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Pause the view's session
-        sceneView.session.pause()
+    @IBAction func resetButtonTapped(_ sender: Any) {
     }
+    
+    @IBAction func infoButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func settingsButtonTapped(_ sender: Any) {
+    }
+    
+    //MARK: - Other functions
     
     @objc
     func projectWorldOrigin(_ point: CGPoint)
@@ -157,15 +186,17 @@ class ViewController: UIViewController {
     }
     
     func setWorldOrigin(_ transform: simd_float4x4){
-        //print(transform)
-        sceneView.session.setWorldOrigin(relativeTransform: transform)
+        worldOriginTransform = transform
         worldOriginSet = true
         
-        
         DispatchQueue.main.async {
-            GameManager.getInstance().sceneManager!.loadScene("first_experiment", nil)
+            
+            GameManager.getInstance().sceneManager!.showScene("experiment", nil)
             self.promptView.isHidden = false
             self.scanView.isHidden = true
+            let sceneRoot = self.sceneView.scene.rootNode.childNode(withName: "SCENE_ROOT", recursively: false)
+            sceneRoot!.simdPosition = transform.getPosition()
+            
             //self.setupGameControlsRecognizers()
             //self.gameManager?.instantiatePlayer(simd_float3(0,1,-2))
         }
@@ -200,7 +231,6 @@ extension ViewController:ARSCNViewDelegate
            // Reset tracking and/or remove existing anchors if consistent tracking is required
            
        }
-    
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         GameManager.getInstance().updateManager?.update(time)
@@ -254,7 +284,6 @@ extension ViewController: ARSessionDelegate{
                     isAreaLargeEnough = true
                     
                     let config = ARWorldTrackingConfiguration()
-                    config.planeDetection = []
                     sceneView.session.run(config)
                     
                     //print(planeAnchor.transform)

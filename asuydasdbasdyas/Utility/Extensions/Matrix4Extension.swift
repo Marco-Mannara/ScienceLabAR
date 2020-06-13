@@ -40,4 +40,10 @@ extension simd_float4x4
         return SCNVector3(trans.x,trans.y,trans.z)
     }
     
+    func setRotation(_ euler : SCNVector3){
+    }
+    
+    func getRotation(){
+        
+    }
 }

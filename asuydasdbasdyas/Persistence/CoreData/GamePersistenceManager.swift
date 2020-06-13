@@ -17,7 +17,7 @@ class GamePersistenceManager : NSPersistentContainer {
     }
    
     static var persistentContainer: NSPersistentContainer = {
-           let container = NSPersistentContainer(name: "GameModel")
+           let container = NSPersistentContainer(name: "AppModel")
            container.loadPersistentStores { description, error in
                if let error = error {
                    fatalError("Unable to load persistent stores: \(error)")

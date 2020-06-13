@@ -39,6 +39,7 @@ class GameManager {
         let instance = getInstance()
         instance.sceneManager = SceneManager(sceneView)
         
+        /*
         if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
                   if let dict = NSDictionary(contentsOfFile: path)  {
                       let dict2 = dict as! [String : AnyObject]
@@ -49,8 +50,8 @@ class GameManager {
                       technique?.setValue(NSValue(scnVector3: color), forKeyPath: "glowColorSymbol")
 
                       sceneView.technique = technique
-                  }
               }
+          }*/
     }
     
     static func initialize(_ arSceneView : ARSCNView){

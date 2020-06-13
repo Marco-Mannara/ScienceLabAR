@@ -14,7 +14,16 @@ import SpriteKit
 class Tool : GKEntity, EntityCollisionProtocol, EntityHitProtocol{
 
     
-    var isSelected : Bool
+    var isSelected : Bool {
+        didSet{
+            if !isSelected{
+                node.setHighlighted(false)
+            }
+            else{
+                node.setHighlighted()
+            }
+        }
+    }
     var node : SCNNode
     var displayName : String
     var restPoint : SCNNode?

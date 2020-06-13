@@ -40,9 +40,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         //sceneView.debugOptions = .showPhysicsShapes
         
         GameManager.initialize(sceneView)
-        GameManager.getInstance().sceneManager?.loadScene("first_experiment", nil)
+        GameManager.getInstance().sceneManager?.showScene("experiment", nil)
         
-      
+        
         
         //GameManager.getInstance().instantiatePlayer()
         /*
@@ -82,13 +82,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
             let position = touch.location(in: sceneView)
             let firstResult = sceneView.hitTest(position, options: nil).first
             
-            print("touch")
+            
             if let hitNode = firstResult?.node.entity as? EntityHitProtocol{
-                print("hit!")
                 hitNode.hit(firstResult!)
             }
             else{
-                print("Didn't intersect with a hittable entity")
             }
             
             /*

@@ -17,34 +17,57 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
     var sceneView : SCNView
     var currentScene : SCNScene?
     var currentOverlayScene : SKScene?
+    
+    private var loadedSceneName : String = ""
+    private var loadedOverlayName : String?
+    
     var currentGameLevel : GameLevel?
     var currentExperiment : Experiment?
+    
     
     init(_ sceneView : SCNView){
         self.sceneView = sceneView
     }
     
     
-    func loadScene(_ named: String, _ withOverlayNamed : String?)
+    func showScene(_ named: String, _ withOverlayNamed : String?)
     {
-        if let overlayName = withOverlayNamed{
-            let overlayScene = SKScene(fileNamed: overlayName + ".sks")!
-            currentOverlayScene = overlayScene
-            overlayScene.isUserInteractionEnabled = false
-            overlayScene.size = CGSize(width: sceneView.bounds.width, height: sceneView.bounds.height)
-            sceneView.overlaySKScene = overlayScene
+        if withOverlayNamed != loadedOverlayName{
+            if let overlayName = withOverlayNamed{
+                      let overlayScene = SKScene(fileNamed: overlayName + ".sks")!
+                      currentOverlayScene = overlayScene
+                      overlayScene.isUserInteractionEnabled = false
+                      overlayScene.size = CGSize(width: sceneView.bounds.width, height: sceneView.bounds.height)
+                      sceneView.overlaySKScene = overlayScene
+            }
         }
-       
-        let scene = SCNScene(named: "art.scnassets/scenes/"+named+".scn")
-        
-        sceneView.scene = scene!
-        sceneView.scene!.physicsWorld.contactDelegate = self
-        
-        currentScene = scene
-        //touchController = Controller(currentOverlayScene)
-        //currentGameLevel = GameLevel(scene!)
-        currentExperiment = Experiment(scene!)
+        else{
+            
+        }
+
+        if loadedSceneName != named{
+            let scene = SCNScene(named: "art.scnassets/scenes/" + named + ".scn")
+            loadedSceneName = named
+            loadedOverlayName = withOverlayNamed
+            
+            sceneView.scene = scene!
+            sceneView.scene!.physicsWorld.contactDelegate = self
+            
+            currentScene = scene
+            //touchController = Controller(currentOverlayScene)
+            //currentGameLevel = GameLevel(scene!)
+            currentExperiment = Experiment(scene!)
+        }
+        else{
+            currentScene?.rootNode.isHidden = false
+        }
     }
+    
+    func hideScene(){
+        currentScene?.rootNode.isHidden = true
+    }
+    
+    
     /*
     private func setupGameControlsRecognizers(){
          let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(leftStickPanHandler(_:)))

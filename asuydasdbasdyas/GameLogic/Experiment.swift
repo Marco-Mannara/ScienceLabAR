@@ -12,13 +12,22 @@ import SpriteKit
 class Experiment {
     
     var scene : SCNScene
-    var restPoints : [SCNNode]
     var tools : [Tool]
-   
+    var sceneRoot : SCNNode
+    private var restPoints : [SCNNode]
+    
     init(_ scene: SCNScene){
         self.scene = scene
         self.restPoints = []
         self.tools = []
+        
+        if let root = scene.rootNode.childNode(withName: "SCENE_ROOT", recursively: false){
+            sceneRoot = root
+        }
+        else{
+            fatalError("Couldn't find SCENE_ROOT node")
+        }
+        
         
         readDataFromJSON()
         setupScene()
@@ -35,10 +44,12 @@ class Experiment {
                         if let neededContainers = neededTools["containers"] as? [String]{
                             for container in neededContainers {
                                 if let toolNode = toolScene.rootNode.childNode(withName: container, recursively: true){
-                
-                                    tools.append(Tool(toolNode, container))
+                                    
+                                    tools.append(LiquidContainer(toolNode, container, 100))
                                 }
                             }
+                            
+                            
                         }
                     }
                 }
@@ -48,12 +59,12 @@ class Experiment {
         }
     }
     
-    private func setupScene(){
+    func setupScene(){
         var lastUsedRestPoint = 0
         
-        for node in scene.rootNode.childNodes{
+        for node in sceneRoot.childNodes{
             let nodeName = node.name
-            if nodeName == "spawnPoint" {
+            if nodeName!.hasPrefix("spawnPoint")  {
                 //print("Spawnpoint found and added.")
                 restPoints.append(node)
             }
@@ -61,9 +72,12 @@ class Experiment {
         
         for tool in tools {
             if lastUsedRestPoint < restPoints.count{
-                scene.rootNode.addChildNode(tool.node)
+                sceneRoot.addChildNode(tool.node)
                 tool.node.setHighlighted()
                 tool.restPoint = restPoints[lastUsedRestPoint]
+                
+                //print(tool.restPoint?.name)
+                
                 tool.resetPosition()
                 
                 lastUsedRestPoint += 1
@@ -72,6 +86,14 @@ class Experiment {
                 fatalError("Not enough rest points")
             }
         }
+    }
+    
+    func resetExperiment(){
+        
+    }
+    
+    func deleteScene(){
+        
     }
 }
 
