@@ -11,8 +11,14 @@ import GameplayKit
 import SceneKit
 import SpriteKit
 
-class Tool : GKEntity, EntityCollisionProtocol, EntityHitProtocol{
+class Tool : GKEntity{
 
+    var node : SCNNode
+    var displayName : String
+    var restPoint : SCNNode?
+    
+    var isEnabled : Bool = true
+    var isSpawned : Bool = false
     
     var isSelected : Bool {
         didSet{
@@ -24,9 +30,7 @@ class Tool : GKEntity, EntityCollisionProtocol, EntityHitProtocol{
             }
         }
     }
-    var node : SCNNode
-    var displayName : String
-    var restPoint : SCNNode?
+    
     
     init(_ node : SCNNode, _ displayName : String){
         self.node = node
@@ -55,6 +59,11 @@ class Tool : GKEntity, EntityCollisionProtocol, EntityHitProtocol{
         }
     }
     
+    func spawn(_ sceneRoot : SCNNode){
+        sceneRoot.addChildNode(node)
+        isSpawned = true
+    }
+    /*
     func collisionBegin(_ contact: SCNPhysicsContact, _ otherNode: SCNNode) {
         
     }
@@ -68,6 +77,6 @@ class Tool : GKEntity, EntityCollisionProtocol, EntityHitProtocol{
     }
     
     func hit(_ hitResult: SCNHitTestResult) {
-        
     }
+     */
 }

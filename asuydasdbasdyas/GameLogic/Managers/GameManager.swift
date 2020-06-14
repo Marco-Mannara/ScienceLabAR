@@ -58,6 +58,7 @@ class GameManager {
         let instance = getInstance()
         instance.sceneManager = SceneManager(arSceneView)
         
+        /*
         if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
                   if let dict = NSDictionary(contentsOfFile: path)  {
                       let dict2 = dict as! [String : AnyObject]
@@ -69,7 +70,7 @@ class GameManager {
 
                       arSceneView.technique = technique
                   }
-              }
+              }*/
     }
     
     func instantiatePlayer(){

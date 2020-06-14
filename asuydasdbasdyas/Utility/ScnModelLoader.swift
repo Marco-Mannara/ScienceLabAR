@@ -12,10 +12,17 @@ import SceneKit
 class ScnModelLoader{
     
     
-    static func loadModel(_ name: String) -> SCNNode?{
-        let scene = SCNScene(named: name)
-        let node = scene?.rootNode.childNode(withName: name, recursively: false)
-        return node
+    static func loadModel(_ sceneName: String, _ nodeName : String? = nil) -> SCNNode?{
+        let scene = SCNScene(named: "art.scnassets/" + sceneName + ".scn")
+        
+        if let nName = nodeName{
+            let node = scene?.rootNode.childNode(withName: nName, recursively: false)
+            return node
+        }
+        else
+        {
+            let node = scene?.rootNode.childNode(withName: sceneName, recursively: false)
+            return node
+        }
     }
-    
 }

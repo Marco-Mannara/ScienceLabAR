@@ -12,6 +12,7 @@
 		90107392244DF85D00305E9F /* SCNVector3Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90107391244DF85C00305E9F /* SCNVector3Extension.swift */; };
 		90296AA8244F052400FB7A0F /* ControllerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90296AA7244F052400FB7A0F /* ControllerButton.swift */; };
 		90296AAB244F0F1200FB7A0F /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90296AAA244F0F1200FB7A0F /* CGPointExtension.swift */; };
+		9049E4DA24966B180037B755 /* HintSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9049E4D924966B180037B755 /* HintSystem.swift */; };
 		905AF150244B5D2200010E06 /* PlayerMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF14F244B5D2200010E06 /* PlayerMovementComponent.swift */; };
 		905AF152244B664C00010E06 /* ControllerStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF151244B664C00010E06 /* ControllerStick.swift */; };
 		905AF154244CC38200010E06 /* PlayerCameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF153244CC38200010E06 /* PlayerCameraComponent.swift */; };
@@ -29,6 +30,8 @@
 		90A188E824951814001A722C /* AdjustController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188E724951814001A722C /* AdjustController.swift */; };
 		90A188EA2495409E001A722C /* Pipetta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188E92495409E001A722C /* Pipetta.swift */; };
 		90A188EC24954352001A722C /* ScnModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188EB24954352001A722C /* ScnModelLoader.swift */; };
+		90B1FAD824968673006486C2 /* ToolMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1FAD724968673006486C2 /* ToolMenu.swift */; };
+		90B1FADA24968ED3006486C2 /* ToolMenuEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1FAD924968ED3006486C2 /* ToolMenuEntry.swift */; };
 		90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B200552459AF5600C0DD86 /* SceneManager.swift */; };
 		90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2CC5D2460648C0088727B /* MainMenuViewController.swift */; };
 		90B2CC60246069000088727B /* OptionsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2CC5F246069000088727B /* OptionsMenuViewController.swift */; };
@@ -84,6 +87,7 @@
 		90107391244DF85C00305E9F /* SCNVector3Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3Extension.swift; sourceTree = "<group>"; };
 		90296AA7244F052400FB7A0F /* ControllerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerButton.swift; sourceTree = "<group>"; };
 		90296AAA244F0F1200FB7A0F /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+		9049E4D924966B180037B755 /* HintSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintSystem.swift; sourceTree = "<group>"; };
 		905AF14F244B5D2200010E06 /* PlayerMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMovementComponent.swift; sourceTree = "<group>"; };
 		905AF151244B664C00010E06 /* ControllerStick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerStick.swift; sourceTree = "<group>"; };
 		905AF153244CC38200010E06 /* PlayerCameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCameraComponent.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 		90A188E724951814001A722C /* AdjustController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustController.swift; sourceTree = "<group>"; };
 		90A188E92495409E001A722C /* Pipetta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pipetta.swift; sourceTree = "<group>"; };
 		90A188EB24954352001A722C /* ScnModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScnModelLoader.swift; sourceTree = "<group>"; };
+		90B1FAD724968673006486C2 /* ToolMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolMenu.swift; sourceTree = "<group>"; };
+		90B1FAD924968ED3006486C2 /* ToolMenuEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolMenuEntry.swift; sourceTree = "<group>"; };
 		90B200552459AF5600C0DD86 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		90B2CC5D2460648C0088727B /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		90B2CC5F246069000088727B /* OptionsMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenuViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +173,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9010D59424966DA40010F5C9 /* Experiment */ = {
+			isa = PBXGroup;
+			children = (
+				90E4B60A2492951A00C36DCA /* Experiment.swift */,
+				9049E4D924966B180037B755 /* HintSystem.swift */,
+				90B1FAD724968673006486C2 /* ToolMenu.swift */,
+				90B1FAD924968ED3006486C2 /* ToolMenuEntry.swift */,
+			);
+			path = Experiment;
+			sourceTree = "<group>";
+		};
 		90296AA9244F0EEE00FB7A0F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,12 +368,12 @@
 		90CCE9942445BCD9000F7C62 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
+				9010D59424966DA40010F5C9 /* Experiment */,
 				90E52654245739DC005B35A1 /* Managers */,
 				90F7CE022450801A00851518 /* Controller */,
 				90CCE9932445BCC5000F7C62 /* Components */,
 				90CCE9922445BCB9000F7C62 /* Entities */,
 				909C99DB24643EDC00E41C4D /* EntityCollisionProtocol.swift */,
-				90E4B60A2492951A00C36DCA /* Experiment.swift */,
 				90E4B6132492C54300C36DCA /* Substance.swift */,
 				90E4B6152492CA4200C36DCA /* EntityHitDelegate.swift */,
 			);
@@ -577,8 +594,10 @@
 				905AF156244CDFDE00010E06 /* Vector3.swift in Sources */,
 				90CCE9902445B8C0000F7C62 /* Utilities.swift in Sources */,
 				90CCE9912445B8C0000F7C62 /* Plane.swift in Sources */,
+				90B1FADA24968ED3006486C2 /* ToolMenuEntry.swift in Sources */,
 				90296AAB244F0F1200FB7A0F /* CGPointExtension.swift in Sources */,
 				9065ECC5244A0E7C0035AC37 /* PhysicsComponent.swift in Sources */,
+				90B1FAD824968673006486C2 /* ToolMenu.swift in Sources */,
 				90E4B6102492BE5C00C36DCA /* Becker.swift in Sources */,
 				90107392244DF85D00305E9F /* SCNVector3Extension.swift in Sources */,
 				90BBAB872443C57B001BEC81 /* AppDelegate.swift in Sources */,
@@ -594,6 +613,7 @@
 				90A188E824951814001A722C /* AdjustController.swift in Sources */,
 				90B2CC622460690C0088727B /* AchievementsViewController.swift in Sources */,
 				90F7CE072450C0AC00851518 /* Enemy.swift in Sources */,
+				9049E4DA24966B180037B755 /* HintSystem.swift in Sources */,
 				900EB1C62454A38E00CDBA39 /* UpdateManager.swift in Sources */,
 				905AF150244B5D2200010E06 /* PlayerMovementComponent.swift in Sources */,
 				9095AEC12493DB5E00271E31 /* SCNNodeExtension.swift in Sources */,

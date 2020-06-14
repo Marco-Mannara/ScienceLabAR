@@ -83,8 +83,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
             let firstResult = sceneView.hitTest(position, options: nil).first
             
             
-            if let hitNode = firstResult?.node.entity as? EntityHitProtocol{
-                hitNode.hit(firstResult!)
+            if let hitTool = firstResult?.node.entity as? Tool{
+                GameManager.getInstance().sceneManager?.currentExperiment?.selectTool(hitTool)
             }
             else{
             }

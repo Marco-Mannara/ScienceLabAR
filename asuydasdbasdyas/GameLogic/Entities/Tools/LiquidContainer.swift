@@ -32,4 +32,27 @@ class LiquidContainer : Tool{
         fatalError("init(coder:) has not been implemented")
     }
     
+    static func instantiate(_ node: SCNNode,_ containerName: String, _ params: [Any]?) -> LiquidContainer? {
+        if containerName == "becker"{
+            if let volumeCap = params?[0] as? Double{
+                 return Becker(node, containerName, Float(volumeCap))
+            }
+            else{
+                print("No parameter was passed to Becker instantiation")
+                return nil
+            }
+        }
+        else if containerName == "pipetta"{
+            if let volumeCap = params?[0] as? Double{
+                 return Pipetta(node, containerName, Float(volumeCap))
+            }
+            else{
+                print("No parameter was passed to Pipetta instantiation")
+                return nil
+            }
+        }
+        else{
+            return nil
+        }
+    }
 }

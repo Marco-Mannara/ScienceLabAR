@@ -14,7 +14,9 @@ class Experiment {
     var scene : SCNScene
     var tools : [Tool]
     var sceneRoot : SCNNode
+    
     private var restPoints : [SCNNode]
+    private lazy var hint : HintSystem = HintSystem(self)
     
     init(_ scene: SCNScene){
         self.scene = scene
@@ -28,7 +30,6 @@ class Experiment {
             fatalError("Couldn't find SCENE_ROOT node")
         }
         
-        
         readDataFromJSON()
         setupScene()
     }
@@ -36,28 +37,33 @@ class Experiment {
     private func readDataFromJSON(){
         if let path = Bundle.main.url(forResource: "firstExperiment", withExtension: "json"){
             do {
-                let toolScene = SCNScene(named: "art.scnassets/tools/tools.scn")!
+                //let toolScene = SCNScene(named: "art.scnassets/tools/tools.scn")!
                 let data = try Data(contentsOf: path, options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
                 if let jsonResult = jsonResult as? Dictionary<String, AnyObject> {
                     if let neededTools = jsonResult["tools"] as? Dictionary<String,AnyObject>{
-                        if let neededContainers = neededTools["containers"] as? [String]{
-                            for container in neededContainers {
-                                if let toolNode = toolScene.rootNode.childNode(withName: container, recursively: true){
-                                    
-                                    tools.append(LiquidContainer(toolNode, container, 100))
-                                }
-                            }
-                            
-                            
-                        }
+                        setupTools(neededTools)
                     }
                 }
-        } catch {
-            print("Failed to read json file")
-        }
+            } catch {
+                print("Failed to read json file")
+            }
         }
     }
+    
+    private func setupTools(_ toolsDict : Dictionary<String,AnyObject>){
+        if let neededContainers = toolsDict["containers"] as? [String]{
+            for container in neededContainers {
+                if let toolNode = ScnModelLoader.loadModel("tools/tools",container){
+                    tools.append(LiquidContainer.instantiate(toolNode, container, [100.0])!)
+                }
+                else{
+                    print("Couldn't find model for " + container )
+                }
+            }
+        }
+    }
+    
     
     func setupScene(){
         var lastUsedRestPoint = 0
@@ -72,12 +78,8 @@ class Experiment {
         
         for tool in tools {
             if lastUsedRestPoint < restPoints.count{
-                sceneRoot.addChildNode(tool.node)
-                tool.node.setHighlighted()
+                tool.spawn(sceneRoot)
                 tool.restPoint = restPoints[lastUsedRestPoint]
-                
-                //print(tool.restPoint?.name)
-                
                 tool.resetPosition()
                 
                 lastUsedRestPoint += 1
@@ -94,6 +96,14 @@ class Experiment {
     
     func deleteScene(){
         
+    }
+    
+    func selectTool(_ tool : Tool){
+        hint.highLightTool(tool)
+    }
+    
+    func onToolHit(_ tool : Tool){
+        selectTool(tool)
     }
 }
 
