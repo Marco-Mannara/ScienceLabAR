@@ -8,13 +8,31 @@
 
 import Foundation
 
-class Substance {
-    var moleculeDesc : String = ""
-    var PH : Float = 7.0 {
+class Substance : NSObject, NSCoding{
+    
+    var molecule : String = ""
+    var PH : Double = 7.0 {
         didSet{
             if PH < 1.0 || PH > 15{
                 PH = oldValue
             }
         }
+    }
+    var density : Double = 1.0
+    var volume : Double = 0.0
+    var qualityFlag : Bool = false
+    
+    required init?(coder: NSCoder) {
+        guard let molecule = coder.decodeObject(forKey: "molecule") as? String else {
+            return nil
+        }
+        self.molecule = molecule
+        self.PH = coder.decodeDouble(forKey: "PH")
+        self.density = coder.decodeDouble(forKey: "density")
+        qualityFlag = true
+    }
+    
+    func encode(with coder: NSCoder) {
+         
     }
 }

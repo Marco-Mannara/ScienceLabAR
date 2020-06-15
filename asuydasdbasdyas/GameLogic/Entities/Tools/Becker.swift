@@ -12,6 +12,20 @@ import SpriteKit
 
 class Becker : LiquidContainer, EntityHitProtocol, EntityCollisionProtocol {
     
+    
+    override init(_ node :SCNNode, _ displayName: String, _ volumeCapacity : Float){
+        super.init(node, displayName, volumeCapacity)
+        
+    }
+    
+    init(_ node : SCNNode, _ displayName: String, _ volumeCapacity : Float, _ filledWith: Substance){
+        super.init(node, displayName, volumeCapacity)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func isCompatible(_ otherTool: Tool) -> Bool {
         //TODO: replace with actual function
         return true
@@ -24,7 +38,6 @@ class Becker : LiquidContainer, EntityHitProtocol, EntityCollisionProtocol {
     }
     
     func hit(_ hitResult: SCNHitTestResult) {
-        node.geometry?.materials.first?.diffuse.contents = UIColor.yellow
         print("hit becker")
     }
     

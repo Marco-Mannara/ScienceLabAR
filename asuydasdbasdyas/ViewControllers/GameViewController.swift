@@ -80,13 +80,19 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     {
         for touch in touches {
             let position = touch.location(in: sceneView)
-            let firstResult = sceneView.hitTest(position, options: nil).first
-            
-            
-            if let hitTool = firstResult?.node.entity as? Tool{
-                GameManager.getInstance().sceneManager?.currentExperiment?.selectTool(hitTool)
+            if let firstResult = sceneView.hitTest(position, options: nil).first{
+                //print("hit something:")
+                //print(firstResult.node.name!)
+                if let hitEntity = firstResult.node.entity as? EntityHitProtocol{
+                    //print("hit hittable")
+                    hitEntity.hit(firstResult)
+                }
+                if let hitTool = firstResult.node.entity as? Tool{
+                    GameManager.getInstance().sceneManager?.currentExperiment?.selectTool(hitTool)
+                }
             }
             else{
+                //print("miss")
             }
             
             /*

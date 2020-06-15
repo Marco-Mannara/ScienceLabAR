@@ -63,6 +63,32 @@ class Tool : GKEntity{
         sceneRoot.addChildNode(node)
         isSpawned = true
     }
+    
+    func getAnchorPosition(_ type: AnchorType) -> SCNVector3{
+        let toolBounds = node.boundingSphere
+        
+        //print(toolBounds)
+        
+        switch type {
+        case .upRight:
+            return node.position + SCNVector3(toolBounds.radius * node.scale.x,toolBounds.radius * node.scale.y, 0)
+        case .upLeft:
+            return node.position + SCNVector3(-toolBounds.radius * node.scale.x,toolBounds.radius * node.scale.y, 0)
+        case .back:
+            return node.position + SCNVector3(0,0,-toolBounds.radius * node.scale.z)
+        case .front:
+            return node.position + SCNVector3(0,0,toolBounds.radius * node.scale.z)
+        case .left:
+            return node.position + SCNVector3(-toolBounds.radius * node.scale.x,0,0)
+        case .right:
+            return node.position + SCNVector3(toolBounds.radius * node.scale.x,0,0)
+        case .up:
+            return node.position + SCNVector3(0,toolBounds.radius * node.scale.y, 0)
+        case .down:
+            return node.position + SCNVector3(0,-toolBounds.radius * node.scale.y,0)
+        }
+    }
+    
     /*
     func collisionBegin(_ contact: SCNPhysicsContact, _ otherNode: SCNNode) {
         
@@ -79,4 +105,15 @@ class Tool : GKEntity{
     func hit(_ hitResult: SCNHitTestResult) {
     }
      */
+}
+
+enum AnchorType{
+    case up
+    case down
+    case left
+    case right
+    case front
+    case back
+    case upRight
+    case upLeft
 }

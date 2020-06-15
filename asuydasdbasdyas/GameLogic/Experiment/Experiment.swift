@@ -16,7 +16,10 @@ class Experiment {
     var sceneRoot : SCNNode
     
     private var restPoints : [SCNNode]
+    var workPosition : WorkPosition?
+    
     private lazy var hint : HintSystem = HintSystem(self)
+    private lazy var toolMenu : ToolMenu = ToolMenu(self)
     
     init(_ scene: SCNScene){
         self.scene = scene
@@ -30,11 +33,11 @@ class Experiment {
             fatalError("Couldn't find SCENE_ROOT node")
         }
         
-        readDataFromJSON()
-        setupScene()
+        deserialize()
+        setup()
     }
     
-    private func readDataFromJSON(){
+    private func deserialize(){
         if let path = Bundle.main.url(forResource: "firstExperiment", withExtension: "json"){
             do {
                 //let toolScene = SCNScene(named: "art.scnassets/tools/tools.scn")!
@@ -65,16 +68,27 @@ class Experiment {
     }
     
     
-    func setupScene(){
+    func setup(){
         var lastUsedRestPoint = 0
         
+        let spawnPoints = sceneRoot.childNodes(passingTest: {(node,flag) -> Bool in
+            return node.name?.hasPrefix("spawnPoint") ?? false
+        })
+        
+        restPoints.append(contentsOf: spawnPoints)
+        
+        let workPositionNode = sceneRoot.childNode(withName: "workPosition", recursively: false)!
+        workPosition = WorkPosition(self,workPositionNode)
+        
+        
+        /*
         for node in sceneRoot.childNodes{
             let nodeName = node.name
             if nodeName!.hasPrefix("spawnPoint")  {
                 //print("Spawnpoint found and added.")
                 restPoints.append(node)
             }
-        }
+        }*/
         
         for tool in tools {
             if lastUsedRestPoint < restPoints.count{
@@ -99,7 +113,23 @@ class Experiment {
     }
     
     func selectTool(_ tool : Tool){
-        hint.highLightTool(tool)
+        if let index = tools.firstIndex(of: tool){
+            tools[index].isSelected = true
+            hint.highLightTool(tool)
+            toolMenu.display(tool)
+        }else{
+            fatalError("Tool not found")
+        }
+    }
+    
+    func deselectTool(_ tool : Tool){
+        if let index = tools.firstIndex(of: tool){
+            tools[index].isSelected = false
+            hint.disableHighlight()
+            toolMenu.hide()
+        }else{
+            fatalError("Tool not found")
+        }
     }
     
     func onToolHit(_ tool : Tool){

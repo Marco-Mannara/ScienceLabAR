@@ -13,11 +13,20 @@ import GameplayKit
 class ToolMenuEntry : GKEntity, EntityHitProtocol{
     
     var toolMenu : ToolMenu
+    var onTapAction : (()->Void)?
     
-    init (_ toolMenu : ToolMenu){
+    init (_ toolMenu : ToolMenu, _ onTapAction: (()->Void)?){
         self.toolMenu = toolMenu
+        self.onTapAction = onTapAction
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func hit(_ hitResult: SCNHitTestResult) {
+        print("hit menu entry")
+        onTapAction?()
     }
 }

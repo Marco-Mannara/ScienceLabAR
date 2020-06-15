@@ -17,6 +17,7 @@
 		905AF152244B664C00010E06 /* ControllerStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF151244B664C00010E06 /* ControllerStick.swift */; };
 		905AF154244CC38200010E06 /* PlayerCameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF153244CC38200010E06 /* PlayerCameraComponent.swift */; };
 		905AF156244CDFDE00010E06 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF155244CDFDE00010E06 /* Vector3.swift */; };
+		906030C92497C116002E0B14 /* Workposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906030C82497C116002E0B14 /* Workposition.swift */; };
 		9065ECC5244A0E7C0035AC37 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */; };
 		906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906EB3CD2445C6410067B607 /* Matrix4Extension.swift */; };
 		9077B5172465B7B20041FDBC /* GamePersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */; };
@@ -92,6 +93,7 @@
 		905AF151244B664C00010E06 /* ControllerStick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerStick.swift; sourceTree = "<group>"; };
 		905AF153244CC38200010E06 /* PlayerCameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCameraComponent.swift; sourceTree = "<group>"; };
 		905AF155244CDFDE00010E06 /* Vector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
+		906030C82497C116002E0B14 /* Workposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workposition.swift; sourceTree = "<group>"; };
 		9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		906EB3CD2445C6410067B607 /* Matrix4Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4Extension.swift; sourceTree = "<group>"; };
 		9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePersistenceManager.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				9049E4D924966B180037B755 /* HintSystem.swift */,
 				90B1FAD724968673006486C2 /* ToolMenu.swift */,
 				90B1FAD924968ED3006486C2 /* ToolMenuEntry.swift */,
+				906030C82497C116002E0B14 /* Workposition.swift */,
 			);
 			path = Experiment;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				9095AEBD2493DA3E00271E31 /* NodeRender.metal in Sources */,
 				9095AEC6249436C800271E31 /* ScanningOptionsViewController.swift in Sources */,
 				90C6621D24620B77006FB460 /* AchievementCollectionViewCell.swift in Sources */,
+				906030C92497C116002E0B14 /* Workposition.swift in Sources */,
 				90F7CE042450802900851518 /* Controller.swift in Sources */,
 				9077B5172465B7B20041FDBC /* GamePersistenceManager.swift in Sources */,
 				90E4B6142492C54300C36DCA /* Substance.swift in Sources */,

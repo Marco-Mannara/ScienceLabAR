@@ -11,8 +11,21 @@ import SceneKit
 
 
 class LiquidContainer : Tool{
-    var contentsVolume : Float
-    var contentsWeight : Float
+    var contents : [Substance]
+    var contentsVolume : Float{
+        var vol = 0.0
+        for c in contents{
+            vol += c.volume
+        }
+        return Float(vol)
+    }
+    var contentsWeight : Float{
+        var weight = 0.0
+          for c in contents{
+              weight += c.volume / 1000.0 * c.density
+          }
+          return Float(weight)
+    }
     var volumeCapacity : Float {
            didSet{
                if volumeCapacity < 0.0{
@@ -23,8 +36,7 @@ class LiquidContainer : Tool{
     
     init(_ node : SCNNode, _ displayName : String , _ volumeCapacity : Float){
         self.volumeCapacity = volumeCapacity
-        self.contentsVolume = 0.0
-        self.contentsWeight = 0.0
+        self.contents = []
         super.init(node, displayName)
     }
     

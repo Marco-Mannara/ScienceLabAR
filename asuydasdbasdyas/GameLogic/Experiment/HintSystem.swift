@@ -35,12 +35,16 @@ class HintSystem {
         selectionRing.isHidden = false
         selectionRing.position = tool.node.position
         selectionRing.scale = SCNVector3(1,1,1)
-        
+
         if toolDimensions.x > toolDimensions.z{
             selectionRing.scale = selectionRing.scale * (toolDimensions.x * toolScale.x + 0.03)
         }
         else{
             selectionRing.scale = selectionRing.scale * (toolDimensions.z * toolScale.z + 0.03)
         }
+    }
+    
+    func disableHighlight(){
+        selectionRing.isHidden = true
     }
 }
