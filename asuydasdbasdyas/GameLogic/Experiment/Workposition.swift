@@ -32,12 +32,12 @@ class WorkPosition : GKEntity, EntityHitProtocol{
     
     func hit(_ hitResult: SCNHitTestResult) {
         print("hit workposition")
-        if let selTool = experiment.selection?.toolSelectedA{
+        if let selTool = experiment.selection?.toolSelected{
             selTool.state?.enter(StatePositioned.self)
         }
-        else if let selTool = experiment.selection?.toolSelectedB{
+        /*else if let selTool = experiment.selection?.toolSelectedB{
             selTool.state?.enter(StatePositioned.self)
-        }
+        }*/
     }
     
     func place(_ tool : Tool){
@@ -45,9 +45,6 @@ class WorkPosition : GKEntity, EntityHitProtocol{
         if positionedTool == nil{
             positionedTool = tool
             tool.place(node.position)
-        }
-        else{
-           positionedTool!.useWith(tool)
         }
     }
 }

@@ -26,7 +26,7 @@ class ToolMenuEntry : GKEntity, EntityHitProtocol{
     }
     
     func hit(_ hitResult: SCNHitTestResult) {
-        print("hit menu entry")
+        //print("hit menu entry")
         onTapAction?()
     }
 }

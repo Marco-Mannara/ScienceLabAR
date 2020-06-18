@@ -121,6 +121,8 @@ class StatePickedUp : ToolState{
     
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
+        let toolState = stateMachine as! ToolStateMachine
+        toolState.experiment.selection?.clearSelection()
     }
     
     override func didEnter(from previousState: GKState?) {
@@ -136,7 +138,11 @@ class StatePickedUp : ToolState{
 class StatePositioned : ToolState{
     
     override func onTap() {
+        let toolState = stateMachine as! ToolStateMachine
         
+        if let selTool = toolState.experiment.selection?.toolSelected{
+            toolState.tool.useWith(selTool)
+        }
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
@@ -152,8 +158,8 @@ class StatePositioned : ToolState{
     override func didEnter(from previousState: GKState?) {
         let toolState = stateMachine as! ToolStateMachine
         
+        toolState.experiment.workPosition?.place(toolState.tool)
         toolState.experiment.hint?.disableHighlight(toolState.tool)
-        toolState.tool.place(toolState.experiment.workPosition!.node.position)
     }
 }
 

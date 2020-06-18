@@ -18,12 +18,8 @@ class InputManager{
         if enabled{
             
             if let firstResult = sceneView.hitTest(position, options: nil).first{
-                //print("hit something:")
-                //print(firstResult.node.name!)
-                //let node = firstResult.node
-                //print(node)
                 if let hitEntity = firstResult.node.entity as? EntityHitProtocol{
-                    print("hit hittable")
+                    //print("hit hittable")
                     hitEntity.hit(firstResult)
                 }
                 if let hitTool = firstResult.node.entity as? Tool{

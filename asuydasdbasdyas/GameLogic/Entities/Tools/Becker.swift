@@ -35,5 +35,10 @@ class Becker : LiquidContainer {
         if !isCompatible(otherTool) {
             return
         }
+        else{
+            if type(of: otherTool) == BunsenStand.self{
+                
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ class NodePool{
         self.busyPool = []
         self.quantity = quantity
         
-        for _ in [0 ... quantity]{
+        for _ in 0 ... quantity{
             let clone = node.clone()
             avaiablePool.append(clone)
             clone.isHidden = true
@@ -33,6 +33,7 @@ class NodePool{
         if avaiablePool.count > 0{
             let node = avaiablePool.removeLast()
             busyPool.append(node)
+            node.isHidden = false
             return node
         }
         return nil
@@ -41,5 +42,6 @@ class NodePool{
     func release(_ node : SCNNode){
         let node = busyPool.remove(at: busyPool.firstIndex(of: node)!)
         avaiablePool.append(node)
+        node.isHidden = true
     }
 }

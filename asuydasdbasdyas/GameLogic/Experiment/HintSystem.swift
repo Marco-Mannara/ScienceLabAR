@@ -24,7 +24,7 @@ class HintSystem {
         self.highlightedElements = [:]
         
         let highlightRing  = ScnModelLoader.loadModel("selector_ring")!
-        let hintArrow = ScnModelLoader.loadModel("interaction_symbol/arrow_symbol","arrow")!
+        let hintArrow = ScnModelLoader.loadModel("interaction_symbols/arrow_symbol","arrow")!
         
         highlightRingPool  = NodePool(highlightRing, experiment.sceneRoot, 3)
         hintArrowPool = NodePool(hintArrow, experiment.sceneRoot, 3)
@@ -37,7 +37,6 @@ class HintSystem {
         let toolDimensions = bounds.max - bounds.min
         
         if let highlightRing = highlightRingPool.request(){
-            
             highlightedElements[tool.node] = highlightRing
             
             highlightRing.position = tool.node.position
@@ -53,6 +52,12 @@ class HintSystem {
     }
     
     func disableHighlight(_ tool: Tool){
-        highlightedElements.removeValue(forKey: tool.node)
+        if let ring = highlightedElements[tool.node]{
+            highlightRingPool.release(ring)
+            highlightedElements.removeValue(forKey: tool.node)
+        }
+        else{
+            print("THERE IS NO HIGHLIGHT RING TO DISABLE")
+        }
     }
 }

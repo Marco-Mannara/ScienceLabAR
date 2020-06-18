@@ -10,10 +10,22 @@ import Foundation
 import SceneKit
 
 class Bunsen : Heater{
-        
+    override func isCompatible(_ otherTool: Tool) -> Bool {
+        if type(of: otherTool) == BunsenStand.self {
+            return true
+        }
+        return false
+    }
     
-    override func hit(_ hitResult: SCNHitTestResult) {
-        
+    override func useWith(_ otherTool: Tool) {
+        if !isCompatible(otherTool){
+            return
+        }
+        else{
+            if type(of: otherTool) == BunsenStand.self {
+                otherTool.place(node.position)
+            }
+        }
     }
 }
 
