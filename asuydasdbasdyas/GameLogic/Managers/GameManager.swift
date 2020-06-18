@@ -17,15 +17,18 @@ class GameManager {
     var playerEntity : Player?
     var updateManager : UpdateManager?
     var sceneManager : SceneManager?
+    var inputManager : InputManager?
+    
     var TouchController : Controller?
     var arScene : ARSCNView?
     
     var arCameraTransform : simd_float4x4?{
-        return arScene?.session.currentFrame?.camera.transform ?? sceneManager?.currentGameLevel?.camera.simdTransform
+        return arScene?.session.currentFrame?.camera.transform 
     }
     
     private init(){
         updateManager = UpdateManager()
+        inputManager = InputManager()
     }
     
     static func getInstance() -> GameManager{
@@ -72,7 +75,7 @@ class GameManager {
                   }
               }*/
     }
-    
+    /*
     func instantiatePlayer(){
         guard let gameLevel = sceneManager?.currentGameLevel else {
             print("There's no level loaded. Aborting player spawn")
@@ -81,7 +84,7 @@ class GameManager {
         
         let spawnPoint = gameLevel.spawnPoint
         instantiatePlayer(spawnPoint)
-    }
+    }*/
     
     func instantiatePlayer(_ position: simd_float3, _ rotation: simd_float3 = simd_float3.zero)
     {

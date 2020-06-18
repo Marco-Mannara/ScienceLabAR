@@ -79,10 +79,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </arscnView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIW-ZI-L3P" userLabel="Controls View">
-                                <rect key="frame" x="44" y="0.0" width="808" height="393"/>
+                                <rect key="frame" x="552" y="0.0" width="300" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="UOZ-GG-9zs">
-                                        <rect key="frame" x="518" y="10" width="280" height="40"/>
+                                        <rect key="frame" x="10" y="10" width="280" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgh-k4-hzL" userLabel="InspectButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -138,6 +138,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="UOZ-GG-9zs" firstAttribute="top" secondItem="yIW-ZI-L3P" secondAttribute="top" constant="10" id="9Ht-cW-xhn"/>
+                                    <constraint firstAttribute="width" constant="300" id="Gvb-TT-qfk"/>
+                                    <constraint firstAttribute="height" constant="50" id="eDc-Ir-Q1Y"/>
                                     <constraint firstAttribute="trailing" secondItem="UOZ-GG-9zs" secondAttribute="trailing" constant="10" id="qdI-pV-ruU"/>
                                 </constraints>
                             </view>
@@ -226,9 +228,7 @@
                             <constraint firstItem="gSU-Vc-kuf" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="4H0-RD-Ecg"/>
                             <constraint firstItem="DpW-df-nui" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="6WK-94-FVh"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="yIW-ZI-L3P" secondAttribute="trailing" id="AMd-Cz-imW"/>
-                            <constraint firstItem="yIW-ZI-L3P" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="CYC-EU-Jnr"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="U0K-SW-4ec" secondAttribute="leading" id="GsS-dJ-CKf"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="yIW-ZI-L3P" secondAttribute="bottom" id="Slg-kE-Rcv"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="U0K-SW-4ec" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="gSU-Vc-kuf" secondAttribute="trailing" id="cl0-3X-X1z"/>
                             <constraint firstItem="DpW-df-nui" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="hYl-AN-hYW"/>

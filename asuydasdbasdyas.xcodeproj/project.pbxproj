@@ -17,6 +17,7 @@
 		905AF152244B664C00010E06 /* ControllerStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF151244B664C00010E06 /* ControllerStick.swift */; };
 		905AF154244CC38200010E06 /* PlayerCameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF153244CC38200010E06 /* PlayerCameraComponent.swift */; };
 		905AF156244CDFDE00010E06 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF155244CDFDE00010E06 /* Vector3.swift */; };
+		905C8260249C22020068D749 /* NodePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C825F249C22020068D749 /* NodePool.swift */; };
 		906030C92497C116002E0B14 /* Workposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906030C82497C116002E0B14 /* Workposition.swift */; };
 		9065ECC5244A0E7C0035AC37 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */; };
 		906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906EB3CD2445C6410067B607 /* Matrix4Extension.swift */; };
@@ -46,6 +47,11 @@
 		90BBABA92443C57D001BEC81 /* asuydasdbasdyasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBABA82443C57D001BEC81 /* asuydasdbasdyasUITests.swift */; };
 		90BBABB72443CB23001BEC81 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBABB62443CB23001BEC81 /* Player.swift */; };
 		90BBABB92443D0A4001BEC81 /* MeshRendererComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBABB82443D0A4001BEC81 /* MeshRendererComponent.swift */; };
+		90C5FF23249903920039E2CB /* SelectionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5FF22249903920039E2CB /* SelectionSystem.swift */; };
+		90C5FF2524991B890039E2CB /* experiments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90C5FF2424991B890039E2CB /* experiments.plist */; };
+		90C5FF272499224D0039E2CB /* Heater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5FF262499224D0039E2CB /* Heater.swift */; };
+		90C5FF2924992E510039E2CB /* Bunsen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5FF2824992E510039E2CB /* Bunsen.swift */; };
+		90C5FF2B249931AD0039E2CB /* BunsenStand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5FF2A249931AD0039E2CB /* BunsenStand.swift */; };
 		90C6621D24620B77006FB460 /* AchievementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C6621C24620B77006FB460 /* AchievementCollectionViewCell.swift */; };
 		90C7048C2493BB17001ADE03 /* substances.json in Resources */ = {isa = PBXBuildFile; fileRef = 90C704882493B4CB001ADE03 /* substances.json */; };
 		90C7048D2493BB17001ADE03 /* firstExperiment.json in Resources */ = {isa = PBXBuildFile; fileRef = 90C704872493B484001ADE03 /* firstExperiment.json */; };
@@ -60,6 +66,8 @@
 		90E4B6142492C54300C36DCA /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B6132492C54300C36DCA /* Substance.swift */; };
 		90E4B6162492CA4200C36DCA /* EntityHitDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B6152492CA4200C36DCA /* EntityHitDelegate.swift */; };
 		90E52653245739D5005B35A1 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E52652245739D5005B35A1 /* GameLevel.swift */; };
+		90EF7815249A2AA5009870BB /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF7814249A2AA5009870BB /* InputManager.swift */; };
+		90EF7817249A78AE009870BB /* ToolStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF7816249A78AE009870BB /* ToolStateMachine.swift */; };
 		90F7CE012450723700851518 /* SimdFloat2Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE002450723700851518 /* SimdFloat2Extension.swift */; };
 		90F7CE042450802900851518 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE032450802900851518 /* Controller.swift */; };
 		90F7CE072450C0AC00851518 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE062450C0AC00851518 /* Enemy.swift */; };
@@ -93,6 +101,7 @@
 		905AF151244B664C00010E06 /* ControllerStick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerStick.swift; sourceTree = "<group>"; };
 		905AF153244CC38200010E06 /* PlayerCameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCameraComponent.swift; sourceTree = "<group>"; };
 		905AF155244CDFDE00010E06 /* Vector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
+		905C825F249C22020068D749 /* NodePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodePool.swift; sourceTree = "<group>"; };
 		906030C82497C116002E0B14 /* Workposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workposition.swift; sourceTree = "<group>"; };
 		9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		906EB3CD2445C6410067B607 /* Matrix4Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4Extension.swift; sourceTree = "<group>"; };
@@ -129,6 +138,11 @@
 		90BBABAA2443C57D001BEC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90BBABB62443CB23001BEC81 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		90BBABB82443D0A4001BEC81 /* MeshRendererComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshRendererComponent.swift; sourceTree = "<group>"; };
+		90C5FF22249903920039E2CB /* SelectionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSystem.swift; sourceTree = "<group>"; };
+		90C5FF2424991B890039E2CB /* experiments.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = experiments.plist; sourceTree = "<group>"; };
+		90C5FF262499224D0039E2CB /* Heater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heater.swift; sourceTree = "<group>"; };
+		90C5FF2824992E510039E2CB /* Bunsen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bunsen.swift; sourceTree = "<group>"; };
+		90C5FF2A249931AD0039E2CB /* BunsenStand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunsenStand.swift; sourceTree = "<group>"; };
 		90C6621C24620B77006FB460 /* AchievementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCollectionViewCell.swift; sourceTree = "<group>"; };
 		90C704822493B3F0001ADE03 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		90C704832493B3F0001ADE03 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
@@ -145,6 +159,8 @@
 		90E4B6132492C54300C36DCA /* Substance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Substance.swift; sourceTree = "<group>"; };
 		90E4B6152492CA4200C36DCA /* EntityHitDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHitDelegate.swift; sourceTree = "<group>"; };
 		90E52652245739D5005B35A1 /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
+		90EF7814249A2AA5009870BB /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
+		90EF7816249A78AE009870BB /* ToolStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolStateMachine.swift; sourceTree = "<group>"; };
 		90F7CE002450723700851518 /* SimdFloat2Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimdFloat2Extension.swift; sourceTree = "<group>"; };
 		90F7CE032450802900851518 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		90F7CE062450C0AC00851518 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -178,11 +194,13 @@
 		9010D59424966DA40010F5C9 /* Experiment */ = {
 			isa = PBXGroup;
 			children = (
+				90B1FAD724968673006486C2 /* ToolMenu.swift */,
 				90E4B60A2492951A00C36DCA /* Experiment.swift */,
 				9049E4D924966B180037B755 /* HintSystem.swift */,
-				90B1FAD724968673006486C2 /* ToolMenu.swift */,
 				90B1FAD924968ED3006486C2 /* ToolMenuEntry.swift */,
 				906030C82497C116002E0B14 /* Workposition.swift */,
+				90C5FF22249903920039E2CB /* SelectionSystem.swift */,
+				90EF7816249A78AE009870BB /* ToolStateMachine.swift */,
 			);
 			path = Experiment;
 			sourceTree = "<group>";
@@ -342,6 +360,7 @@
 				90C704882493B4CB001ADE03 /* substances.json */,
 				90C704872493B484001ADE03 /* firstExperiment.json */,
 				90A188E324950495001A722C /* tools.json */,
+				90C5FF2424991B890039E2CB /* experiments.plist */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -379,6 +398,7 @@
 				909C99DB24643EDC00E41C4D /* EntityCollisionProtocol.swift */,
 				90E4B6132492C54300C36DCA /* Substance.swift */,
 				90E4B6152492CA4200C36DCA /* EntityHitDelegate.swift */,
+				905C825F249C22020068D749 /* NodePool.swift */,
 			);
 			path = GameLogic;
 			sourceTree = "<group>";
@@ -412,6 +432,9 @@
 				90E4B60F2492BE5C00C36DCA /* Becker.swift */,
 				90E4B6112492C46600C36DCA /* LiquidContainer.swift */,
 				90A188E92495409E001A722C /* Pipetta.swift */,
+				90C5FF262499224D0039E2CB /* Heater.swift */,
+				90C5FF2824992E510039E2CB /* Bunsen.swift */,
+				90C5FF2A249931AD0039E2CB /* BunsenStand.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -422,6 +445,7 @@
 				90B200552459AF5600C0DD86 /* SceneManager.swift */,
 				900EB1C324548E9800CDBA39 /* GameManager.swift */,
 				900EB1C52454A38E00CDBA39 /* UpdateManager.swift */,
+				90EF7814249A2AA5009870BB /* InputManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -556,6 +580,7 @@
 				90BBAB902443C57D001BEC81 /* Assets.xcassets in Resources */,
 				90BBAB8E2443C57B001BEC81 /* Main.storyboard in Resources */,
 				9095AEBE2493DA3E00271E31 /* NodeTechnique.plist in Resources */,
+				90C5FF2524991B890039E2CB /* experiments.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,8 +616,11 @@
 				905AF152244B664C00010E06 /* ControllerStick.swift in Sources */,
 				90A188EA2495409E001A722C /* Pipetta.swift in Sources */,
 				906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */,
+				905C8260249C22020068D749 /* NodePool.swift in Sources */,
+				90C5FF23249903920039E2CB /* SelectionSystem.swift in Sources */,
 				90BBABB72443CB23001BEC81 /* Player.swift in Sources */,
 				90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */,
+				90C5FF2924992E510039E2CB /* Bunsen.swift in Sources */,
 				90DF67BD244A01E700D57233 /* GameViewController.swift in Sources */,
 				905AF156244CDFDE00010E06 /* Vector3.swift in Sources */,
 				90CCE9902445B8C0000F7C62 /* Utilities.swift in Sources */,
@@ -606,16 +634,20 @@
 				90BBAB872443C57B001BEC81 /* AppDelegate.swift in Sources */,
 				9095AEBD2493DA3E00271E31 /* NodeRender.metal in Sources */,
 				9095AEC6249436C800271E31 /* ScanningOptionsViewController.swift in Sources */,
+				90C5FF2B249931AD0039E2CB /* BunsenStand.swift in Sources */,
 				90C6621D24620B77006FB460 /* AchievementCollectionViewCell.swift in Sources */,
 				906030C92497C116002E0B14 /* Workposition.swift in Sources */,
 				90F7CE042450802900851518 /* Controller.swift in Sources */,
+				90EF7815249A2AA5009870BB /* InputManager.swift in Sources */,
 				9077B5172465B7B20041FDBC /* GamePersistenceManager.swift in Sources */,
 				90E4B6142492C54300C36DCA /* Substance.swift in Sources */,
+				90EF7817249A78AE009870BB /* ToolStateMachine.swift in Sources */,
 				90DF67BB2449F32600D57233 /* SimdFloat3Extension.swift in Sources */,
 				90E4B60B2492951A00C36DCA /* Experiment.swift in Sources */,
 				90A188EC24954352001A722C /* ScnModelLoader.swift in Sources */,
 				90A188E824951814001A722C /* AdjustController.swift in Sources */,
 				90B2CC622460690C0088727B /* AchievementsViewController.swift in Sources */,
+				90C5FF272499224D0039E2CB /* Heater.swift in Sources */,
 				90F7CE072450C0AC00851518 /* Enemy.swift in Sources */,
 				9049E4DA24966B180037B755 /* HintSystem.swift in Sources */,
 				900EB1C62454A38E00CDBA39 /* UpdateManager.swift in Sources */,

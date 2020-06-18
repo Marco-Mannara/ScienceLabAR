@@ -44,9 +44,9 @@ class LiquidContainer : Tool{
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func instantiate(_ node: SCNNode,_ containerName: String, _ params: [Any]?) -> LiquidContainer? {
+    static func instantiate(_ node: SCNNode,_ containerName: String, _ params: [String:Any]?) -> LiquidContainer? {
         if containerName == "becker"{
-            if let volumeCap = params?[0] as? Double{
+            if let volumeCap = params?["volumeCapacity"] as? Double{
                  return Becker(node, containerName, Float(volumeCap))
             }
             else{
@@ -55,7 +55,7 @@ class LiquidContainer : Tool{
             }
         }
         else if containerName == "pipetta"{
-            if let volumeCap = params?[0] as? Double{
+            if let volumeCap = params?["volumeCapacity"] as? Double{
                  return Pipetta(node, containerName, Float(volumeCap))
             }
             else{

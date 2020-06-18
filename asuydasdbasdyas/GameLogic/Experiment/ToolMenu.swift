@@ -8,22 +8,35 @@
 
 import Foundation
 import SceneKit
+import GameplayKit
 
-class ToolMenu {
+class ToolMenu : GKEntity{
     var entries : [ToolMenuEntry]
     var affectedTool : Tool?
     
     private var experiment : Experiment
     private var node : SCNNode
     
-    
     init(_ experiment : Experiment){
         self.experiment = experiment
         self.node = SCNNode()
         entries = []
-        
+        super.init()
         setup()
+        //GameManager.getInstance().updateManager?.subscribe(self)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    /*
+    override func update(deltaTime seconds: TimeInterval) {
+        if !node.isHidden{
+            if let position = GameManager.getInstance().arCameraTransform?.getPosition(){
+                node.simdLook(at: position)
+            }
+        }
+    }*/
     
     private func setup(){
         //let handEntryNode = ScnModelLoader.loadModel("interaction_symbols/symbols", "hand_symbol")!
@@ -47,14 +60,17 @@ class ToolMenu {
         cancelEntryNode.entity = cancelEntryEntity
         
         node.isHidden = true
-        print(node.pivot)
+        node.constraints = [SCNBillboardConstraint()]
         //menuNode.pivot = SCNMatrix4Translate(menuNode.pivot, 0, 0, 0)
         
         experiment.sceneRoot.addChildNode(node)
     }
     
     func display(_ tool: Tool){
+        affectedTool?.state?.enter(StateIdle.self)
+        
         affectedTool = tool
+        
         node.isHidden = false
         node.position = tool.getAnchorPosition(.upRight)
     }
@@ -66,11 +82,22 @@ class ToolMenu {
     
     func handEntryPressed(){
         print("pressed hand")
+        if let tool = affectedTool{
+            if tool.state?.enter(StatePickedUp.self) ?? false{
+                hide()
+            }
+            /*if experiment.selection.selectTool(tool){
+                hide()
+            }*/
+        }
+        else{
+            print("but affected tool is nil")
+        }
     }
     
     func cancelEntryPressed(){
         print("pressed cancel")
-        experiment.deselectTool(affectedTool!)
+        affectedTool?.state?.enter(StateIdle.self)
     }
 }
 

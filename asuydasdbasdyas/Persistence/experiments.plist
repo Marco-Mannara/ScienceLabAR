@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>firstExperiment</key>
+	<dict>
+		<key>heaters</key>
+		<array>
+			<string>bunsen</string>
+		</array>
+		<key>other</key>
+		<array>
+			<string>bunsen_stand</string>
+		</array>
+		<key>containers</key>
+		<dict>
+			<key>becker</key>
+			<dict>
+				<key>displayName</key>
+				<string>Becker 750ml</string>
+				<key>volumeCapacity</key>
+				<integer>750</integer>
+			</dict>
+			<key>pipetta</key>
+			<dict>
+				<key>displayName</key>
+				<string>Pipetta</string>
+				<key>volumeCapacity</key>
+				<integer>10</integer>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

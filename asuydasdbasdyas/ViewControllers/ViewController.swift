@@ -29,8 +29,6 @@ class ViewController: UIViewController {
     var worldOriginSet : Bool = false
     var worldOriginTransform : simd_float4x4 = simd_float4x4.init(simd_float4.zero, simd_float4.zero, simd_float4.zero, simd_float4.zero)
     
-    var gameManager : GameManager?
-    
     override public var shouldAutorotate: Bool{
         return true
     }
@@ -81,9 +79,13 @@ class ViewController: UIViewController {
         sceneView.session.pause()
     }
     
+    override func didReceiveMemoryWarning() {
+        print("memory warning received")
+    }
+    
     
     //MARK: - Gesture Recognizer Setup
-    private func setupGameControlsRecognizers(){
+    private func setupGestureRecognizers(){
         /*
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(leftStickPanHandler(_:)))
         sceneView.addGestureRecognizer(panGestureRecognizer)
@@ -108,7 +110,8 @@ class ViewController: UIViewController {
     
     @objc func onTap(_ gesture: UITapGestureRecognizer)
     {
-        
+        let position = gesture.location(in: sceneView)
+        GameManager.getInstance().inputManager?.onTap(sceneView, position)
     }
     
     //MARK: - UIButtons Callbacks
@@ -126,13 +129,13 @@ class ViewController: UIViewController {
 
         alert.addAction(UIAlertAction(title: "Scan Again", style: .default, handler: {(action) -> Void in
             
+            self.promptView.isHidden = true
+            self.scanProgressBar.isHidden = false
+            
             DispatchQueue.main.async {
                 //self.sceneView.scene = SCNScene()
                 self.sceneView.session.pause()
                 GameManager.getInstance().sceneManager?.hideScene()
-                
-                self.promptView.isHidden = true
-                self.scanProgressBar.isHidden = false
                 
                 self.maxAreaFound = 0.0
                 self.isAreaLargeEnough = false
@@ -197,7 +200,7 @@ class ViewController: UIViewController {
             let sceneRoot = self.sceneView.scene.rootNode.childNode(withName: "SCENE_ROOT", recursively: false)
             sceneRoot!.simdPosition = transform.getPosition()
             
-            //self.setupGameControlsRecognizers()
+            self.setupGestureRecognizers()
             //self.gameManager?.instantiatePlayer(simd_float3(0,1,-2))
         }
     }
@@ -234,6 +237,9 @@ extension ViewController:ARSCNViewDelegate
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         GameManager.getInstance().updateManager?.update(time)
+        if let cameraPosition = sceneView.session.currentFrame?.camera.transform.getPosition(){
+            GameManager.getInstance().sceneManager?.arCameraNode?.simdPosition = cameraPosition
+        }
     }
     
     /*
@@ -287,7 +293,6 @@ extension ViewController: ARSessionDelegate{
                     sceneView.session.run(config)
                     
                     //print(planeAnchor.transform)
-            
                     
                     setWorldOrigin(planeAnchor.transform)
                     

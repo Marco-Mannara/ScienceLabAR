@@ -15,13 +15,16 @@ class Experiment {
     var tools : [Tool]
     var sceneRoot : SCNNode
     
-    private var restPoints : [SCNNode]
     var workPosition : WorkPosition?
     
-    private lazy var hint : HintSystem = HintSystem(self)
-    private lazy var toolMenu : ToolMenu = ToolMenu(self)
+    var selection : SelectionSystem?
+    var hint : HintSystem?
+    var toolMenu : ToolMenu?
     
-    init(_ scene: SCNScene){
+    var restPoints : [SCNNode]
+    
+    
+    init(_ scene: SCNScene,_ name: String){
         self.scene = scene
         self.restPoints = []
         self.tools = []
@@ -33,35 +36,65 @@ class Experiment {
             fatalError("Couldn't find SCENE_ROOT node")
         }
         
-        deserialize()
+        self.selection = SelectionSystem(self)
+        self.hint = HintSystem(self)
+        self.toolMenu = ToolMenu(self)
+        
+        deserialize(name)
         setup()
     }
     
-    private func deserialize(){
-        if let path = Bundle.main.url(forResource: "firstExperiment", withExtension: "json"){
-            do {
-                //let toolScene = SCNScene(named: "art.scnassets/tools/tools.scn")!
-                let data = try Data(contentsOf: path, options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                if let jsonResult = jsonResult as? Dictionary<String, AnyObject> {
-                    if let neededTools = jsonResult["tools"] as? Dictionary<String,AnyObject>{
-                        setupTools(neededTools)
-                    }
-                }
-            } catch {
-                print("Failed to read json file")
-            }
+    private func deserialize(_ experimentName : String){
+
+        guard let url = Bundle.main.url(forResource: "experiments", withExtension: "plist") else {return}
+        let data = try! Data(contentsOf: url)
+        let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:Any]
+        
+        if let experiment = dict[experimentName] as? [String:Any]{
+            setupTools(experiment)
         }
+        
+        
+        /*
+         do {
+         let data = try Data(contentsOf: path, options: .mappedIfSafe)
+         let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+         if let jsonResult = jsonResult as? Dictionary<String, AnyObject> {
+         if let neededTools = jsonResult["tools"] as? Dictionary<String,AnyObject>{
+         setupTools(neededTools)
+         }
+         }
+         } catch {
+         print("Failed to read json file")
+         }*/
     }
     
-    private func setupTools(_ toolsDict : Dictionary<String,AnyObject>){
-        if let neededContainers = toolsDict["containers"] as? [String]{
+    private func setupTools(_ toolsDict : [String:Any]){
+        
+        
+        if let neededContainers = toolsDict["containers"] as? [String:Any]{
             for container in neededContainers {
-                if let toolNode = ScnModelLoader.loadModel("tools/tools",container){
-                    tools.append(LiquidContainer.instantiate(toolNode, container, [100.0])!)
+                if let toolNode = ScnModelLoader.loadModel("tools/tools",container.key){
+                    tools.append(LiquidContainer.instantiate(toolNode, container.key, container.value as? [String:Any])!)
                 }
                 else{
-                    print("Couldn't find model for " + container )
+                    print("Couldn't find model for " + container.key )
+                }
+            }
+        }
+        
+        if let heaters = toolsDict["heaters"] as? [String]{
+            for tool in heaters {
+                if let toolNode = ScnModelLoader.loadModel("tools/" + tool,tool){
+                    tools.append(Heater.instantiate(toolNode, tool, nil)!)
+                }
+            }
+        }
+        
+        if let otherTools = toolsDict["other"] as? [String]{
+            for tool in otherTools{
+                if let toolNode = ScnModelLoader.loadModel("tools/" + tool,tool){
+                    tools.append(Tool.instantiate(toolNode, tool)!)
                 }
             }
         }
@@ -80,19 +113,11 @@ class Experiment {
         let workPositionNode = sceneRoot.childNode(withName: "workPosition", recursively: false)!
         workPosition = WorkPosition(self,workPositionNode)
         
-        
-        /*
-        for node in sceneRoot.childNodes{
-            let nodeName = node.name
-            if nodeName!.hasPrefix("spawnPoint")  {
-                //print("Spawnpoint found and added.")
-                restPoints.append(node)
-            }
-        }*/
+        //camera = sceneRoot.childNode(withName: "mainCamera", recursively: false)!
         
         for tool in tools {
             if lastUsedRestPoint < restPoints.count{
-                tool.spawn(sceneRoot)
+                tool.spawn(self)
                 tool.restPoint = restPoints[lastUsedRestPoint]
                 tool.resetPosition()
                 
@@ -112,29 +137,25 @@ class Experiment {
         
     }
     
-    func selectTool(_ tool : Tool){
-        if let index = tools.firstIndex(of: tool){
-            tools[index].isSelected = true
-            hint.highLightTool(tool)
-            toolMenu.display(tool)
+    func onToolTap(_ tool : Tool){
+        if tools.contains(tool) {
+            let toolState = tool.state?.currentState as! ToolState
+            toolState.onTap()
+            //hint.highLightTool(tool)
+            //toolMenu.display(tool)
         }else{
             fatalError("Tool not found")
         }
     }
-    
+    /*
     func deselectTool(_ tool : Tool){
-        if let index = tools.firstIndex(of: tool){
-            tools[index].isSelected = false
+        if tools.contains(tool){
             hint.disableHighlight()
             toolMenu.hide()
         }else{
             fatalError("Tool not found")
         }
-    }
-    
-    func onToolHit(_ tool : Tool){
-        selectTool(tool)
-    }
+    }*/
 }
 
 /*

@@ -12,39 +12,47 @@ import SceneKit
 
 class HintSystem {
     
-    var toolSelectedA : Tool?
-    var toolSelectedB : Tool?
+    private var highlightedElements : [SCNNode : SCNNode]
     
     private var experiment : Experiment
-    private var selectionRing : SCNNode
+    
+    private var highlightRingPool : NodePool
+    private var hintArrowPool : NodePool
     
     init(_ experiment : Experiment){
         self.experiment = experiment
+        self.highlightedElements = [:]
         
-        selectionRing  = ScnModelLoader.loadModel("selector_ring")!
-        selectionRing.isHidden = true
+        let highlightRing  = ScnModelLoader.loadModel("selector_ring")!
+        let hintArrow = ScnModelLoader.loadModel("interaction_symbol/arrow_symbol","arrow")!
         
-        experiment.sceneRoot.addChildNode(selectionRing)
+        highlightRingPool  = NodePool(highlightRing, experiment.sceneRoot, 3)
+        hintArrowPool = NodePool(hintArrow, experiment.sceneRoot, 3)
     }
     
     func highLightTool(_ tool : Tool) {
+        
         let bounds = tool.node.geometry!.boundingBox
         let toolScale = tool.node.scale
         let toolDimensions = bounds.max - bounds.min
         
-        selectionRing.isHidden = false
-        selectionRing.position = tool.node.position
-        selectionRing.scale = SCNVector3(1,1,1)
-
-        if toolDimensions.x > toolDimensions.z{
-            selectionRing.scale = selectionRing.scale * (toolDimensions.x * toolScale.x + 0.03)
-        }
-        else{
-            selectionRing.scale = selectionRing.scale * (toolDimensions.z * toolScale.z + 0.03)
+        if let highlightRing = highlightRingPool.request(){
+            
+            highlightedElements[tool.node] = highlightRing
+            
+            highlightRing.position = tool.node.position
+            highlightRing.scale = SCNVector3(1,1,1)
+            
+            if toolDimensions.x > toolDimensions.z{
+                highlightRing.scale = highlightRing.scale * (toolDimensions.x * toolScale.x + 0.03)
+            }
+            else{
+                highlightRing.scale = highlightRing.scale * (toolDimensions.z * toolScale.z + 0.03)
+            }
         }
     }
     
-    func disableHighlight(){
-        selectionRing.isHidden = true
+    func disableHighlight(_ tool: Tool){
+        highlightedElements.removeValue(forKey: tool.node)
     }
 }

@@ -12,13 +12,18 @@ import SceneKit
 
 class WorkPosition : GKEntity, EntityHitProtocol{
     
+    var positionedTool : Tool?
+    
     var experiment : Experiment
     var node : SCNNode
     
     init(_ experiment : Experiment, _ node: SCNNode){
         self.experiment = experiment
         self.node = node
+
         super.init()
+        
+        node.entity = self
     }
     
     required init?(coder: NSCoder) {
@@ -26,5 +31,23 @@ class WorkPosition : GKEntity, EntityHitProtocol{
     }
     
     func hit(_ hitResult: SCNHitTestResult) {
+        print("hit workposition")
+        if let selTool = experiment.selection?.toolSelectedA{
+            selTool.state?.enter(StatePositioned.self)
+        }
+        else if let selTool = experiment.selection?.toolSelectedB{
+            selTool.state?.enter(StatePositioned.self)
+        }
+    }
+    
+    func place(_ tool : Tool){
+        //experiment.hint?.disableHighlight()
+        if positionedTool == nil{
+            positionedTool = tool
+            tool.place(node.position)
+        }
+        else{
+           positionedTool!.useWith(tool)
+        }
     }
 }

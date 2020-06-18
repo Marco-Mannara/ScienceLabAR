@@ -30,7 +30,7 @@ extension simd_float4x4
     }
     
     
-    func getPosition() -> SIMD3<Float>{
+    func getPosition() -> simd_float3{
         let lastCol = self.columns.3
         return SIMD3<Float>(lastCol.x,lastCol.y,lastCol.z)
     }

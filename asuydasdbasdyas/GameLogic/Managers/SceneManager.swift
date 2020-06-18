@@ -6,7 +6,7 @@
 //  Copyright © 2020 Marco Mannara. All rights reserved.
 //
 
-
+import ARKit
 import SceneKit
 import SpriteKit
 
@@ -21,8 +21,10 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
     private var loadedSceneName : String = ""
     private var loadedOverlayName : String?
     
-    var currentGameLevel : GameLevel?
     var currentExperiment : Experiment?
+    
+    var arCameraNode : SCNNode?
+
     
     
     init(_ sceneView : SCNView){
@@ -56,7 +58,14 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
             currentScene = scene
             //touchController = Controller(currentOverlayScene)
             //currentGameLevel = GameLevel(scene!)
-            currentExperiment = Experiment(scene!)
+            currentExperiment = Experiment(scene!, "firstExperiment")
+            GameManager.getInstance().inputManager?.enabled = true
+            
+            if let _ = sceneView as? ARSCNView {
+                arCameraNode = SCNNode()
+                arCameraNode?.name = "arCamera"
+                currentScene?.rootNode.addChildNode(arCameraNode!)
+            }
         }
         else{
             currentScene?.rootNode.isHidden = false
@@ -65,6 +74,7 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
     
     func hideScene(){
         currentScene?.rootNode.isHidden = true
+        GameManager.getInstance().inputManager?.enabled = false
     }
     
     

@@ -10,7 +10,7 @@ import Foundation
 import SceneKit
 import SpriteKit
 
-class Becker : LiquidContainer, EntityHitProtocol, EntityCollisionProtocol {
+class Becker : LiquidContainer {
     
     
     override init(_ node :SCNNode, _ displayName: String, _ volumeCapacity : Float){
@@ -36,21 +36,4 @@ class Becker : LiquidContainer, EntityHitProtocol, EntityCollisionProtocol {
             return
         }
     }
-    
-    func hit(_ hitResult: SCNHitTestResult) {
-        print("hit becker")
-    }
-    
-    func collisionBegin(_ contact: SCNPhysicsContact, _ otherNode: SCNNode) {
-        
-    }
-    
-    func collisionUpdate(_ contact: SCNPhysicsContact, _ otherNode: SCNNode) {
-        
-    }
-    
-    func collisionEnd(_ contact: SCNPhysicsContact, _ otherNode: SCNNode) {
-        
-    }
-    
 }

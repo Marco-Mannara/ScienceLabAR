@@ -11,32 +11,21 @@ import GameplayKit
 import SceneKit
 import SpriteKit
 
-class Tool : GKEntity{
+class Tool : GKEntity, EntityHitProtocol{
 
     var node : SCNNode
     var displayName : String
     var restPoint : SCNNode?
     
-    var isEnabled : Bool = true
-    var isSpawned : Bool = false
-    
-    var isSelected : Bool {
-        didSet{
-            if !isSelected{
-                node.setHighlighted(false)
-            }
-            else{
-                node.setHighlighted()
-            }
-        }
-    }
-    
+    var state : ToolStateMachine?
+
     
     init(_ node : SCNNode, _ displayName : String){
         self.node = node
         self.displayName = displayName
-        self.isSelected = false
+        
         super.init()
+
         node.entity = self
     }
     
@@ -55,19 +44,25 @@ class Tool : GKEntity{
     
     func resetPosition(){
         if let position = restPoint?.position{
-            node.position = position
+            place(position)
         }
     }
     
-    func spawn(_ sceneRoot : SCNNode){
-        sceneRoot.addChildNode(node)
-        isSpawned = true
+    func spawn(_ experiment : Experiment){
+        experiment.sceneRoot.addChildNode(node)
+        
+        state = ToolStateMachine(experiment, self)
+        state?.enter(StateIdle.self)
+        state?.debug = true
+    }
+    
+    func place(_ position: SCNVector3){
+        let toolBounds = node.boundingSphere
+        node.position =  position + SCNVector3(0,toolBounds.radius * node.scale.y / 2.0,0)
     }
     
     func getAnchorPosition(_ type: AnchorType) -> SCNVector3{
         let toolBounds = node.boundingSphere
-        
-        //print(toolBounds)
         
         switch type {
         case .upRight:
@@ -89,22 +84,16 @@ class Tool : GKEntity{
         }
     }
     
-    /*
-    func collisionBegin(_ contact: SCNPhysicsContact, _ otherNode: SCNNode) {
-        
-    }
-    
-    func collisionUpdate(_ contact: SCNPhysicsContact, _ otherNode: SCNNode) {
-        
-    }
-    
-    func collisionEnd(_ contact: SCNPhysicsContact, _ otherNode: SCNNode) {
-        
-    }
-    
     func hit(_ hitResult: SCNHitTestResult) {
     }
-     */
+    
+    static func instantiate(_ node : SCNNode, _ name : String) -> Tool?{
+        if name == "bunsen_stand"{
+            return BunsenStand(node,name)
+        }
+        return nil
+    }
+    
 }
 
 enum AnchorType{
