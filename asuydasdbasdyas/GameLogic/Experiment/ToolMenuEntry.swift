@@ -12,12 +12,12 @@ import GameplayKit
 
 class ToolMenuEntry : GKEntity, EntityHitProtocol{
     
-    var toolMenu : ToolMenu
-    var onTapAction : (()->Void)?
+    var menu : ToolMenu
+    var onTapAction : ((Tool)->Void)?
     
-    init (_ toolMenu : ToolMenu, _ onTapAction: (()->Void)?){
-        self.toolMenu = toolMenu
+    init (_ menu : ToolMenu,_ onTapAction: ((Tool)->Void)?){
         self.onTapAction = onTapAction
+        self.menu = menu
         super.init()
     }
     
@@ -26,7 +26,12 @@ class ToolMenuEntry : GKEntity, EntityHitProtocol{
     }
     
     func hit(_ hitResult: SCNHitTestResult) {
-        //print("hit menu entry")
-        onTapAction?()
+        if let tool = menu.affectedTool{
+            print("hit menu entry")
+            onTapAction?(tool)
+        }
+        else{
+            print("No such action can be performed because there is no affected tool.")
+        }
     }
 }

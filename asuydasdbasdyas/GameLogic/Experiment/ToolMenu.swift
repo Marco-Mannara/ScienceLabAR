@@ -11,84 +11,122 @@ import SceneKit
 import GameplayKit
 
 class ToolMenu : GKEntity{
-    var entries : [ToolMenuEntry]
+    var entries : [SCNNode]
+    var entryEntities : [ToolMenuEntry]
+    
     var affectedTool : Tool?
+    var rollbackState : ToolState.Type
     
     private var experiment : Experiment
     private var node : SCNNode
+    private var menuWidth : Double = 0.09
+    private var entrySize : Double = 0.03
+    private var entryPadding : Double = 0.02
     
-    init(_ experiment : Experiment){
+    init(_ experiment : Experiment, _ rollbackState : ToolState.Type){
         self.experiment = experiment
+        self.rollbackState = rollbackState
+        
         self.node = SCNNode()
-        entries = []
+        self.entries = []
+        self.entryEntities = []
+        
         super.init()
-        setup()
-        //GameManager.getInstance().updateManager?.subscribe(self)
+        
+        let plane = SCNPlane(width: CGFloat(menuWidth), height: 1)
+        
+        node = SCNNode()
+        node.name = "tool_menu"
+        node.geometry = plane
+        node.geometry?.materials.first?.diffuse.contents = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    /*
-    override func update(deltaTime seconds: TimeInterval) {
-        if !node.isHidden{
-            if let position = GameManager.getInstance().arCameraTransform?.getPosition(){
-                node.simdLook(at: position)
-            }
-        }
-    }*/
     
-    private func setup(){
-        //let handEntryNode = ScnModelLoader.loadModel("interaction_symbols/symbols", "hand_symbol")!
-        //let cancelEntryNode = ScnModelLoader.loadModel("interaction_symbols/symbols", "cancel_symbol")!
-        node = ScnModelLoader.loadModel("tool_menu")!
+    func spawn(){
+        let entryNumber = entries.count
+        let planeHeight1 = Double(entryNumber) * entrySize
+        let planeHeight2 = entryPadding * Double(entryNumber + 1)
+        let planeHeight = planeHeight2 + planeHeight1
+        let planeTop = planeHeight / 2 - entryPadding
 
-        let handEntryNode = node.childNode(withName: "hand_symbol", recursively: true)!
-        let cancelEntryNode = node.childNode(withName: "cancel_symbol", recursively: true)!
+        var last = 0
         
-        let handEntryEntity = ToolMenuEntry(self, {()-> Void in
-            self.handEntryPressed()
-        })
-        let cancelEntryEntity = ToolMenuEntry(self, {()-> Void in
-            self.cancelEntryPressed()
-        })
+        for entry in entries{
+            entry.position = SCNVector3(0, planeTop - Double(last) * (entrySize + entryPadding) - entrySize / 2,0)
+            last += 1
+        }
         
-        entries.append(handEntryEntity)
-        entries.append(cancelEntryEntity)
-        
-        handEntryNode.entity = handEntryEntity
-        cancelEntryNode.entity = cancelEntryEntity
-        
+        let plane = node.geometry as! SCNPlane
+        plane.height = CGFloat(planeHeight)
         node.isHidden = true
         node.constraints = [SCNBillboardConstraint()]
-        //menuNode.pivot = SCNMatrix4Translate(menuNode.pivot, 0, 0, 0)
         
         experiment.sceneRoot.addChildNode(node)
+        /*
+         let handEntryNode = node.childNode(withName: "hand_symbol", recursively: true)!
+         let cancelEntryNode = node.childNode(withName: "cancel_symbol", recursively: true)!
+         
+         let handEntryEntity = ToolMenuEntry(self, {()-> Void in
+         self.handEntryPressed()
+         })
+         let cancelEntryEntity = ToolMenuEntry(self, {()-> Void in
+         self.cancelEntryPressed()
+         })
+         
+         entries.append(handEntryEntity)
+         entries.append(cancelEntryEntity)
+         
+         handEntryNode.entity = handEntryEntity
+         cancelEntryNode.entity = cancelEntryEntity
+         */
+        
+    }
+    
+    func addEntry(_ meshNode: SCNNode,_ action :((Tool) -> Void)?){
+        let toolMenuEntry = ToolMenuEntry(self,action)
+        
+        let menuEntryNode = SCNNode()
+        
+        menuEntryNode.name = "menu_entry"
+        menuEntryNode.entity = toolMenuEntry
+        menuEntryNode.geometry = SCNBox(width: CGFloat(entrySize), height: CGFloat(entrySize), length: CGFloat(entrySize), chamferRadius: 0)
+        menuEntryNode.geometry?.materials.first?.diffuse.contents = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
+        
+        let meshNodeBounds = meshNode.boundingBox.max - meshNode.boundingBox.min
+        let scaleFactor = meshNode.scale.x * 0.03 / meshNodeBounds.x
+        
+        meshNode.scale =  meshNode.scale * scaleFactor
+        
+        menuEntryNode.addChildNode(meshNode)
+        node.addChildNode(menuEntryNode)
+        
+        entries.append(menuEntryNode)
+        entryEntities.append(toolMenuEntry)
     }
     
     func display(_ tool: Tool){
-        affectedTool?.state?.enter(StateIdle.self)
+        affectedTool?.state?.enter(rollbackState)
         
         affectedTool = tool
         
         node.isHidden = false
-        node.position = tool.getAnchorPosition(.upRight)
+        node.position = tool.getAnchorPosition(.upRight) + SCNVector3(0.05,0.05,0)
     }
     
     func hide(){
         node.isHidden = true
         affectedTool = nil
     }
-    
+    /*
     func handEntryPressed(){
         print("pressed hand")
         if let tool = affectedTool{
             if tool.state?.enter(StatePickedUp.self) ?? false{
                 hide()
             }
-            /*if experiment.selection.selectTool(tool){
-                hide()
-            }*/
         }
         else{
             print("but affected tool is nil")
@@ -98,6 +136,6 @@ class ToolMenu : GKEntity{
     func cancelEntryPressed(){
         print("pressed cancel")
         affectedTool?.state?.enter(StateIdle.self)
-    }
+    }*/
 }
 

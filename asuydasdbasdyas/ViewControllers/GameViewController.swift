@@ -41,39 +41,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
         GameManager.initialize(sceneView)
         GameManager.getInstance().sceneManager?.showScene("experiment", nil)
-        
-        
-        
-        //GameManager.getInstance().instantiatePlayer()
-        /*
-        let request : NSFetchRequest<PlayerData+> = PlayerData+.fetchRequest()
-        do{
-            let result = try GamePersistenceManager.context.fetch(request)
-            
-            for save in result{
-                print(save.name ?? "No name")
-                print(save.dateOfCreation ?? "No Date")
-            }
-            
-        }catch{
-        }
-    
-        
-        let testSave = PlayerData(context: GamePersistenceManager.persistentContainer.viewContext)
-        
-        testSave.dateOfCreation = Date()
-        testSave.name = "Cr4zyRi0s"
-        
-        GamePersistenceManager.saveContext()*/
-        
-        /*
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(5000)) {
-            let node = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
-            node.position = SCNVector3(0,0.2,0)
-            GameManager.getInstance().sceneManager?.currentScene?.rootNode.addChildNode(node)
-            let actionTester = ActionTest(node)
-            actionTester.executeAction()
-        }*/
     }    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -82,40 +49,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
             let position = touch.location(in: sceneView)
             
             GameManager.getInstance().inputManager?.onTap(sceneView, position)
-            
-            /*
-            let gameManagerInstance = GameManager.getInstance()
-            
-            if isScreenLeftSideLandscape(position){
-                gameManagerInstance.sceneManager?.touchController?.leftStick?.pressed(position)
-            }
-            else
-            {
-                gameManagerInstance.sceneManager?.touchController?.checkButtonHit(position)
-            }*/
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*
-        for touch in touches{
-            
-            let location = touch.location(in: sceneView)
-            if isScreenLeftSideLandscape(location){
-                GameManager.getInstance().sceneManager?.touchController?.leftStick?.updateState(location)
-            }
-        }*/
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-      /*
-      for touch in touches{
-            let location = touch.location(in: sceneView)
-            if isScreenLeftSideLandscape(location){
-                GameManager.getInstance().sceneManager?.touchController?.leftStick?.released()
-            }
-        }*/
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?){
     }
     
     func isScreenLeftSideLandscape(_ location: CGPoint) -> Bool{

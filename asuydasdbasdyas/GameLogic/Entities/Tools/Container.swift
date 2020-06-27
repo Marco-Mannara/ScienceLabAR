@@ -15,7 +15,7 @@ class Container : Tool{
     var contentsVolume : Float{
         var vol = 0.0
         for c in contents{
-            vol += c.volume
+            vol += c.volumeInMilliliters
         }
         return Float(vol)
     }
@@ -45,10 +45,21 @@ class Container : Tool{
         fatalError("init(coder:) has not been implemented")
     }
     
+    func fill(with substance: Substance){}
+    
+    func draw() -> Substance?{ return nil }
+    
     static func instantiate(_ node: SCNNode,_ containerName: String, _ params: [String:Any]?) -> Container? {
+        
         if containerName == "becker"{
             if let volumeCap = params?["volumeCapacity"] as? Double{
-                return Becker(node, containerName, Float(volumeCap))
+                let becker = Becker(node, containerName, Float(volumeCap))
+                //let substance = Substance("H20", 7.0, 1.0)
+                //substance.volumeInMilliliters = 250
+                if let substance = params?["substance"] as? Substance{
+                    becker.fill(with: substance)
+                }
+                return becker
             }
             else{
                 print("No parameter was passed to Becker instantiation")
@@ -61,6 +72,29 @@ class Container : Tool{
             }
             else{
                 print("No parameter was passed to Pipetta instantiation")
+                return nil
+            }
+        }
+        else if containerName == "spatula"{
+            if let volumeCap = params?["volumeCapacity"] as? Double{
+                return Spatula(node, containerName, Float(volumeCap))
+            }
+            else{
+                print("No parameter was passed to Spatula instantiation")
+                return nil
+            }
+        }
+        else if containerName == "piattino" {
+            if let volumeCap = params?["volumeCapacity"] as? Double{
+                let piattino = Piattino(node, containerName, Float(volumeCap))
+                if let substanceParams = params?["substance"] as? [String:Any]{
+                    let substance = Substance(substanceParams)
+                    piattino.fill(with: substance)
+                }
+                return piattino
+            }
+            else{
+                print("No parameter was passed to Becker instantiation")
                 return nil
             }
         }

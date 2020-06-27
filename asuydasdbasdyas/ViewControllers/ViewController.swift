@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet var scanProgressBar: UIProgressView!
     @IBOutlet var controlsView: UIView!
     
+    let coachingOverlay = ARCoachingOverlayView()
+    
     let debugPlaneDetection : Bool = true
     
     let minimumAreaRequired : Float = 0.5
@@ -53,6 +55,8 @@ class ViewController: UIViewController {
         scanView.isHidden = false
         
         GameManager.initialize(sceneView)
+        
+        setupSessionCoaching()
         
         sceneView.session.delegate = self
         sceneView.debugOptions = [.showWorldOrigin]
@@ -126,7 +130,7 @@ class ViewController: UIViewController {
     {
         //print("No tapped")
         let alert = UIAlertController(title: "Options", message: "Choose a method for retracking.", preferredStyle: .alert)
-
+    
         alert.addAction(UIAlertAction(title: "Scan Again", style: .default, handler: {(action) -> Void in
             
             self.promptView.isHidden = true
@@ -192,17 +196,21 @@ class ViewController: UIViewController {
         worldOriginTransform = transform
         worldOriginSet = true
         
-        DispatchQueue.main.async {
-            
+        let thread = DispatchQueue.init(label: "sceneLoad")
+        thread.async {
             GameManager.getInstance().sceneManager!.showScene("experiment", nil)
-            self.promptView.isHidden = false
-            self.scanView.isHidden = true
             let sceneRoot = self.sceneView.scene.rootNode.childNode(withName: "SCENE_ROOT", recursively: false)
             sceneRoot!.simdPosition = transform.getPosition()
-            
-            self.setupGestureRecognizers()
-            //self.gameManager?.instantiatePlayer(simd_float3(0,1,-2))
         }
+        DispatchQueue.main.async {
+            self.setupGestureRecognizers()
+            self.promptView.isHidden = false
+            self.scanView.isHidden = true
+        }
+//        DispatchQueue.main.async {
+//
+//            //self.gameManager?.instantiatePlayer(simd_float3(0,1,-2))
+//        }
     }
     
     func raycastFirstHit(_ point: CGPoint) -> simd_float4x4? {

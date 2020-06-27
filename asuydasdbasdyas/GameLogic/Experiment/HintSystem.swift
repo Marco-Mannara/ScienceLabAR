@@ -13,6 +13,7 @@ import SceneKit
 class HintSystem {
     
     private var highlightedElements : [SCNNode : SCNNode]
+    private var pointedElements : [SCNNode : SCNNode]
     
     private var experiment : Experiment
     
@@ -22,6 +23,7 @@ class HintSystem {
     init(_ experiment : Experiment){
         self.experiment = experiment
         self.highlightedElements = [:]
+        self.pointedElements = [:]
         
         let highlightRing  = ScnModelLoader.loadModel("selector_ring")!
         let hintArrow = ScnModelLoader.loadModel("interaction_symbols/arrow_symbol","arrow")!
@@ -31,15 +33,19 @@ class HintSystem {
     }
     
     func highLightTool(_ tool : Tool) {
-        
-        let bounds = tool.node.geometry!.boundingBox
-        let toolScale = tool.node.scale
+        let toolNode = tool.node
+        highlightNode(toolNode)
+    }
+    
+    func highlightNode(_ node : SCNNode){
+        let bounds = node.geometry!.boundingBox
+        let toolScale = node.scale
         let toolDimensions = bounds.max - bounds.min
         
         if let highlightRing = highlightRingPool.request(){
-            highlightedElements[tool.node] = highlightRing
+            highlightedElements[node] = highlightRing
             
-            highlightRing.position = tool.node.position
+            highlightRing.position = node.position
             highlightRing.scale = SCNVector3(1,1,1)
             
             if toolDimensions.x > toolDimensions.z{
@@ -51,13 +57,47 @@ class HintSystem {
         }
     }
     
+    
     func disableHighlight(_ tool: Tool){
-        if let ring = highlightedElements[tool.node]{
+        disableHighlight(tool.node)
+    }
+    
+    func disableHighlight(_ node: SCNNode){
+        if let ring = highlightedElements[node]{
             highlightRingPool.release(ring)
-            highlightedElements.removeValue(forKey: tool.node)
+            highlightedElements.removeValue(forKey: node)
         }
         else{
             print("THERE IS NO HIGHLIGHT RING TO DISABLE")
         }
+    }
+    
+    func enableArrow(_ node: SCNNode){
+        if let arrow = hintArrowPool.request(){
+            arrow.position = node.position + SCNVector3(0,0.12,0)
+            arrow.look(at: node.position)
+            pointedElements[node] = arrow
+        }
+        else{
+            print("NO AVAIABLE ARROWS IN POOL")
+        }
+    }
+    
+    func disableArrow(_ node : SCNNode){
+        if let arrow = highlightedElements[node]{
+            hintArrowPool.release(arrow)
+            pointedElements.removeValue(forKey: node)
+        }
+        else{
+            print("THERE IS NO ARROW TO DISABLE")
+        }
+    }
+    
+    func disableAllArrows(){
+        hintArrowPool.releaseAll()
+    }
+    
+    func disableAllHighlights(){
+        highlightRingPool.releaseAll()
     }
 }

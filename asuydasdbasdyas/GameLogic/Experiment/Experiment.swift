@@ -11,15 +11,17 @@ import SpriteKit
 
 class Experiment {
     
-    var scene : SCNScene
     var tools : [Tool]
+    
+    var scene : SCNScene
     var sceneRoot : SCNNode
     
     var workPosition : WorkPosition?
     
     var selection : SelectionSystem?
     var hint : HintSystem?
-    var toolMenu : ToolMenu?
+    var idleMenu : ToolMenu?
+    var positionedMenu : ToolMenu?
     
     var restPoints : [SCNNode]
     
@@ -35,10 +37,7 @@ class Experiment {
         else{
             fatalError("Couldn't find SCENE_ROOT node")
         }
-        
-        self.selection = SelectionSystem(self)
-        self.hint = HintSystem(self)
-        self.toolMenu = ToolMenu(self)
+  
         
         deserialize(name)
         setup()
@@ -53,32 +52,21 @@ class Experiment {
         if let experiment = dict[experimentName] as? [String:Any]{
             setupTools(experiment)
         }
-        
-        
-        /*
-         do {
-         let data = try Data(contentsOf: path, options: .mappedIfSafe)
-         let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-         if let jsonResult = jsonResult as? Dictionary<String, AnyObject> {
-         if let neededTools = jsonResult["tools"] as? Dictionary<String,AnyObject>{
-         setupTools(neededTools)
-         }
-         }
-         } catch {
-         print("Failed to read json file")
-         }*/
     }
     
     private func setupTools(_ toolsDict : [String:Any]){
         
-        
-        if let neededContainers = toolsDict["containers"] as? [String:Any]{
+        if let neededContainers = toolsDict["containers"] as? [[String:Any]]{
             for container in neededContainers {
-                if let toolNode = ScnModelLoader.loadModel("tools/tools",container.key){
-                    tools.append(LiquidContainer.instantiate(toolNode, container.key, container.value as? [String:Any])!)
+                let displayName = container["displayName"] as! String
+                if let toolNode = ScnModelLoader.loadModel("tools/tools",displayName){
+                    tools.append(Container.instantiate(toolNode, displayName, container)!)
+                }
+                else if let toolNode = ScnModelLoader.loadModel("tools/" + displayName, displayName){
+                    tools.append(Container.instantiate(toolNode, displayName, container)!)
                 }
                 else{
-                    print("Couldn't find model for " + container.key )
+                    print("Couldn't find model for " + displayName )
                 }
             }
         }
@@ -102,6 +90,36 @@ class Experiment {
     
     
     func setup(){
+        
+        self.selection = SelectionSystem(self)
+        self.hint = HintSystem(self)
+        
+        self.idleMenu = ToolMenu(self, StateIdle.self)
+        idleMenu?.addEntry(ScnModelLoader.loadModel("interaction_symbols/symbols", "hand_symbol")!
+            ,{(tool : Tool) -> Void in
+                if tool.state?.enter(StatePickedUp.self) ?? false{
+                    self.idleMenu?.hide()
+                }
+        })
+        idleMenu?.addEntry(ScnModelLoader.loadModel("interaction_symbols/symbols", "cancel_symbol")!
+            ,{(tool : Tool) -> Void in
+                tool.state?.enter(StateIdle.self)
+        })
+        idleMenu?.spawn()
+        
+        self.positionedMenu = ToolMenu(self, StatePositioned.self)
+        positionedMenu?.addEntry(ScnModelLoader.loadModel("interaction_symbols/symbols","return_symbol")!, {
+            (tool) -> Void in
+            tool.state?.enter(StateIdle.self)
+            self.workPosition?.remove(tool)
+        })
+        positionedMenu?.addEntry(ScnModelLoader.loadModel("interaction_symbols/symbols","cancel_symbol")!, {
+            (tool) -> Void in
+            tool.state?.enter(StatePositioned.self)
+        })
+        
+        positionedMenu?.spawn()
+        
         var lastUsedRestPoint = 0
         
         let spawnPoints = sceneRoot.childNodes(passingTest: {(node,flag) -> Bool in
@@ -112,8 +130,6 @@ class Experiment {
         
         let workPositionNode = sceneRoot.childNode(withName: "workPosition", recursively: false)!
         workPosition = WorkPosition(self,workPositionNode)
-        
-        //camera = sceneRoot.childNode(withName: "mainCamera", recursively: false)!
         
         for tool in tools {
             if lastUsedRestPoint < restPoints.count{
@@ -129,40 +145,12 @@ class Experiment {
         }
     }
     
-    func resetExperiment(){
-        
-    }
-    
-    func deleteScene(){
-        
-    }
-    
     func onToolTap(_ tool : Tool){
         if tools.contains(tool) {
             let toolState = tool.state?.currentState as! ToolState
             toolState.onTap()
-            //hint.highLightTool(tool)
-            //toolMenu.display(tool)
         }else{
             fatalError("Tool not found")
         }
     }
-    /*
-    func deselectTool(_ tool : Tool){
-        if tools.contains(tool){
-            hint.disableHighlight()
-            toolMenu.hide()
-        }else{
-            fatalError("Tool not found")
-        }
-    }*/
 }
-
-/*
-  else if nodeName?.hasSuffix("tool") ?? false{
-      let startIndex = nodeName!.startIndex
-      let endIndex = nodeName!.index(nodeName!.endIndex, offsetBy: -6)
-      let splicedName = String(nodeName![startIndex ... endIndex])
-      
-      print(splicedName)
-*/

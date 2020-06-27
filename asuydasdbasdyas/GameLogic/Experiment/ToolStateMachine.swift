@@ -19,7 +19,7 @@ class ToolStateMachine : GKStateMachine{
         self.tool = tool
         self.experiment = experiment
         
-        let states : [GKState] = [StateUnspawned(),StateIdle(), StatePositioned(), StatePickedUp(),StateMenu()]
+        let states : [GKState] = [StateUnspawned(),StateIdle(), StatePositioned(), StatePickedUp(),StateMenuIdle(), StateMenuActive()]
         super.init(states: states)
     }
 }
@@ -52,11 +52,11 @@ class StateUnspawned : ToolState{
 class StateIdle : ToolState{
     
     override func onTap() {
-        stateMachine?.enter(StateMenu.self)
+        stateMachine?.enter(StateMenuIdle.self)
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        if stateClass == StateMenu.self{
+        if stateClass == StateMenuIdle.self{
             return true
         }
         return false
@@ -67,7 +67,6 @@ class StateIdle : ToolState{
         
         toolState.tool.resetPosition()
         toolState.experiment.hint?.disableHighlight(toolState.tool)
-        toolState.experiment.toolMenu?.hide()
     }
     
     override func willExit(to nextState: GKState) {
@@ -75,11 +74,7 @@ class StateIdle : ToolState{
     }
 }
 
-class StateMenu : ToolState{
-    
-    override func onTap() {
-        
-    }
+class StateMenuIdle : ToolState{
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         if stateClass == StatePickedUp.self{
@@ -91,15 +86,16 @@ class StateMenu : ToolState{
         return false
     }
     
-    override func willExit(to nextState: GKState) {
-        super.willExit(to: nextState)
-    }
-    
     override func didEnter(from previousState: GKState?) {
         let toolState = stateMachine as! ToolStateMachine
         
         toolState.experiment.hint?.highLightTool(toolState.tool)
-        toolState.experiment.toolMenu?.display(toolState.tool)
+        toolState.experiment.idleMenu?.display(toolState.tool)
+    }
+    
+    override func willExit(to nextState: GKState) {
+        let toolState = stateMachine as! ToolStateMachine
+        toolState.experiment.idleMenu?.hide()
     }
 }
 
@@ -122,13 +118,23 @@ class StatePickedUp : ToolState{
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         let toolState = stateMachine as! ToolStateMachine
+        
         toolState.experiment.selection?.clearSelection()
+        toolState.experiment.hint?.disableAllArrows()
+        toolState.experiment.hint?.disableAllHighlights()
     }
     
     override func didEnter(from previousState: GKState?) {
         let toolState = stateMachine as! ToolStateMachine
+        let hint = toolState.experiment.hint!
         
         toolState.tool.place(toolState.tool.node.position + SCNVector3(0,0.1,0))
+        
+        hint.highlightNode(toolState.experiment.workPosition!.node)
+        
+        hint.enableArrow(toolState.experiment.workPosition!.node)
+        hint.enableArrow(toolState.tool.node)
+        
         if !toolState.experiment.selection!.selectTool(toolState.tool){
             stateMachine?.enter(StateIdle.self)
         }
@@ -137,32 +143,71 @@ class StatePickedUp : ToolState{
 
 class StatePositioned : ToolState{
     
+    var  combinedWith : Tool?
+    
     override func onTap() {
         let toolState = stateMachine as! ToolStateMachine
         
         if let selTool = toolState.experiment.selection?.toolSelected{
-            toolState.tool.useWith(selTool)
+            if toolState.tool.isCompatible(selTool){
+                toolState.tool.useWith(selTool)
+                combinedWith = selTool
+            }
+            else{
+                selTool.state?.enter(StateIdle.self)
+            }
+        }
+        else{
+            stateMachine?.enter(StateMenuActive.self)
         }
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-         if stateClass == StateIdle.self{
-             return true
-         }
-         else if stateClass == StatePositioned.self{
-             return true
-         }
-         return false
-     }
+        if stateClass == StateIdle.self{
+            return true
+        }
+        else if stateClass == StatePositioned.self{
+            return true
+        }
+        else if stateClass == StateMenuActive.self{
+            return true
+        }
+        return false
+    }
     
     override func didEnter(from previousState: GKState?) {
         let toolState = stateMachine as! ToolStateMachine
         
         toolState.experiment.workPosition?.place(toolState.tool)
-        toolState.experiment.hint?.disableHighlight(toolState.tool)
     }
 }
 
+class StateMenuActive : ToolState{
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        if stateClass == StatePositioned.self{
+            return true
+        }
+        else if stateClass == StateIdle.self{
+            return true
+        }
+        return false
+    }
+    
+    override func didEnter(from previousState: GKState?) {
+        let toolState = stateMachine as! ToolStateMachine
+        
+        toolState.experiment.hint?.highLightTool(toolState.tool)
+        toolState.experiment.positionedMenu?.display(toolState.tool)
+    }
+    
+    override func willExit(to nextState: GKState) {
+        super.willExit(to: nextState)
+        let toolState = stateMachine as! ToolStateMachine
+        
+        toolState.experiment.positionedMenu?.hide()
+        toolState.experiment.hint?.disableHighlight(toolState.tool)
+    }
+}
 
 
 

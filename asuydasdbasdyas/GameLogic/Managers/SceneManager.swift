@@ -58,7 +58,7 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
             currentScene = scene
             //touchController = Controller(currentOverlayScene)
             //currentGameLevel = GameLevel(scene!)
-            currentExperiment = Experiment(scene!, "firstExperiment")
+            currentExperiment = Experiment(scene!, "saggioAllaFiamma")
             GameManager.getInstance().inputManager?.enabled = true
             
             if let _ = sceneView as? ARSCNView {

@@ -9,7 +9,8 @@
 import Foundation
 import SceneKit
 
-class Bunsen : Heater{
+class Bunsen : Heater{ 
+    
     override func isCompatible(_ otherTool: Tool) -> Bool {
         if type(of: otherTool) == BunsenStand.self {
             return true
@@ -18,13 +19,17 @@ class Bunsen : Heater{
     }
     
     override func useWith(_ otherTool: Tool) {
-        if !isCompatible(otherTool){
-            return
+        super.useWith(otherTool)
+  
+        if type(of: otherTool) == BunsenStand.self {
+            otherTool.state?.enter(StatePositioned.self)
+            otherTool.place(getAnchorPosition(.down))
         }
-        else{
-            if type(of: otherTool) == BunsenStand.self {
-                otherTool.place(node.position)
-            }
+    }
+    
+    override func toolAddedToStack(_ otherTool: Tool) {
+        if let becker = otherTool as? Becker {
+            heatedTool = becker
         }
     }
 }

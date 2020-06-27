@@ -40,8 +40,21 @@ class NodePool{
     }
     
     func release(_ node : SCNNode){
-        let node = busyPool.remove(at: busyPool.firstIndex(of: node)!)
-        avaiablePool.append(node)
-        node.isHidden = true
+        if let index = busyPool.firstIndex(of: node){
+            let node = busyPool.remove(at: index)
+            avaiablePool.append(node)
+            node.isHidden = true
+        }
+        else{
+            
+        }
+    }
+    
+    func releaseAll(){
+        for node in busyPool{
+            node.isHidden = true
+            avaiablePool.append(node)
+        }
+        busyPool.removeAll()
     }
 }

@@ -2,6 +2,84 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>saggioAllaFiamma</key>
+	<dict>
+		<key>containers</key>
+		<array>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Nitrato Di Potassio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Nitrato Rameico</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Cloruro Rameoso</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Cloruro Di Sodio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Cloruro Di Litio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+		</array>
+		<key>other</key>
+		<dict/>
+		<key>heaters</key>
+		<dict>
+			<key>bunsen</key>
+			<string></string>
+		</dict>
+	</dict>
 	<key>firstExperiment</key>
 	<dict>
 		<key>heaters</key>
@@ -26,7 +104,7 @@
 				<key>displayName</key>
 				<string>Pipetta</string>
 				<key>volumeCapacity</key>
-				<integer>10</integer>
+				<integer>5</integer>
 			</dict>
 		</dict>
 	</dict>

@@ -11,7 +11,6 @@ import Foundation
 class SelectionSystem {
     
     var toolSelected : Tool? = nil
-    //var toolSelectedB : Tool? = nil
     
     private var experiment : Experiment
     
@@ -22,20 +21,12 @@ class SelectionSystem {
     func selectTool(_ tool : Tool) -> Bool{
         if toolSelected == nil{
             toolSelected = tool
-            //tool.isSelected = true
             return true
         }
-            /*
-        else if toolSelectedB == nil{
-            toolSelectedB = tool
-            //tool.isSelected = true
-            return true
-        }*/
         return false
     }
     
     func deselectTool(_ tool : Tool){
-        //tool.isSelected = false
         if tool.isEqual(toolSelected){
             toolSelected = nil
         }
@@ -44,8 +35,4 @@ class SelectionSystem {
     func clearSelection(){
         toolSelected = nil
     }
-            /*
-        else if tool.isEqual(toolSelectedB){
-            toolSelectedB = nil
-        }*/
 }

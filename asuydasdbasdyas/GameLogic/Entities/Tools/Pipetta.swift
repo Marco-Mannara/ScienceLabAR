@@ -9,7 +9,7 @@
 import Foundation
 import SceneKit
 
-class Pipetta : LiquidContainer{
+class Pipetta : Container{
    
     
     override func isCompatible(_ otherTool: Tool) -> Bool {
@@ -21,6 +21,7 @@ class Pipetta : LiquidContainer{
     }
     
     override func useWith(_ otherTool: Tool) {
+        super.useWith(otherTool)
         if type(of: otherTool) == Becker.self{
             
         }

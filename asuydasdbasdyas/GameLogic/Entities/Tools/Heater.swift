@@ -11,6 +11,8 @@ import SceneKit
 
 class Heater : Tool{
     
+    var heatedTool : Tool?
+    
     override init(_ node : SCNNode, _ displayName: String){
         super.init(node, displayName)
     }
