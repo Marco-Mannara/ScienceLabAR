@@ -10,23 +10,24 @@ import Foundation
 
 class ToolStack{
     
-    private var tools : [Tool]
+    private var tools : [String : Tool]
     
     init(){
-        tools = []
+        tools = [:]
     }
-
+    
     func addTool(_ tool: Tool){
-        for t in tools{
-            t.toolAddedToStack(tool)
+        if let _ = tool as? Stackable{
+            for t in tools{
+                let stackable = t as! Stackable
+                stackable.toolAddedToStack(tool)
+            }
+            tools[tool.displayName] = tool
         }
-        tools.append(tool)
     }
     
     func removeTool(_ tool : Tool){
-        if let index = tools.firstIndex(of: tool){
-            tools.remove(at: index)
-        }
+        tools.removeValue(forKey: tool.displayName)
     }
     
     func isEmpty() -> Bool{

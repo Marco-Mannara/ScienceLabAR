@@ -12,6 +12,7 @@ import SceneKit
 class Heater : Tool{
     
     var heatedTool : Tool?
+    var isActive : Bool = false
     
     override init(_ node : SCNNode, _ displayName: String){
         super.init(node, displayName)
@@ -20,6 +21,8 @@ class Heater : Tool{
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func toggleActive(){}
     
     static func instantiate (_ node : SCNNode, _ name : String, _ params : [String:Any]?) -> Heater?{
         if name == "bunsen"{

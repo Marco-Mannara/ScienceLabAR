@@ -90,12 +90,13 @@ class StateMenuIdle : ToolState{
         let toolState = stateMachine as! ToolStateMachine
         
         toolState.experiment.hint?.highLightTool(toolState.tool)
-        toolState.experiment.idleMenu?.display(toolState.tool)
+        toolState.experiment.menuManager?.idleMenu.display(toolState.tool)
     }
     
     override func willExit(to nextState: GKState) {
+        super.willExit(to: nextState)
         let toolState = stateMachine as! ToolStateMachine
-        toolState.experiment.idleMenu?.hide()
+        toolState.experiment.menuManager?.idleMenu.hide()
     }
 }
 
@@ -197,14 +198,14 @@ class StateMenuActive : ToolState{
         let toolState = stateMachine as! ToolStateMachine
         
         toolState.experiment.hint?.highLightTool(toolState.tool)
-        toolState.experiment.positionedMenu?.display(toolState.tool)
+        toolState.experiment.menuManager?.display(toolState.tool)
     }
     
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         let toolState = stateMachine as! ToolStateMachine
         
-        toolState.experiment.positionedMenu?.hide()
+        toolState.experiment.menuManager?.hide()
         toolState.experiment.hint?.disableHighlight(toolState.tool)
     }
 }

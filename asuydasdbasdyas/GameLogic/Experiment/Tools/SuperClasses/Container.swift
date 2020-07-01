@@ -11,22 +11,24 @@ import SceneKit
 
 
 class Container : Tool{
-    var contents : [Substance]
-    var contentsVolume : Float{
-        var vol = 0.0
+    var contents : [Substance : Int]
+    var contentsNode : SCNNode
+    
+    var contentsVolumeInMilliliters : Int{
+        var vol = 0
         for c in contents{
-            vol += c.volumeInMilliliters
+            vol += c.value
         }
-        return Float(vol)
+        return vol
     }
     var contentsWeight : Float{
         var weight = 0.0
         for c in contents{
-            weight += c.mass
+            weight += Double(c.value) * c.key.density
         }
         return Float(weight)
     }
-    var volumeCapacity : Float {
+    var volumeCapacity : Float = 0.0 {
         didSet{
             if volumeCapacity < 0.0{
                 volumeCapacity = oldValue
@@ -36,7 +38,8 @@ class Container : Tool{
     
     init(_ node : SCNNode, _ displayName : String , _ volumeCapacity : Float){
         self.volumeCapacity = volumeCapacity
-        self.contents = []
+        self.contents = [:]
+        self.contentsNode = node.childNode(withName: "contents", recursively: true)!
         
         super.init(node, displayName)
     }
@@ -45,19 +48,33 @@ class Container : Tool{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func fill(with substance: Substance){}
+    func fill(with substance: Substance, volume : Int){
+        contents[substance] = volume
+        
+        contentsNode.isHidden = false
+        contentsNode.geometry?.materials.first?.diffuse.contents = substance.color
+    }
     
-    func draw() -> Substance?{ return nil }
+    func draw(_ volumeInMilliliters: Int) -> Substance?{
+        if volumeInMilliliters <= contents.first?.value ?? 0{
+            return contents.first!.key
+        }
+        return nil
+    }
+    
+    func clearContents(){
+        contents.removeAll()
+    }
     
     static func instantiate(_ node: SCNNode,_ containerName: String, _ params: [String:Any]?) -> Container? {
         
         if containerName == "becker"{
             if let volumeCap = params?["volumeCapacity"] as? Double{
                 let becker = Becker(node, containerName, Float(volumeCap))
-                //let substance = Substance("H20", 7.0, 1.0)
-                //substance.volumeInMilliliters = 250
-                if let substance = params?["substance"] as? Substance{
-                    becker.fill(with: substance)
+                if let substanceProp = params?["substance"] as? [String:Any],let name = substanceProp["name"] as? String, let quantity = substanceProp["quantity"] as? Int
+                {
+                    let substance = SubstanceDictionary.getSubstance(name)!
+                    becker.fill(with: substance, volume: quantity)
                 }
                 return becker
             }
@@ -87,11 +104,23 @@ class Container : Tool{
         else if containerName == "piattino" {
             if let volumeCap = params?["volumeCapacity"] as? Double{
                 let piattino = Piattino(node, containerName, Float(volumeCap))
-                if let substanceParams = params?["substance"] as? [String:Any]{
-                    let substance = Substance(substanceParams)
-                    piattino.fill(with: substance)
+                if let substanceProp = params?["substance"] as? [String:Any],let name = substanceProp["name"] as? String, let quantity = substanceProp["quantity"] as? Int
+                {
+                    if let substance = SubstanceDictionary.getSubstance(name){
+                        piattino.fill(with: substance, volume: quantity)
+                    }
                 }
                 return piattino
+            }
+            else{
+                print("No parameter was passed to Becker instantiation")
+                return nil
+            }
+        }
+        else if containerName == "becco"{
+            if let volumeCap = params?["volumeCapacity"] as? Double{
+                let becco = Becco(node, containerName, Float(volumeCap))
+                return becco
             }
             else{
                 print("No parameter was passed to Becker instantiation")

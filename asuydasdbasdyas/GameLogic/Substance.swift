@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SceneKit
 
 class Substance : NSObject, NSCoding{
     
@@ -20,19 +21,9 @@ class Substance : NSObject, NSCoding{
         }
     }
     var density : Double = 1.0
-    var volumeInLiters : Double{
-        get{
-            return volumeInMilliliters / 1000.0
-        }
-    }
-    var volumeInMilliliters : Double = 0.0
+    var color : UIColor = UIColor.white
+    var flameColor : UIColor = UIColor.orange
     var state : PhysicState = .solid
-    
-    var mass : Double{
-        get{
-            return volumeInLiters * density
-        }
-    }
     
     var qualityFlag : Bool = false
     
@@ -62,12 +53,18 @@ class Substance : NSObject, NSCoding{
         let PH = params["PH"] as? Double ?? 7
         let density = params["density"] as? Double ?? 1
         
+        let color = params["color"] as? [Double] ?? [0.0,0.0,0.0]
+        let flameColor = params["flameColor"] as? [Double] ?? [0.0,0.0,0.0]
+        
         self.init(name,molecule,PH,density)
+        
+        self.color = UIColor(_colorLiteralRed: Float(color[0]),green: Float(color[1]),blue: Float(color[2]), alpha: 1)
+        self.flameColor = UIColor(_colorLiteralRed: Float(flameColor[0]),green: Float(flameColor[1]),blue: Float(flameColor[2]), alpha: 1)
     }
     
     
     func encode(with coder: NSCoder) {
-    
+        
     }
 }
 

@@ -11,8 +11,6 @@ import SceneKit
 
 
 class WorkPosition : GKEntity, EntityHitProtocol{
-    
-    
     var stack : ToolStack
     
     var experiment : Experiment
@@ -36,14 +34,14 @@ class WorkPosition : GKEntity, EntityHitProtocol{
     func hit(_ hitResult: SCNHitTestResult) {
         //print("hit workposition")
         if let selTool = experiment.selection?.toolSelected{
-            if stack.isEmpty(){
+            if stack.isEmpty() && selTool.self is Stackable{
                 selTool.state?.enter(StatePositioned.self)
             }
         }
     }
     
     func place(_ tool : Tool){
-        //experiment.hint?.disableHighlight()
+        
         if stack.isEmpty(){
             tool.place(node.position)
             node.isHidden = true
@@ -53,8 +51,12 @@ class WorkPosition : GKEntity, EntityHitProtocol{
     
     func remove( _ tool : Tool){
         stack.removeTool(tool)
+        
         if stack.isEmpty(){
             node.isHidden = false
+        }
+        else{
+            print("removed item but stack is not empty")
         }
     }
 }

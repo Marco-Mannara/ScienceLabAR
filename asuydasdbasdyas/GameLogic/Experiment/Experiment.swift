@@ -20,8 +20,8 @@ class Experiment {
     
     var selection : SelectionSystem?
     var hint : HintSystem?
-    var idleMenu : ToolMenu?
-    var positionedMenu : ToolMenu?
+    var menuManager : ToolMenuManager?
+    
     
     var restPoints : [SCNNode]
     
@@ -37,10 +37,19 @@ class Experiment {
         else{
             fatalError("Couldn't find SCENE_ROOT node")
         }
-  
+
+        self.selection = SelectionSystem(self)
+        self.hint = HintSystem(self)
+        self.menuManager = ToolMenuManager(self)
         
+        SubstanceDictionary.open()
         deserialize(name)
         setup()
+        SubstanceDictionary.close()
+    }
+    
+    private func loadSubstances(){
+        
     }
     
     private func deserialize(_ experimentName : String){
@@ -72,6 +81,9 @@ class Experiment {
         }
         
         if let heaters = toolsDict["heaters"] as? [String]{
+            if heaters.count > 0{
+                menuManager?.createHeaterMenu()
+            }
             for tool in heaters {
                 if let toolNode = ScnModelLoader.loadModel("tools/" + tool,tool){
                     tools.append(Heater.instantiate(toolNode, tool, nil)!)
@@ -90,35 +102,7 @@ class Experiment {
     
     
     func setup(){
-        
-        self.selection = SelectionSystem(self)
-        self.hint = HintSystem(self)
-        
-        self.idleMenu = ToolMenu(self, StateIdle.self)
-        idleMenu?.addEntry(ScnModelLoader.loadModel("interaction_symbols/symbols", "hand_symbol")!
-            ,{(tool : Tool) -> Void in
-                if tool.state?.enter(StatePickedUp.self) ?? false{
-                    self.idleMenu?.hide()
-                }
-        })
-        idleMenu?.addEntry(ScnModelLoader.loadModel("interaction_symbols/symbols", "cancel_symbol")!
-            ,{(tool : Tool) -> Void in
-                tool.state?.enter(StateIdle.self)
-        })
-        idleMenu?.spawn()
-        
-        self.positionedMenu = ToolMenu(self, StatePositioned.self)
-        positionedMenu?.addEntry(ScnModelLoader.loadModel("interaction_symbols/symbols","return_symbol")!, {
-            (tool) -> Void in
-            tool.state?.enter(StateIdle.self)
-            self.workPosition?.remove(tool)
-        })
-        positionedMenu?.addEntry(ScnModelLoader.loadModel("interaction_symbols/symbols","cancel_symbol")!, {
-            (tool) -> Void in
-            tool.state?.enter(StatePositioned.self)
-        })
-        
-        positionedMenu?.spawn()
+        menuManager?.spawn()
         
         var lastUsedRestPoint = 0
         

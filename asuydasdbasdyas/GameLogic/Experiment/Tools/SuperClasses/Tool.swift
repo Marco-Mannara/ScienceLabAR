@@ -44,10 +44,6 @@ class Tool : GKEntity, EntityHitProtocol{
         state?.enter(StatePositioned.self)
     }
     
-    func toolAddedToStack(_ otherTool : Tool){
-        
-    }
-    
     func resetPosition(){
         if let position = restPoint?.position{
             place(position)

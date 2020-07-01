@@ -41,6 +41,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
         GameManager.initialize(sceneView)
         GameManager.getInstance().sceneManager?.showScene("experiment", nil)
+        GameManager.getInstance().sceneManager?.loadExperiment("saggioAllaFiamma")
     }    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)

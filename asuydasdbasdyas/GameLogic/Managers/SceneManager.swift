@@ -58,8 +58,6 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
             currentScene = scene
             //touchController = Controller(currentOverlayScene)
             //currentGameLevel = GameLevel(scene!)
-            currentExperiment = Experiment(scene!, "saggioAllaFiamma")
-            GameManager.getInstance().inputManager?.enabled = true
             
             if let _ = sceneView as? ARSCNView {
                 arCameraNode = SCNNode()
@@ -69,6 +67,16 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
         }
         else{
             currentScene?.rootNode.isHidden = false
+        }
+    }
+    
+    func loadExperiment(_ name: String){
+        if let scene = currentScene{
+            currentExperiment = Experiment(scene, name)
+            GameManager.getInstance().inputManager?.enabled = true
+        }
+        else{
+            print("Couldn't load experiment as there's no scene loaded")
         }
     }
     

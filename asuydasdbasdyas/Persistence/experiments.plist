@@ -10,6 +10,32 @@
 				<key>substance</key>
 				<dict>
 					<key>quantity</key>
+					<integer>100</integer>
+					<key>name</key>
+					<string>Cloruro Di Litio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>300</integer>
+				<key>displayName</key>
+				<string>becker</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Cloruro Di Litio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
 					<integer>15</integer>
 					<key>name</key>
 					<string>Nitrato Di Potassio</string>
@@ -59,26 +85,18 @@
 				<string>piattino</string>
 			</dict>
 			<dict>
-				<key>substance</key>
-				<dict>
-					<key>quantity</key>
-					<integer>15</integer>
-					<key>name</key>
-					<string>Cloruro Di Litio</string>
-				</dict>
 				<key>volumeCapacity</key>
-				<integer>15</integer>
+				<integer>3</integer>
 				<key>displayName</key>
-				<string>piattino</string>
+				<string>becco</string>
 			</dict>
 		</array>
 		<key>other</key>
 		<dict/>
 		<key>heaters</key>
-		<dict>
-			<key>bunsen</key>
-			<string></string>
-		</dict>
+		<array>
+			<string>bunsen</string>
+		</array>
 	</dict>
 	<key>firstExperiment</key>
 	<dict>

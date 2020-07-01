@@ -23,12 +23,10 @@ class SelectionSystem {
             toolSelected = tool
             return true
         }
-        return false
-    }
-    
-    func deselectTool(_ tool : Tool){
-        if tool.isEqual(toolSelected){
-            toolSelected = nil
+        else{
+            toolSelected?.state?.enter(StateIdle.self)
+            toolSelected = tool
+            return true
         }
     }
     

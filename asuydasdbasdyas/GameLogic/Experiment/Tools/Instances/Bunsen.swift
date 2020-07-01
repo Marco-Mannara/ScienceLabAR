@@ -9,7 +9,19 @@
 import Foundation
 import SceneKit
 
-class Bunsen : Heater{ 
+class Bunsen : Heater, Stackable{
+    
+    private var fireParticle : SCNNode
+    
+    override init (_ node : SCNNode, _ displayName : String){
+        fireParticle = node.childNode(withName: "fire",recursively: true)!
+        fireParticle.isHidden = true
+        super.init(node,displayName)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func isCompatible(_ otherTool: Tool) -> Bool {
         if type(of: otherTool) == BunsenStand.self {
@@ -19,15 +31,20 @@ class Bunsen : Heater{
     }
     
     override func useWith(_ otherTool: Tool) {
-        super.useWith(otherTool)
-  
         if type(of: otherTool) == BunsenStand.self {
+            state?.enter(StatePositioned.self)
             otherTool.state?.enter(StatePositioned.self)
             otherTool.place(getAnchorPosition(.down))
         }
     }
     
-    override func toolAddedToStack(_ otherTool: Tool) {
+    override func toggleActive(){
+        //print("toggleActive")
+        isActive = !isActive
+        fireParticle.isHidden = !isActive
+    }
+    
+    func toolAddedToStack(_ otherTool: Tool) {
         if let becker = otherTool as? Becker {
             heatedTool = becker
         }

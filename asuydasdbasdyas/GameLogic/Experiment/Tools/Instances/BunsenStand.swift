@@ -9,7 +9,7 @@
 import Foundation
 import SceneKit
 
-class BunsenStand : Tool{
+class BunsenStand : Tool, Stackable{
     
     var toolPlacedOnTop : Bool = false
     
@@ -33,5 +33,8 @@ class BunsenStand : Tool{
             otherTool.state?.enter(StatePositioned.self)
             toolPlacedOnTop = true
         }
+    }
+    
+    func toolAddedToStack(_ otherTool: Tool) {
     }
 }
