@@ -4,9 +4,9 @@
 //
 //  Created by Marco Mannara on 13/04/2020.
 //  Copyright © 2020 Marco Mannara. All rights reserved.
-//
-
-import UIKit
+// 
+/*
+ import UIKit
 import GameplayKit
 
 class Player: GKEntity, EntityCollisionProtocol {
@@ -78,3 +78,4 @@ class Player: GKEntity, EntityCollisionProtocol {
         scene.rootNode.addChildNode(mainNode)
     }
 }
+*/

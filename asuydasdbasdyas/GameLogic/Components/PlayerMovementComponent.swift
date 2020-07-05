@@ -5,7 +5,7 @@
 //  Created by Marco Mannara on 18/04/2020.
 //  Copyright © 2020 Marco Mannara. All rights reserved.
 //
-
+/*
 import UIKit
 import GameplayKit
 import SceneKit
@@ -84,3 +84,4 @@ class PlayerMovementComponent: GKComponent
         physics.body.applyForce(SCNVector3(0,jumpForce * mass,0), asImpulse: true)
     }
 }
+*/

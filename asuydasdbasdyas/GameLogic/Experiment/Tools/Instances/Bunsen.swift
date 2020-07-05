@@ -11,7 +11,7 @@ import SceneKit
 
 class Bunsen : Heater, Stackable{
     
-    private var fireParticle : SCNNode
+    var fireParticle : SCNNode
     
     override init (_ node : SCNNode, _ displayName : String){
         fireParticle = node.childNode(withName: "fire",recursively: true)!
@@ -27,6 +27,9 @@ class Bunsen : Heater, Stackable{
         if type(of: otherTool) == BunsenStand.self {
             return true
         }
+        if type(of: otherTool) == Becco.self {
+                   return true
+        }
         return false
     }
     
@@ -34,7 +37,10 @@ class Bunsen : Heater, Stackable{
         if type(of: otherTool) == BunsenStand.self {
             state?.enter(StatePositioned.self)
             otherTool.state?.enter(StatePositioned.self)
-            otherTool.place(getAnchorPosition(.down))
+            otherTool.place(getAnchor(.down))
+        }
+        else if let becco = otherTool as? Becco{
+            becco.useWith(self)
         }
     }
     
@@ -42,6 +48,13 @@ class Bunsen : Heater, Stackable{
         //print("toggleActive")
         isActive = !isActive
         fireParticle.isHidden = !isActive
+    }
+    
+    override func reset() {
+        super.reset()
+        if isActive{
+            toggleActive()
+        }
     }
     
     func toolAddedToStack(_ otherTool: Tool) {

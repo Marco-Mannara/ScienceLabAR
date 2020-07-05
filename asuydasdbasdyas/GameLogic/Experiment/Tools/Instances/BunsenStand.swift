@@ -25,11 +25,11 @@ class BunsenStand : Tool, Stackable{
     
     override func useWith(_ otherTool: Tool) {
         if type(of: otherTool) == Bunsen.self{
-            otherTool.place(getAnchorPosition(.down))
+            otherTool.place(getAnchor(.down))
             otherTool.state?.enter(StatePositioned.self)
         }
         else if type(of: otherTool) == Becker.self{
-            otherTool.place(getAnchorPosition(.up))
+            otherTool.place(getAnchor(.up))
             otherTool.state?.enter(StatePositioned.self)
             toolPlacedOnTop = true
         }

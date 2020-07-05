@@ -1,0 +1,36 @@
+
+/* Class = "UIButton"; normalTitle = "Yes"; ObjectID = "7Hc-L0-xIY"; */
+"7Hc-L0-xIY.normalTitle" = "Yes";
+
+/* Class = "UINavigationItem"; title = "Experiments"; ObjectID = "7SI-HC-gH4"; */
+"7SI-HC-gH4.title" = "Experiments";
+
+/* Class = "UIButton"; normalTitle = "No"; ObjectID = "J6k-xH-cPj"; */
+"J6k-xH-cPj.normalTitle" = "No";
+
+/* Class = "UIButton"; normalTitle = "Adjust Manually"; ObjectID = "Rry-bV-fUm"; */
+"Rry-bV-fUm.normalTitle" = "Adjust Manually";
+
+/* Class = "UILabel"; text = "Scan Progress"; ObjectID = "Tfd-UW-H9Y"; */
+"Tfd-UW-H9Y.text" = "Scan Progress";
+
+/* Class = "UIButton"; normalTitle = "Achievements"; ObjectID = "Tng-fj-IwL"; */
+"Tng-fj-IwL.normalTitle" = "Achievements";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "eOr-KV-YVN"; */
+"eOr-KV-YVN.normalTitle" = "Start";
+
+/* Class = "UIButton"; normalTitle = "Scan Again"; ObjectID = "f2H-9q-TMZ"; */
+"f2H-9q-TMZ.normalTitle" = "Scan Again";
+
+/* Class = "UILabel"; text = "ScienceLabAR"; ObjectID = "g4q-s1-mPK"; */
+"g4q-s1-mPK.text" = "ScienceLabAR";
+
+/* Class = "UILabel"; text = "Does it appear correctly?"; ObjectID = "iao-U8-IdW"; */
+"iao-U8-IdW.text" = "Does it appear correctly?";
+
+/* Class = "UINavigationItem"; title = "Options"; ObjectID = "jCy-nh-H7o"; */
+"jCy-nh-H7o.title" = "Options";
+
+/* Class = "UIButton"; normalTitle = "Options"; ObjectID = "oQL-7X-7oe"; */
+"oQL-7X-7oe.normalTitle" = "Options";

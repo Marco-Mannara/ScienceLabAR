@@ -12,7 +12,9 @@ import GameplayKit
 import CoreData
 
 class GameViewController: UIViewController, SCNSceneRendererDelegate {
-
+    
+    var experiment : Experiment!
+    
     @IBOutlet var sceneView: SCNView!
     
     override public var shouldAutorotate: Bool{
@@ -37,12 +39,28 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         sceneView.allowsCameraControl = false
         sceneView.showsStatistics = true
         sceneView.delegate = self
-        //sceneView.debugOptions = .showPhysicsShapes
         
-        GameManager.initialize(sceneView)
-        GameManager.getInstance().sceneManager?.showScene("experiment", nil)
-        GameManager.getInstance().sceneManager?.loadExperiment("saggioAllaFiamma")
+        /*
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = CGPoint(x: view.frame.size.width  / 2,
+        y: view.frame.size.height / 2)
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        */
+        
+        let experimentSpawn = DispatchQueue(label: "experimentSpawn")
+        experimentSpawn.async {
+            self.sceneView.scene = GameManager.getInstance().sceneManager.currentScene
+        }
     }    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
@@ -66,16 +84,28 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         GameManager.getInstance().updateManager?.update(time)
     }
-
+    
+    @IBAction func inspectButtonPressed(_ sender: UIButton) {
+        
+    }
+    @IBAction func resetButtonPressed(_ sender: UIButton) {
+        
+    }
+    @IBAction func infoButtonPressed(_ sender: UIButton) {
+        
+    }
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
+        
+    }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

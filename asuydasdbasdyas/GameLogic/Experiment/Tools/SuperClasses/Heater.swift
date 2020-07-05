@@ -22,6 +22,11 @@ class Heater : Tool{
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func spawn(_ experiment: Experiment){
+        super.spawn(experiment)
+        experiment.menuManager?.createHeaterMenu()
+    }
+    
     func toggleActive(){}
     
     static func instantiate (_ node : SCNNode, _ name : String, _ params : [String:Any]?) -> Heater?{

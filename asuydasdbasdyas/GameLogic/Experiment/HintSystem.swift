@@ -25,11 +25,11 @@ class HintSystem {
         self.highlightedElements = [:]
         self.pointedElements = [:]
         
-        let highlightRing  = ScnModelLoader.loadModel("selector_ring")!
-        let hintArrow = ScnModelLoader.loadModel("interaction_symbols/arrow_symbol","arrow")!
+        let highlightRing  = NodeLoader.loadModel("selector_ring")!
+        let hintArrow = NodeLoader.loadModel("interaction_symbols/arrow_symbol","arrow")!
         
-        highlightRingPool  = NodePool(highlightRing, experiment.sceneRoot, 3)
-        hintArrowPool = NodePool(hintArrow, experiment.sceneRoot, 3)
+        highlightRingPool  = NodePool(highlightRing, experiment.sceneRoot!, 3)
+        hintArrowPool = NodePool(hintArrow, experiment.sceneRoot!, 3)
     }
     
     func highLightTool(_ tool : Tool) {

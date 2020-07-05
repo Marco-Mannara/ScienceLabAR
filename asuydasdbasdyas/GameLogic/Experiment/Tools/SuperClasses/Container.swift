@@ -40,6 +40,7 @@ class Container : Tool{
         self.volumeCapacity = volumeCapacity
         self.contents = [:]
         self.contentsNode = node.childNode(withName: "contents", recursively: true)!
+        self.contentsNode.isHidden = true
         
         super.init(node, displayName)
     }
@@ -56,7 +57,12 @@ class Container : Tool{
     }
     
     func draw(_ volumeInMilliliters: Int) -> Substance?{
-        if volumeInMilliliters <= contents.first?.value ?? 0{
+    
+        if volumeInMilliliters <= contentsVolumeInMilliliters{
+            if volumeInMilliliters == contentsVolumeInMilliliters{
+                contentsNode.isHidden = true
+                contents.removeAll()
+            }
             return contents.first!.key
         }
         return nil
@@ -64,6 +70,7 @@ class Container : Tool{
     
     func clearContents(){
         contents.removeAll()
+        contentsNode.isHidden = false
     }
     
     static func instantiate(_ node: SCNNode,_ containerName: String, _ params: [String:Any]?) -> Container? {

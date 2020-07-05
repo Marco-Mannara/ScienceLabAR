@@ -41,7 +41,6 @@ class WorkPosition : GKEntity, EntityHitProtocol{
     }
     
     func place(_ tool : Tool){
-        
         if stack.isEmpty(){
             tool.place(node.position)
             node.isHidden = true
