@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>carbonizzazioneDelSaccarosio</key>
+	<dict>
+		<key>containers</key>
+		<array>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>75</integer>
+					<key>name</key>
+					<string>Saccarosio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>500</integer>
+				<key>displayName</key>
+				<string>becker</string>
+			</dict>
+		</array>
+		<key>other</key>
+		<array>
+			<string>bunsen_stand</string>
+		</array>
+		<key>heaters</key>
+		<array/>
+	</dict>
+	<key>saggioAllaFiamma</key>
+	<dict>
+		<key>containers</key>
+		<array>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>100</integer>
+					<key>name</key>
+					<string>Acido Solforico</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>300</integer>
+				<key>displayName</key>
+				<string>becker</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Cloruro Di Litio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Nitrato Di Potassio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Nitrato Rameico</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Cloruro Rameoso</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>15</integer>
+					<key>name</key>
+					<string>Cloruro Di Sodio</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>15</integer>
+				<key>displayName</key>
+				<string>piattino</string>
+			</dict>
+			<dict>
+				<key>volumeCapacity</key>
+				<integer>3</integer>
+				<key>displayName</key>
+				<string>becco</string>
+			</dict>
+		</array>
+		<key>other</key>
+		<array/>
+		<key>heaters</key>
+		<array>
+			<string>bunsen</string>
+		</array>
+	</dict>
+</dict>
+</plist>
