@@ -11,7 +11,7 @@ import GameplayKit
 import SceneKit
 import SpriteKit
 
-class Tool : GKEntity, EntityHitProtocol{
+class Tool : GKEntity{
     
     var node : SCNNode
     var meshNode : SCNNode
@@ -42,7 +42,8 @@ class Tool : GKEntity, EntityHitProtocol{
     }
     
     func useWith(_ otherTool: Tool)
-    {}
+    {
+    }
     
     func reset(){
         if let position = restPoint?.position{
@@ -135,9 +136,6 @@ class Tool : GKEntity, EntityHitProtocol{
         case .down:
             return node.position + SCNVector3(0,-toolBounds.y * node.scale.y/2,0)
         }
-    }
-    
-    func hit(_ hitResult: SCNHitTestResult) {
     }
     
     static func instantiate(_ node : SCNNode, _ name : String) -> Tool?{

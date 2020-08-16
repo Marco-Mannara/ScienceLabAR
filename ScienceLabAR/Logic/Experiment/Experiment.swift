@@ -18,10 +18,10 @@ class Experiment {
     var restPoints : [SCNNode]
     
     var workPosition : WorkPosition?
-    
     var selection : SelectionSystem?
     var hint : HintSystem?
     var menuManager : ToolMenuManager?
+    var goals : GoalSystem?
     
     init(){
         self.restPoints = []
@@ -77,7 +77,6 @@ class Experiment {
                 fatalError("Not enough rest points")
             }
         }
-        
         menuManager?.spawn()
     }
     
@@ -124,5 +123,13 @@ class Experiment {
         }
     }
     
-    
+    func getCompatibleTools(for tool: Tool) -> [Tool]{
+        var compatibleTools : [Tool] = []
+        for t in tools{
+            if(tool.isCompatible(t)){
+                compatibleTools.append(t)
+            }
+        }
+        return compatibleTools
+    }
 }

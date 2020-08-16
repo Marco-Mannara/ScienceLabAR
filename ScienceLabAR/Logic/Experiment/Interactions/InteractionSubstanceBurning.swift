@@ -43,7 +43,7 @@ class InteractionSubstanceBurning : Interaction{
         let flameColorToSubstance = SCNAction.customAction(duration: 0, action: { (node, delta) in
             if let substance = self.becco.contents.first?.key{
                 self.bunsen!.fireParticle.particleSystems?.first?.particleColor = substance.flameColor
-                self.becco.clearContents()
+                //self.becco.clearContents()
             }
         })
         

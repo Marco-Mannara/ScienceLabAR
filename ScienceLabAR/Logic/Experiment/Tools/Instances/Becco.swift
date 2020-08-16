@@ -17,6 +17,7 @@ class Becco : Container{
         interaction = [:]
         interaction?["bunsen"] = InteractionSubstanceBurning(self)
         interaction?["piattino"] = InteractionBeccoPiattino(self)
+        interaction?["becker"] = InteractionBeccoBecker(self)
     }
     
     required init?(coder: NSCoder) {
@@ -36,9 +37,15 @@ class Becco : Container{
     override func useWith(_ otherTool: Tool) {
         if let piattino = otherTool as? Piattino{
             interaction?["piattino"]!.run(piattino)
+            GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
         }
         else if let bunsen = otherTool as? Bunsen{
             interaction?["bunsen"]!.run(bunsen)
+            GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
+        }
+        else if let becker = otherTool as? Becker{
+            interaction?["becker"]!.run(becker)
+            GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
         }
     }
     

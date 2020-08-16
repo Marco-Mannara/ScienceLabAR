@@ -19,7 +19,7 @@ class ToolStack{
     func addTool(_ tool: Tool){
         if let _ = tool as? Stackable{
             for t in tools{
-                let stackable = t as! Stackable
+                let stackable = t.value as! Stackable
                 stackable.toolAddedToStack(tool)
             }
             tools[tool.displayName] = tool
@@ -34,4 +34,13 @@ class ToolStack{
         return tools.count == 0
     }
     
+    func getCompatibleTools(for tool: Tool) -> [Tool]{
+        var compatibleTools : [Tool] = []
+        for t in tools{
+            if(tool.isCompatible(t.value)){
+                compatibleTools.append(t.value)
+            }
+        }
+        return compatibleTools
+    }
 }

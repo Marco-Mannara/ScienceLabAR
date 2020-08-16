@@ -100,4 +100,10 @@ class HintSystem {
     func disableAllHighlights(){
         highlightRingPool.releaseAll()
     }
+    
+    func highlightTools(_ tools : [Tool]){
+        for tool in tools{
+            highLightTool(tool)
+        }
+    }
 }

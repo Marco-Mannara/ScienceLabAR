@@ -16,18 +16,27 @@ class InputManager{
     
     func onTap(_ sceneView: SCNView,_ position: CGPoint){
         if enabled{
+            let hitTest = sceneView.hitTest(position, options: nil)
             
-            if let firstResult = sceneView.hitTest(position, options: nil).first{
-                if let hitEntity = firstResult.node.entity as? EntityHitProtocol{
-                    //print("hit hittable")
-                    hitEntity.hit(firstResult)
-                }
+            if let firstResult = hitTest.first{
                 if let hitTool = firstResult.node.entity as? Tool{
                     GameManager.getInstance().sceneManager?.currentExperiment?.onToolTap(hitTool)
                 }
-            }
-            else{
-                //print("miss")
+                if hitTest.count == 1{
+                    if let hitEntity = firstResult.node.entity as? EntityHitProtocol{
+                        //print("hit hittable")
+                        hitEntity.hit(firstResult)
+                    }
+                }
+                else if hitTest.count > 1{
+                    if let hitTool = hitTest[1].node.entity as? Tool{
+                        GameManager.getInstance().sceneManager?.currentExperiment?.onToolTap(hitTool)
+                    }
+                    else if let hitEntity = firstResult.node.entity as? EntityHitProtocol{
+                        //print("hit hittable")
+                        hitEntity.hit(firstResult)
+                    }
+                }
             }
         }
     }

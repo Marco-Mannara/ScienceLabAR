@@ -11,7 +11,8 @@ import SceneKit
 
 
 class WorkPosition : GKEntity, EntityHitProtocol{
-    var stack : ToolStack
+    private var leftStack : ToolStack
+    private var rightStack : ToolStack
     
     var experiment : Experiment
     var node : SCNNode
@@ -20,7 +21,8 @@ class WorkPosition : GKEntity, EntityHitProtocol{
     init(_ experiment : Experiment, _ node: SCNNode){
         self.experiment = experiment
         self.node = node
-        self.stack = ToolStack()
+        self.leftStack = ToolStack()
+        self.rightStack = ToolStack()
                 
         super.init()
         
@@ -34,28 +36,36 @@ class WorkPosition : GKEntity, EntityHitProtocol{
     func hit(_ hitResult: SCNHitTestResult) {
         //print("hit workposition")
         if let selTool = experiment.selection?.selectedTool{
-            if stack.isEmpty() && selTool.self is Stackable{
+            if leftStack.isEmpty() && selTool.self is Stackable{
                 selTool.state?.enter(StatePositioned.self)
             }
         }
     }
     
     func place(_ tool : Tool){
-        if stack.isEmpty(){
+        if leftStack.isEmpty(){
             tool.place(node.position)
             node.isHidden = true
         }
-        stack.addTool(tool)
+        leftStack.addTool(tool)
     }
     
     func remove( _ tool : Tool){
-        stack.removeTool(tool)
+        leftStack.removeTool(tool)
         
-        if stack.isEmpty(){
+        if leftStack.isEmpty(){
             node.isHidden = false
         }
         else{
             print("removed item but stack is not empty")
         }
+    }
+    
+    func getCompatibleTools(for tool: Tool) -> [Tool]{
+        var leftCompatibleTools = leftStack.getCompatibleTools(for: tool)
+        let rightCompatibleTools = rightStack.getCompatibleTools(for: tool)
+        
+        leftCompatibleTools.append(contentsOf: rightCompatibleTools)
+        return leftCompatibleTools
     }
 }

@@ -4,6 +4,8 @@
 <dict>
 	<key>Saccarosio</key>
 	<dict>
+		<key>name</key>
+		<string>saccarosio</string>
 		<key>flameColor</key>
 		<array>
 			<integer>1</integer>
@@ -24,6 +26,8 @@
 	</dict>
 	<key>Acido Solforico</key>
 	<dict>
+		<key>name</key>
+		<string>acidosolforico</string>
 		<key>flameColor</key>
 		<array>
 			<integer>1</integer>
@@ -44,6 +48,8 @@
 	</dict>
 	<key>Cloruro Di Litio</key>
 	<dict>
+		<key>name</key>
+		<string>clorurodilitio</string>
 		<key>flameColor</key>
 		<array>
 			<integer>1</integer>
@@ -64,6 +70,8 @@
 	</dict>
 	<key>Nitrato Rameico</key>
 	<dict>
+		<key>name</key>
+		<string>nitratorameico</string>
 		<key>flameColor</key>
 		<array>
 			<integer>0</integer>
@@ -84,6 +92,8 @@
 	</dict>
 	<key>Cloruro Rameoso</key>
 	<dict>
+		<key>name</key>
+		<string>clorurorameoso</string>
 		<key>flameColor</key>
 		<array>
 			<integer>0</integer>
@@ -104,6 +114,8 @@
 	</dict>
 	<key>Cloruro Di Sodio</key>
 	<dict>
+		<key>name</key>
+		<string>clorurodisodio</string>
 		<key>flameColor</key>
 		<array>
 			<integer>1</integer>
@@ -124,6 +136,8 @@
 	</dict>
 	<key>Nitrato Di Potassio</key>
 	<dict>
+		<key>name</key>
+		<string>nitratodipotassio</string>
 		<key>flameColor</key>
 		<array>
 			<real>0.2</real>

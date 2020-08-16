@@ -25,7 +25,9 @@
 			<string>bunsen_stand</string>
 		</array>
 		<key>heaters</key>
-		<array/>
+		<array>
+			<string>bunsen</string>
+		</array>
 	</dict>
 	<key>saggioAllaFiamma</key>
 	<dict>

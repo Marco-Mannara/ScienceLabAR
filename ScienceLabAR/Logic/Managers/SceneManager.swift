@@ -32,7 +32,7 @@ class SceneManager : NSObject, SCNPhysicsContactDelegate{
     func loadExperimentScene(_ name: String)
     {
         let scene = SCNScene(named: "art.scnassets/scenes/experiment.scn")!
-        let experiment = ExperimentLoader.loadExperiment(name)!
+        let experiment = ExperimentLoader.load(name)!
         
         currentScene = scene
         currentScene?.physicsWorld.contactDelegate = self

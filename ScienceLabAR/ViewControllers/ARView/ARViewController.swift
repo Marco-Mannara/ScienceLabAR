@@ -81,12 +81,13 @@ class ARViewController: UIViewController {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal]
         
+        self.navigationController?.navigationBar.isHidden = true
         sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        self.navigationController?.navigationBar.isHidden = false
         sceneView.session.pause()
     }
     

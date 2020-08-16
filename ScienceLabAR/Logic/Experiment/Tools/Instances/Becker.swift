@@ -35,14 +35,20 @@ class Becker : Container, Stackable {
     }
     
     override func isCompatible(_ otherTool: Tool) -> Bool {
-       if type(of: otherTool) == BunsenStand.self{
-           return true
-       }
+        if type(of: otherTool) == BunsenStand.self{
+            return true
+        }
+        else if type(of:otherTool) == Becco.self{
+            return true
+        }
         return false
     }
     override func useWith(_ otherTool: Tool) {
         if type(of: otherTool) == BunsenStand.self{
             
+        }
+        else if let becco = otherTool as? Becco{
+            becco.useWith(self)
         }
     }
     func toolAddedToStack(_ otherTool: Tool) {
