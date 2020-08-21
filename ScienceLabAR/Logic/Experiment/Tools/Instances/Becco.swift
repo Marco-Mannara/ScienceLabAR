@@ -35,16 +35,22 @@ class Becco : Container{
     }
     
     override func useWith(_ otherTool: Tool) {
-        if let piattino = otherTool as? Piattino{
-            interaction?["piattino"]!.run(piattino)
+        if let _ = otherTool as? Piattino{
+            let i = interaction!["piattino"]!
+            i.setTools([otherTool])
+            i.run()
             GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
         }
-        else if let bunsen = otherTool as? Bunsen{
-            interaction?["bunsen"]!.run(bunsen)
+        else if let _ = otherTool as? Bunsen{
+            let i = interaction!["bunsen"]!
+            i.setTools([otherTool])
+            i.run()
             GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
         }
-        else if let becker = otherTool as? Becker{
-            interaction?["becker"]!.run(becker)
+        else if let _ = otherTool as? Becker{
+            let i = interaction!["becker"]!
+            i.setTools([otherTool])
+            i.run()
             GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
         }
     }

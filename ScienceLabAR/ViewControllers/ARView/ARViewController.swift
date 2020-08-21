@@ -14,6 +14,7 @@ import GameplayKit
 
 class ARViewController: UIViewController {
 
+    @IBOutlet var progressIndicator: UILabel!
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var promptView: UIView!
     @IBOutlet var scanView: UIView!

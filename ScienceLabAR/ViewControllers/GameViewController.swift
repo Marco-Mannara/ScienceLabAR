@@ -13,7 +13,7 @@ import CoreData
 
 class GameViewController: UIViewController, SCNSceneRendererDelegate {
     
-    var experiment : Experiment!
+    @IBOutlet var progressIndicator: UILabel!
     
     @IBOutlet var sceneView: SCNView!
     
@@ -39,14 +39,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         sceneView.allowsCameraControl = false
         sceneView.showsStatistics = true
         sceneView.delegate = self
-        
-        /*
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.center = CGPoint(x: view.frame.size.width  / 2,
-        y: view.frame.size.height / 2)
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        */
+        GameManager.getInstance().viewController = self
         
         let experimentSpawn = DispatchQueue(label: "experimentSpawn")
         experimentSpawn.async {
@@ -56,6 +49,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        GameManager.getInstance().sceneManager.currentExperiment?.goals?.updateExperimentProgression()
+        performSegue(withIdentifier: "explanation", sender: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

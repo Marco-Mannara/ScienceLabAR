@@ -56,7 +56,6 @@ class Tool : GKEntity{
         
         state = ToolStateMachine(experiment, self)
         state?.enter(StateIdle.self)
-        state?.debug = true
     }
     
     func place(_ position: SCNVector3){

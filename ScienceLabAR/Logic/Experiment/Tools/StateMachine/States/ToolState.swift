@@ -14,7 +14,7 @@ class ToolState : GKState{
     func onTap(){}
 
     override func willExit(to nextState: GKState) {
-        if (stateMachine as! ToolStateMachine).debug{
+        if Constants.ToolStateDebug{
             let string = String(format: "Transitioning from %@ to %@ (%@)", String(describing: type(of: self)), String(describing: type(of: nextState)), (stateMachine as! ToolStateMachine).tool.displayName)
             print(string)
         }

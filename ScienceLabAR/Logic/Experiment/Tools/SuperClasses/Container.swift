@@ -53,17 +53,35 @@ class Container : Tool{
         contents[substance] = volume
         
         contentsNode.isHidden = false
-        contentsNode.geometry?.materials.first?.diffuse.contents = substance.color
+        if contents.count > 1{
+            var sumColorR : CGFloat = 0.0
+            var sumColorG : CGFloat = 0.0
+            var sumColorB : CGFloat = 0.0
+            var sumColorA : CGFloat = 0.0
+            let contentsVolume = Float(contentsVolumeInMilliliters)
+            var proportions : Float = 0.0
+            
+            for content in contents{
+                proportions = Float(content.value) / contentsVolume
+                sumColorR += (content.key.color.cgColor.components?[0] ?? 0.0) * CGFloat(proportions)
+                sumColorG += (content.key.color.cgColor.components?[1] ?? 0.0) * CGFloat(proportions)
+                sumColorB += (content.key.color.cgColor.components?[2] ?? 0.0) * CGFloat(proportions)
+                sumColorA += (content.key.color.cgColor.components?[3] ?? 1.0) * CGFloat(proportions)
+            }
+        }
+        else if contents.count == 1{
+            contentsNode.geometry?.materials.first?.diffuse.contents = substance.color
+        }
     }
     
     func draw(_ volumeInMilliliters: Int) -> Substance?{
-    
-        if volumeInMilliliters <= contentsVolumeInMilliliters{
+        
+        if contentsVolumeInMilliliters > 0 && volumeInMilliliters <= contentsVolumeInMilliliters{
             if volumeInMilliliters == contentsVolumeInMilliliters{
                 contentsNode.isHidden = true
                 contents.removeAll()
             }
-            return contents.first!.key
+            return contents.first?.key
         }
         return nil
     }

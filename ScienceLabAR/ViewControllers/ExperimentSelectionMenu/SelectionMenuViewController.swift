@@ -22,7 +22,7 @@ class SelectionMenuViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        experimentsProps = ExperimentLoader.fetchAllExperimentProperties()?.sorted(by: { (a, b) -> Bool in
+        experimentsProps = ExperimentPersistence.fetchAllExperimentProperties()?.sorted(by: { (a, b) -> Bool in
             let res = a.name.compare(b.name).rawValue
             return res < 1
         }) ?? []

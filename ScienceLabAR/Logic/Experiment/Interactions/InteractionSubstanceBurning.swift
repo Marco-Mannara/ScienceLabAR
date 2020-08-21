@@ -29,15 +29,16 @@ class InteractionSubstanceBurning : Interaction{
         }
     }
     
-    override func run(_ otherTool : Tool){
-        let bunsen = otherTool as! Bunsen
-        
+    override func setTools(_ tools: [Tool]) {
+        let bunsen = tools.first as! Bunsen
         self.bunsen = bunsen
-        
+    }
+    
+    override func run(){
         becco.state?.enter(StateActive.self)
-        bunsen.state?.enter(StateActive.self)
+        bunsen!.state?.enter(StateActive.self)
         
-        let start = becco.getPositionRelativeToAnchor(bunsen.getAnchor(.up) + SCNVector3(0,0.1,0), .right)
+        let start = becco.getPositionRelativeToAnchor(bunsen!.getAnchor(.up) + SCNVector3(0,0.1,0), .right)
         let target = start - SCNVector3(0,0.07,0)
         
         let flameColorToSubstance = SCNAction.customAction(duration: 0, action: { (node, delta) in
@@ -58,6 +59,6 @@ class InteractionSubstanceBurning : Interaction{
                                                   flameColorToNormal,
                                                   SCNAction.move(to: becco.restPoint!.position, duration: 1)])
         
-        super.run(otherTool)
+        super.run()
     }
 }

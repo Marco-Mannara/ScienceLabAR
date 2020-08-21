@@ -12,6 +12,19 @@
 					<key>quantity</key>
 					<integer>75</integer>
 					<key>name</key>
+					<string>Acido Solforico</string>
+				</dict>
+				<key>volumeCapacity</key>
+				<integer>500</integer>
+				<key>displayName</key>
+				<string>becker</string>
+			</dict>
+			<dict>
+				<key>substance</key>
+				<dict>
+					<key>quantity</key>
+					<integer>75</integer>
+					<key>name</key>
 					<string>Saccarosio</string>
 				</dict>
 				<key>volumeCapacity</key>
@@ -25,9 +38,7 @@
 			<string>bunsen_stand</string>
 		</array>
 		<key>heaters</key>
-		<array>
-			<string>bunsen</string>
-		</array>
+		<array/>
 	</dict>
 	<key>saggioAllaFiamma</key>
 	<dict>

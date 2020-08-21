@@ -17,7 +17,9 @@ class Interaction {
     
     init(){}
     
-    func run(_ otherTool: Tool){
+    func setTools(_ tools : [Tool]){}
+    
+    func run(){
         if let affectedNode = affectedNode, let actionSequence = actionSequence{
             affectedNode.runAction(actionSequence, forKey: "interaction", completionHandler: completitionHandler)
         }

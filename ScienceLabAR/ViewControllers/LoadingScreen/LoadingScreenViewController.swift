@@ -15,7 +15,7 @@ class LoadingScreenViewController: UIViewController {
     @IBOutlet var experimentIcon: UIImageView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
-    private var loadedExperiment : Experiment!
+    private var experimentExplanation : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,9 @@ class LoadingScreenViewController: UIViewController {
         let sceneLoadThread = DispatchQueue(label: "sceneLoad")
         sceneLoadThread.async {
             GameManager.getInstance().sceneManager?.loadExperimentScene(self.experimentToLoad)
+            self.experimentExplanation = ExperimentPersistence.loadExplanation(with: self.experimentToLoad)
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "scene", sender: self)
+                self.performSegue(withIdentifier: "explanation", sender: self)
             }
         }
     }
@@ -39,5 +40,9 @@ class LoadingScreenViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "explanation"{
+            let explanationView = segue.destination as! ExplanationViewController
+            explanationView.explanation = experimentExplanation
+        }
     }
 }

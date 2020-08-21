@@ -17,6 +17,7 @@ class GameManager {
     var updateManager : UpdateManager!
     var sceneManager : SceneManager!
     var inputManager : InputManager!
+    var viewController : UIViewController!
     
     private init(){
         updateManager = UpdateManager()

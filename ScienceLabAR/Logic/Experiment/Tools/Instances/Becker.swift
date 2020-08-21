@@ -16,7 +16,9 @@ class Becker : Container, Stackable {
     
     override init(_ node :SCNNode, _ displayName: String, _ volumeCapacity : Float){
         super.init(node, displayName, volumeCapacity)
+        self.interaction = [:]
         
+        interaction!["becker"] = InteractionBeckerSelf()
     }
     
     required init?(coder: NSCoder) {
@@ -25,7 +27,6 @@ class Becker : Container, Stackable {
     
     override func fill(with substance : Substance, volume: Int){
         super.fill(with: substance, volume: volume)
-        
         let contentMesh = contentsNode.geometry as! SCNCylinder
         let surface = pow(contentMesh.radius,2) * .pi
         let height = (Double(volume) / 1000000.0) / Double(surface)
@@ -41,11 +42,20 @@ class Becker : Container, Stackable {
         else if type(of:otherTool) == Becco.self{
             return true
         }
+        else if type(of:otherTool) == Becker.self{
+            return true
+        }
         return false
     }
     override func useWith(_ otherTool: Tool) {
         if type(of: otherTool) == BunsenStand.self{
             
+        }
+        else if let _ = otherTool as? Becker{
+            let i = interaction!["becker"]!
+            i.setTools([otherTool,self])
+            i.run()
+            GameManager.getInstance().sceneManager.currentExperiment?.goals?.onToolAction(self, otherTool)
         }
         else if let becco = otherTool as? Becco{
             becco.useWith(self)

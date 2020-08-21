@@ -10,7 +10,6 @@ import Foundation
 
 class Goal{
     var name : String
-    var explanation : String?
     var completed : Bool = false
     private var condition : (Tool, Tool) -> Bool
     
@@ -27,7 +26,6 @@ class Goal{
             return true
         }
         else{
-            print("goal \(name) not achieved")
             return false
         }
     }

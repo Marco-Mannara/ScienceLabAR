@@ -73,6 +73,7 @@ class OptionsViewController: UITableViewController {
     @objc
     func exitToMenu(){
         print("exit to menu")
+        performSegue(withIdentifier: "mainMenu", sender: self)
     }
     
     /*

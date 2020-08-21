@@ -12,7 +12,6 @@ import SceneKit
 
 class ToolStateMachine : GKStateMachine{
     var tool : Tool
-    var debug : Bool = false
     var experiment : Experiment
     
     init(_ experiment : Experiment, _ tool: Tool) {

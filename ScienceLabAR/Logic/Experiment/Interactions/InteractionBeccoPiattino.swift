@@ -19,7 +19,7 @@ class InteractionBeccoPiattino : Interaction{
         super.init()
         
         self.affectedNode = becco.node
-
+        
         
         self.completitionHandler = {() -> Void in
             self.piattino!.state?.enter(StatePositioned.self)
@@ -28,17 +28,20 @@ class InteractionBeccoPiattino : Interaction{
         }
     }
     
-    override func run(_ otherTool : Tool){
-        let piattino = otherTool as! Piattino
-        
+    override func setTools(_ tools: [Tool]) {
+        let piattino = tools.first as! Piattino
         self.piattino = piattino
+    }
+    
+    override func run(){
+        
         
         becco.state?.enter(StateActive.self)
-        piattino.state?.enter(StateActive.self)
+        piattino!.state?.enter(StateActive.self)
         
-        let start = becco.getPositionRelativeToAnchor(piattino.getAnchor(.up) + SCNVector3(0,0.1,0), .right)
+        let start = becco.getPositionRelativeToAnchor(piattino!.getAnchor(.up) + SCNVector3(0,0.1,0), .right)
         let target = start - SCNVector3(0,0.099,0)
-    
+        
         let substancePickup = SCNAction.customAction(duration: 0) { (node, delta) in
             if let substance = self.piattino?.draw(3){
                 self.becco.fill(with: substance, volume: 3)
@@ -51,6 +54,6 @@ class InteractionBeccoPiattino : Interaction{
                                                   SCNAction.wait(duration: 0.3),
                                                   SCNAction.move(to: becco.restPoint!.position, duration: 0.5)])
         
-        super.run(otherTool)
+        super.run()
     }
 }

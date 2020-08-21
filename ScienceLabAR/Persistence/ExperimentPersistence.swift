@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ExperimentLoader{
+class ExperimentPersistence{
     
     static func fetchAllExperimentProperties() -> [ExperimentProperties]?{
         guard let url = Bundle.main.url(forResource: "experiment_properties", withExtension: "plist") else {return nil}
@@ -22,14 +22,16 @@ class ExperimentLoader{
         }
         return props
     }
-    /*
-    static func loadExperiment(_ name : String) -> Experiment?{
-        let experiment = Experiment()
-        experiment.load(name)
-        return experiment
-    }*/
     
-    static func load(_ experimentName : String) -> Experiment?{
+    static func loadExplanation(with name: String) -> String?{
+        guard let url = Bundle.main.url(forResource: "experiment_explanation", withExtension: "plist") else {return nil}
+        let data = try! Data(contentsOf: url)
+        let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:String]
+        
+        return dict[name]
+    }
+    
+    static func loadExperiment(_ experimentName : String) -> Experiment?{
         let experiment = Experiment()
         SubstanceDictionary.open()
         
@@ -54,7 +56,7 @@ class ExperimentLoader{
         case "saggioallafiamma":
             let goal0 = Goal("Saggio Cloruro di Litio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first!.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodilitio"{
+                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodilitio"{
                         return true
                     }
                 }
@@ -62,7 +64,7 @@ class ExperimentLoader{
             })
             let goal1 = Goal("Saggio Nitrato Rameico",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first!.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratorameico"{
+                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratorameico"{
                         return true
                     }
                 }
@@ -70,7 +72,7 @@ class ExperimentLoader{
             })
             let goal2 = Goal("Saggio Nitrato di Potassio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first!.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratodipotassio"{
+                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratodipotassio"{
                         return true
                     }
                 }
@@ -78,7 +80,7 @@ class ExperimentLoader{
             })
             let goal3 = Goal("Saggio Cloruro Rameoso",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first!.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurorameoso"{
+                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurorameoso"{
                         return true
                     }
                 }
@@ -86,7 +88,7 @@ class ExperimentLoader{
             })
             let goal4 = Goal("Saggio Cloruro di Sodio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first!.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodisodio"{
+                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodisodio"{
                         return true
                     }
                 }
@@ -97,7 +99,7 @@ class ExperimentLoader{
             goalSystem.goals.append(goal2)
             goalSystem.goals.append(goal3)
             goalSystem.goals.append(goal4)
-        case "carbonizzazionedelsaccrosio":
+        case "carbonizzazionedelsaccarosio":
             break
         default:
             fatalError("Could not load goal system for \(name)")
