@@ -28,7 +28,11 @@ class ExplanationViewController: UIViewController {
 
     
     @IBAction func onButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "game", sender: nil)
+        if Constants.LoadTestEnvironment{
+            performSegue(withIdentifier: "game", sender: nil)
+        }else{
+            performSegue(withIdentifier: "arGame", sender: nil)
+        }
     }
     
     /*

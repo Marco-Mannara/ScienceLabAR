@@ -552,10 +552,10 @@
 				90ACF60C24F3C6BF000E7049 /* experiment_substances.plist */,
 				90C5FF2424991B890039E2CB /* experiments.plist */,
 				90A7C7AE24A3915A0028FAB6 /* substance.plist */,
-				9064043A24AF8B3100C94096 /* ExperimentPersistence.swift */,
 				9085E3AF24B3949600A5D27E /* experiment_properties.plist */,
-				90077D5924B761B900E5AF7E /* tools.plist */,
 				9090FF7E24EADCA200A20DB6 /* experiment_explanation.plist */,
+				90077D5924B761B900E5AF7E /* tools.plist */,
+				9064043A24AF8B3100C94096 /* ExperimentPersistence.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";

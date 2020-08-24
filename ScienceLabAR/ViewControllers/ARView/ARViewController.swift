@@ -16,7 +16,6 @@ class ARViewController: UIViewController {
 
     @IBOutlet var progressIndicator: UILabel!
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet var promptView: UIView!
     @IBOutlet var scanView: UIView!
     @IBOutlet var scanProgressBar: UIProgressView!
     @IBOutlet var controlsView: UIView!
@@ -54,18 +53,15 @@ class ARViewController: UIViewController {
         let value = UIInterfaceOrientation.landscapeRight.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
 
-        promptView.isHidden = true
         scanView.isHidden = false
-        
         
         setupSessionCoaching()
 
         sceneView.session.delegate = self
-        sceneView.debugOptions = [.showWorldOrigin]
         sceneView.allowsCameraControl = false
-        sceneView.showsStatistics = true
         sceneView.delegate = self
         sceneView.isMultipleTouchEnabled = true
+        GameManager.getInstance().viewController = self
         
         sceneHandlerQueue.async {
             self.sceneView.scene = GameManager.getInstance().sceneManager.currentScene!
@@ -78,12 +74,13 @@ class ARViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal]
+        sceneView.session.run(configuration)
         
         self.navigationController?.navigationBar.isHidden = true
-        sceneView.session.run(configuration)
+        
+        GameManager.getInstance().sceneManager.currentExperiment?.goals?.updateExperimentProgression()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -124,51 +121,29 @@ class ARViewController: UIViewController {
     
     //MARK: - UIButtons Callbacks
     
-    @IBAction func promptYesTapped(_ sender: Any)
-    {
-        //print("Yes tapped")
-        promptView.isHidden = true
-    }
-    
-    @IBAction func promptNoTapped(_ sender: Any)
-    {
-        //print("No tapped")
-        let alert = UIAlertController(title: "Options", message: "Choose a method for retracking.", preferredStyle: .alert)
-    
-        alert.addAction(UIAlertAction(title: "Scan Again", style: .default, handler: {(action) -> Void in
-            
-            self.promptView.isHidden = true
-            self.scanProgressBar.isHidden = false
-            
-            DispatchQueue.main.async {
-                //self.sceneView.scene = SCNScene()
-                self.sceneView.session.pause()
-                //GameManager.getInstance().sceneManager?.hideScene()
-                
-                self.maxAreaFound = 0.0
-                self.isAreaLargeEnough = false
-                
-                let config = ARWorldTrackingConfiguration()
-                config.planeDetection = .horizontal
-                self.sceneView.session.run(config,options: [.removeExistingAnchors,.resetTracking])
-            }
-            }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-
-        self.present(alert, animated: true)
-    }
-    
     @IBAction func inspectButtonTapped(_ sender: Any) {
+        
     }
     
     @IBAction func resetButtonTapped(_ sender: Any) {
+        
     }
     
     @IBAction func infoButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "explanation", sender: nil)
     }
     
-    @IBAction func settingsButtonTapped(_ sender: Any) {
+    func retrack(){
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        sceneView.session.run(configuration, options: [.resetTracking,.removeExistingAnchors])
+        
+        GameManager.getInstance().sceneManager.isSceneHidden = true
+        isAreaLargeEnough = false
+        worldOriginSet = false
+        
+        coachingOverlay.goal = .horizontalPlane
+        coachingOverlay.setActive(true, animated: true)
     }
     
     func setWorldOrigin(_ transform: simd_float4x4){
@@ -182,8 +157,9 @@ class ARViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.setupGestureRecognizers()
-            self.promptView.isHidden = false
+            //self.promptView.isHidden = false
             self.scanView.isHidden = true
+            self.coachingOverlay.setActive(false, animated: true)
         }
     }
     

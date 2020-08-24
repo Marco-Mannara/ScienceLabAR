@@ -12,6 +12,7 @@ import Accelerate
 
 class AcidSugarReaction : Reaction{
     
+    private var smokeParticle : SCNNode
     
     private static var referenceToSelf : AcidSugarReaction? = nil
     static var instance : AcidSugarReaction {
@@ -24,11 +25,12 @@ class AcidSugarReaction : Reaction{
     }
     
     private override init(){
+        self.smokeParticle = NodeLoader.loadModel("particles/smoke_particle", "smoke_particle")!
+        
         super.init()
         self.substanceA = "acidosolforico"
         self.substanceB = "saccarosio"
         self.resultSubstance = SubstanceDictionary.getSubstance("Carbonio")
-        var lastTime0 : CGFloat = 0.0
         let colorTransition = SCNAction.customAction(duration: 8) { (node, time) in
             let rgbValues = vDSP.linearInterpolate([1.0,1.0,1.0], [0.0,0.0,0.0], using: Double(time) / 3.0)
             node.geometry?.materials.first?.diffuse.contents = UIColor(cgColor: CGColor(srgbRed: CGFloat(rgbValues[0]), green: CGFloat(rgbValues[1]), blue: CGFloat(rgbValues[2]), alpha: 1.0))
@@ -37,7 +39,7 @@ class AcidSugarReaction : Reaction{
         let mixtureSwelling = SCNAction.customAction(duration: 8) { (node, time) in
             let delta = time - lastTime1
             node.scale.y = Float(1 + time / 4.0)
-            node.position.x += Float(delta) / (60.0 * 4.0)
+            node.position.x += Float(delta) / (60.0 * 8.0)
             lastTime1 = time
         }
         
@@ -59,8 +61,11 @@ class AcidSugarReaction : Reaction{
         
         if acidFlag && sugarFlag{
             print("reaction start")
+            let sceneRoot = GameManager.getInstance().sceneManager.currentExperiment?.sceneRoot
+            sceneRoot?.addChildNode(smokeParticle)
+            smokeParticle.position = container.getAnchor(.up)
             container.contentsNode.runAction(self.animation) {
-                print("reaction end")
+                self.smokeParticle.removeFromParentNode()
             }
         }
         else{

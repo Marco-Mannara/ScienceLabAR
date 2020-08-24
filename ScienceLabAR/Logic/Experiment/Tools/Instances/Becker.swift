@@ -67,7 +67,6 @@ class Becker : Container, Stackable {
             let i = interaction!["becker"]!
             i.setTools([otherTool,self])
             i.run()
-            GameManager.getInstance().sceneManager.currentExperiment?.goals?.onToolAction(self, otherTool)
         }
         else if let becco = otherTool as? Becco{
             becco.useWith(self)

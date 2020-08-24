@@ -44,5 +44,6 @@ class LoadingScreenViewController: UIViewController {
             let explanationView = segue.destination as! ExplanationViewController
             explanationView.explanation = experimentExplanation
         }
+        //dismiss(animated: false, completion: nil)
     }
 }

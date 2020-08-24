@@ -13,46 +13,52 @@ extension ARViewController: ARSessionDelegate{
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let planeAnchor = anchor as? ARPlaneAnchor{
-            let plane = Plane(anchor: planeAnchor, in: sceneView)
-            node.addChildNode(plane)
+            if Constants.ShowPlaneAnchors{
+                let plane = Plane(anchor: planeAnchor, in: sceneView)
+                node.addChildNode(plane)
+            }
+            else {
+                node.addChildNode(SCNNode())
+            }
         }
         else if anchor.isKind(of: ARAnchor.self){
             print("Added Generic Anchor.")
         }
     }
     
+    
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         
         // Update only anchors and nodes set up by `renderer(_:didAdd:for:)`.
-        
         if !isAreaLargeEnough, let planeAnchor = anchor as? ARPlaneAnchor
         {
-            if let plane = node.childNodes.first as? Plane
-            {
-                updateDebugPlane(planeAnchor, plane)
-     
-                let planeAnchorArea = planeAnchor.extent.x * planeAnchor.extent.z
-                if planeAnchorArea > maxAreaFound {
-                    maxAreaFound = planeAnchorArea
+            if Constants.ShowPlaneAnchors{
+                if let plane = node.childNodes.first as? Plane{
+                    updateDebugPlane(planeAnchor, plane)
                 }
+            }
+            
+            let planeAnchorArea = planeAnchor.extent.x * planeAnchor.extent.z
+            if planeAnchorArea > maxAreaFound {
+                maxAreaFound = planeAnchorArea
+            }
+            
+            DispatchQueue.main.async {
+                self.scanProgressBar.progress = self.maxAreaFound / self.minimumAreaRequired
+            }
+            
+            if  planeAnchorArea >= minimumAreaRequired{
                 
-                DispatchQueue.main.async {
-                    self.scanProgressBar.progress = self.maxAreaFound / self.minimumAreaRequired
-                }
+                isAreaLargeEnough = true
                 
-                if  planeAnchorArea >= minimumAreaRequired{
-                            
-                    isAreaLargeEnough = true
-                    
-                    let config = ARWorldTrackingConfiguration()
-                    sceneView.session.run(config)
-                    
-                    //print(planeAnchor.transform)
-                    
-                    setWorldOrigin(planeAnchor.transform)
-                    
-                    print("Area is large enough.")
-                }
+                let config = ARWorldTrackingConfiguration()
+                sceneView.session.run(config)
+                
+                //print(planeAnchor.transform)
+                
+                setWorldOrigin(planeAnchor.transform)
+                
+                print("Area is large enough.")
             }
         }
     }

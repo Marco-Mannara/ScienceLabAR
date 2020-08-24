@@ -18,9 +18,13 @@ class InteractionBeckerSelf : Interaction{
         self.completitionHandler = {() -> Void in
             self.beckerActive!.state?.enter(StateIdle.self)
             self.beckerReceiver!.state?.enter(StatePositioned.self)
+            
             print("interaction end")
-            AcidSugarReaction.instance.start(in: self.beckerReceiver!)
-            self.beckerReceiver = nil
+            DispatchQueue.main.async {
+                GameManager.getInstance().sceneManager.currentExperiment?.goals?.onToolAction(self.beckerActive!, self.beckerReceiver!)
+                AcidSugarReaction.instance.start(in: self.beckerReceiver!)
+                self.beckerReceiver = nil
+            }
         }
     }
     

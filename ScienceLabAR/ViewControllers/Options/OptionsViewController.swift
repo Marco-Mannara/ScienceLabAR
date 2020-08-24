@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ARKit
 
 class OptionsViewController: UITableViewController {
 
@@ -67,12 +68,16 @@ class OptionsViewController: UITableViewController {
     
     @objc
     func retrackEnvironment(){
-        print("retrack environment")
+        //print("retrack environment")
+        if let arViewController = GameManager.getInstance().viewController as? ARViewController{
+            arViewController.retrack()
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc
     func exitToMenu(){
-        print("exit to menu")
+        //print("exit to menu")
         performSegue(withIdentifier: "mainMenu", sender: self)
     }
     

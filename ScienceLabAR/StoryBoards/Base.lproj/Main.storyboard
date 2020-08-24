@@ -91,7 +91,6 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="gear" catalog="system"/>
                                                 <connections>
-                                                    <action selector="settingsButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="FXg-Xi-L4N"/>
                                                     <segue destination="bIh-hN-0hB" kind="presentation" id="8Eb-Ns-h7l"/>
                                                 </connections>
                                             </button>
@@ -153,7 +152,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="controlsView" destination="yIW-ZI-L3P" id="IE5-9L-kOe"/>
-                        <outlet property="progressionIndicator" destination="9pp-Bz-r0O" id="Uoa-93-8lR"/>
+                        <outlet property="progressIndicator" destination="9pp-Bz-r0O" id="T1N-9S-GOq"/>
                         <outlet property="scanProgressBar" destination="hWp-zl-mIL" id="G81-mn-vMm"/>
                         <outlet property="scanView" destination="gSU-Vc-kuf" id="gnQ-MJ-5eE"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
@@ -212,7 +211,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FV-f8-py6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-346" y="4067"/>
+            <point key="canvasLocation" x="-346" y="4114"/>
         </scene>
         <!--Loading Screen View Controller-->
         <scene sceneID="6kh-O3-2GN">
@@ -320,8 +319,6 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="gear" catalog="system"/>
                                                 <connections>
-                                                    <action selector="settingsButtonPressed:" destination="ZO7-Sf-4kS" eventType="touchUpInside" id="0Wh-rN-Urh"/>
-                                                    <action selector="settingsButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Pnn-gW-kXx"/>
                                                     <segue destination="bIh-hN-0hB" kind="presentation" id="w4a-0g-Ebf"/>
                                                 </connections>
                                             </button>
@@ -626,9 +623,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Pbk-jv-S1e"/>
+        <segue reference="4rI-qm-WJN"/>
         <segue reference="Zjt-Ep-dL1"/>
-        <segue reference="8Eb-Ns-h7l"/>
+        <segue reference="w4a-0g-Ebf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="eye.fill" catalog="system" width="128" height="78"/>
