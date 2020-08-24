@@ -36,9 +36,5 @@ class Spatula : Container{
             
         }
     }
-    
-    override func fill(with substance: Substance, volume: Int) {
-    }
-
 }
 

@@ -24,11 +24,11 @@ class Piattino : Container, Stackable{
         }
     }
     
-    override func fill(with substance: Substance, volume: Int) {
+    override func fill(with substance: Substance, volume: Float) {
         super.fill(with: substance, volume: volume)
     }
     
-    override func draw(_ volumeInMilliliters : Int) -> Substance? {
+    override func draw(_ volumeInMilliliters : Float) -> Substance? {
         return super.draw(volumeInMilliliters)
     }
     

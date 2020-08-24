@@ -11,11 +11,11 @@ import SceneKit
 
 
 class Container : Tool{
-    var contents : [Substance : Int]
+    var contents : [Substance : Float]
     var contentsNode : SCNNode
     
-    var contentsVolumeInMilliliters : Int{
-        var vol = 0
+    var contentsVolumeInMilliliters : Float{
+        var vol : Float = 0.0
         for c in contents{
             vol += c.value
         }
@@ -49,10 +49,16 @@ class Container : Tool{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func fill(with substance: Substance, volume : Int){
-        contents[substance] = volume
+    func fill(with substance: Substance, volume : Float){
+        
+        if contents.keys.contains(substance){
+            contents[substance]! += volume
+        }else{
+            contents[substance] = volume
+        }
         
         contentsNode.isHidden = false
+        
         if contents.count > 1{
             var sumColorR : CGFloat = 0.0
             var sumColorG : CGFloat = 0.0
@@ -74,10 +80,10 @@ class Container : Tool{
         }
     }
     
-    func draw(_ volumeInMilliliters: Int) -> Substance?{
+    func draw(_ volumeInMilliliters: Float) -> Substance?{
         
         if contentsVolumeInMilliliters > 0 && volumeInMilliliters <= contentsVolumeInMilliliters{
-            if volumeInMilliliters == contentsVolumeInMilliliters{
+            if volumeInMilliliters >= contentsVolumeInMilliliters - 0.001 && volumeInMilliliters <= contentsVolumeInMilliliters + 0.001{
                 contentsNode.isHidden = true
                 contents.removeAll()
             }
@@ -96,7 +102,7 @@ class Container : Tool{
         if containerName == "becker"{
             if let volumeCap = params?["volumeCapacity"] as? Double{
                 let becker = Becker(node, containerName, Float(volumeCap))
-                if let substanceProp = params?["substance"] as? [String:Any],let name = substanceProp["name"] as? String, let quantity = substanceProp["quantity"] as? Int
+                if let substanceProp = params?["substance"] as? [String:Any],let name = substanceProp["name"] as? String, let quantity = substanceProp["quantity"] as? Float
                 {
                     let substance = SubstanceDictionary.getSubstance(name)!
                     becker.fill(with: substance, volume: quantity)
@@ -129,7 +135,7 @@ class Container : Tool{
         else if containerName == "piattino" {
             if let volumeCap = params?["volumeCapacity"] as? Double{
                 let piattino = Piattino(node, containerName, Float(volumeCap))
-                if let substanceProp = params?["substance"] as? [String:Any],let name = substanceProp["name"] as? String, let quantity = substanceProp["quantity"] as? Int
+                if let substanceProp = params?["substance"] as? [String:Any],let name = substanceProp["name"] as? String, let quantity = substanceProp["quantity"] as? Float
                 {
                     if let substance = SubstanceDictionary.getSubstance(name){
                         piattino.fill(with: substance, volume: quantity)

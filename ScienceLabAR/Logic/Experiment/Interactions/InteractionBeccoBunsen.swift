@@ -10,7 +10,7 @@
 import Foundation
 import SceneKit
 
-class InteractionSubstanceBurning : Interaction{
+class InteractionBeccoBunsen : Interaction{
     
     var becco : Becco
     var bunsen : Bunsen?

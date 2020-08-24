@@ -34,9 +34,7 @@
 			</dict>
 		</array>
 		<key>other</key>
-		<array>
-			<string>bunsen_stand</string>
-		</array>
+		<array/>
 		<key>heaters</key>
 		<array/>
 	</dict>

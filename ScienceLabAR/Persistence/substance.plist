@@ -2,6 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Carbonio</key>
+	<dict>
+		<key>name</key>
+		<string>carbonio</string>
+		<key>flameColor</key>
+		<array>
+			<integer>1</integer>
+			<real>0.8</real>
+			<integer>0</integer>
+		</array>
+		<key>color</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>1</integer>
+		</array>
+		<key>PH</key>
+		<integer>7</integer>
+		<key>density</key>
+		<real>1.2</real>
+	</dict>
 	<key>Saccarosio</key>
 	<dict>
 		<key>name</key>

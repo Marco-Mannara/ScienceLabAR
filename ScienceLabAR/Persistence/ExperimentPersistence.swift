@@ -33,20 +33,35 @@ class ExperimentPersistence{
     
     static func loadExperiment(_ experimentName : String) -> Experiment?{
         let experiment = Experiment()
-        SubstanceDictionary.open()
         
         guard let url = Bundle.main.url(forResource: "experiments", withExtension: "plist") else {return nil}
         let data = try! Data(contentsOf: url)
         let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:Any]
         
+        loadSubstances(experimentName)
+        
         if let experimentData = dict[experimentName] as? [String:Any]{
             experiment.tools.append(contentsOf: loadTools(experimentData))
         }
-        SubstanceDictionary.close()
-        
         experiment.goals = setupGoalSystem(experimentName)
         
         return experiment
+    }
+    
+    private static func loadSubstances(_ experimentName : String){
+        SubstanceDictionary.open()
+        guard let url = Bundle.main.url(forResource: "experiment_substances", withExtension: "plist") else {
+            fatalError("Couldn't load substances for \(experimentName)")
+        }
+        let data = try! Data(contentsOf: url)
+        let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:Any]
+        
+        if let experimentSubstances = dict[experimentName] as? [String]{
+            for substance in experimentSubstances{
+                SubstanceDictionary.getSubstance(substance)
+            }
+        }
+        SubstanceDictionary.close()
     }
     
     private static func setupGoalSystem(_ experimentName : String) -> GoalSystem{
@@ -100,7 +115,28 @@ class ExperimentPersistence{
             goalSystem.goals.append(goal3)
             goalSystem.goals.append(goal4)
         case "carbonizzazionedelsaccarosio":
-            break
+            let goal0 = Goal("Carbonizzazione Saccarosio Acido",{ (tool0 : Tool,tool1 : Tool) -> Bool in
+                if let _ = tool0 as? Becker,let beckerReceiver = tool1 as? Becker{
+                    var acidoFlag = false
+                    var zuccheroFlag = false
+                    for c in beckerReceiver.contents{
+                        if c.key.name == "acidosolforico"{
+                            acidoFlag = true
+                        }
+                        else if c.key.name == "saccarosio"{
+                            zuccheroFlag = true
+                        }
+                    }
+                    if acidoFlag && zuccheroFlag {
+                        return true
+                    }
+                    else{
+                        return false
+                    }
+                }
+                return false
+            })
+            goalSystem.goals.append(goal0)
         default:
             fatalError("Could not load goal system for \(name)")
         }

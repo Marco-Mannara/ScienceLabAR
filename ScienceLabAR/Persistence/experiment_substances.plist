@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>saggioAllaFiamma</key>
+	<array>
+		<string>Cloruro Rameoso</string>
+		<string>Acido Solforico</string>
+		<string>Cloruro Di Litio</string>
+		<string>Nitrato Di Potassio</string>
+		<string>Nitrato Rameico</string>
+		<string>Cloruro Di Sodio</string>
+	</array>
+	<key>carbonizzazioneDelSaccarosio</key>
+	<array>
+		<string>Carbonio</string>
+		<string>Saccarosio</string>
+		<string>Acido Solforico</string>
+	</array>
+</dict>
+</plist>

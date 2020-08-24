@@ -12,7 +12,7 @@ class SubstanceDictionary{
     
     static private var substances : [String : Substance] = [:]
     static private var fileHandle : [String : Any]?
-    //static private var loaded
+    
     
     static func open(){
         guard let url = Bundle.main.url(forResource: "substance", withExtension: "plist") else {return}
@@ -22,12 +22,16 @@ class SubstanceDictionary{
     }
     
     static func getSubstance(_ name : String) -> Substance?{
-        if let properties = fileHandle?[name] as? [String:Any]{
+        if let substance = substances[name]{
+            return substance
+        }
+        else if let properties = fileHandle?[name] as? [String:Any]{
             let substance = Substance(properties)
+            substances[name] = substance
             return substance
         }
         else{
-            print("substance not found")
+            print("Couldn't find substance \(name)")
         }
         return nil
     }

@@ -12,8 +12,6 @@ import SpriteKit
 
 class Becker : Container, Stackable {
     
-    private var substanceNode : SCNNode?
-    
     override init(_ node :SCNNode, _ displayName: String, _ volumeCapacity : Float){
         super.init(node, displayName, volumeCapacity)
         self.interaction = [:]
@@ -25,12 +23,26 @@ class Becker : Container, Stackable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func fill(with substance : Substance, volume: Int){
+    override func fill(with substance : Substance, volume: Float){
         super.fill(with: substance, volume: volume)
+        updateContentsNodeDimensions(contentsVolumeInMilliliters)
+    }
+    
+    override func draw(_ volumeInMilliliters: Float) -> Substance? {
+        let substance = super.draw(volumeInMilliliters)
+        if substance != nil{
+            updateContentsNodeDimensions(contentsVolumeInMilliliters)
+        }
+        else{
+            updateContentsNodeDimensions(0)
+        }
+        return substance
+    }
+    
+    private func updateContentsNodeDimensions(_ newVolume : Float){
         let contentMesh = contentsNode.geometry as! SCNCylinder
         let surface = pow(contentMesh.radius,2) * .pi
-        let height = (Double(volume) / 1000000.0) / Double(surface)
-        
+        let height = (Double(newVolume) / 1000000.0) / Double(surface)
         contentMesh.height = CGFloat(height)
         contentsNode.position = SCNVector3(height / 2.0 + 0.003,0,0)
     }

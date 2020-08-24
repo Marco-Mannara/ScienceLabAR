@@ -58,6 +58,9 @@
 		90A188EC24954352001A722C /* NodeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188EB24954352001A722C /* NodeLoader.swift */; };
 		90A7C7AF24A3915A0028FAB6 /* substance.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90A7C7AE24A3915A0028FAB6 /* substance.plist */; };
 		90A9131E24E91BA300FAC17E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A9131D24E91BA300FAC17E /* Goal.swift */; };
+		90ACF60924F2D3CD000E7049 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ACF60824F2D3CD000E7049 /* Reaction.swift */; };
+		90ACF60B24F3C606000E7049 /* AcidSugarReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ACF60A24F3C606000E7049 /* AcidSugarReaction.swift */; };
+		90ACF60D24F3C6BF000E7049 /* experiment_substances.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90ACF60C24F3C6BF000E7049 /* experiment_substances.plist */; };
 		90AF09AC24A9F87F00DAC4D7 /* ToolMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AF09AB24A9F87F00DAC4D7 /* ToolMenuManager.swift */; };
 		90B1B14924EA94F900DF011C /* ExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1B14824EA94F900DF011C /* ExplanationViewController.swift */; };
 		90B1FAD824968673006486C2 /* ToolMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1FAD724968673006486C2 /* ToolMenu.swift */; };
@@ -65,7 +68,7 @@
 		90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B200552459AF5600C0DD86 /* SceneManager.swift */; };
 		90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2CC5D2460648C0088727B /* MainMenuViewController.swift */; };
 		90B4FAE324AE33B0009F1030 /* Interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B4FAE224AE33B0009F1030 /* Interaction.swift */; };
-		90B4FAE524AE33CF009F1030 /* InteractionSubstanceBurning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B4FAE424AE33CF009F1030 /* InteractionSubstanceBurning.swift */; };
+		90B4FAE524AE33CF009F1030 /* InteractionBeccoBunsen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B4FAE424AE33CF009F1030 /* InteractionBeccoBunsen.swift */; };
 		90B4FAE724AE440A009F1030 /* ActiveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B4FAE624AE440A009F1030 /* ActiveState.swift */; };
 		90B4FAEA24AE6820009F1030 /* InteractionBeccoPiattino.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B4FAE924AE6820009F1030 /* InteractionBeccoPiattino.swift */; };
 		90B5C0A324B0C3370077D042 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C0A224B0C3370077D042 /* LoadingScreenViewController.swift */; };
@@ -76,7 +79,6 @@
 		90BBAB932443C57D001BEC81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90BBAB912443C57D001BEC81 /* LaunchScreen.storyboard */; };
 		90BBAB9E2443C57D001BEC81 /* asuydasdbasdyasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBAB9D2443C57D001BEC81 /* asuydasdbasdyasTests.swift */; };
 		90BBABA92443C57D001BEC81 /* asuydasdbasdyasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBABA82443C57D001BEC81 /* asuydasdbasdyasUITests.swift */; };
-		90BBABB72443CB23001BEC81 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBABB62443CB23001BEC81 /* Player.swift */; };
 		90BBABB92443D0A4001BEC81 /* MeshRendererComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BBABB82443D0A4001BEC81 /* MeshRendererComponent.swift */; };
 		90C5FF23249903920039E2CB /* SelectionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5FF22249903920039E2CB /* SelectionSystem.swift */; };
 		90C5FF2524991B890039E2CB /* experiments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90C5FF2424991B890039E2CB /* experiments.plist */; };
@@ -96,13 +98,11 @@
 		90E4B6122492C46600C36DCA /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B6112492C46600C36DCA /* Container.swift */; };
 		90E4B6142492C54300C36DCA /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B6132492C54300C36DCA /* Substance.swift */; };
 		90E4B6162492CA4200C36DCA /* EntityHitDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B6152492CA4200C36DCA /* EntityHitDelegate.swift */; };
-		90E52653245739D5005B35A1 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E52652245739D5005B35A1 /* GameLevel.swift */; };
 		90EF7815249A2AA5009870BB /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF7814249A2AA5009870BB /* InputManager.swift */; };
 		90EF7817249A78AE009870BB /* ToolStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF7816249A78AE009870BB /* ToolStateMachine.swift */; };
 		90F7A56424ACD2D7003116F8 /* Stackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7A56324ACD2D7003116F8 /* Stackable.swift */; };
 		90F7CE012450723700851518 /* SimdFloat2Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE002450723700851518 /* SimdFloat2Extension.swift */; };
 		90F7CE042450802900851518 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE032450802900851518 /* Controller.swift */; };
-		90F7CE072450C0AC00851518 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7CE062450C0AC00851518 /* Enemy.swift */; };
 		90FCF12D249E52CE00DE3D40 /* ToolStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FCF12C249E52CE00DE3D40 /* ToolStack.swift */; };
 /* End PBXBuildFile section */
 
@@ -175,6 +175,9 @@
 		90A188EB24954352001A722C /* NodeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeLoader.swift; sourceTree = "<group>"; };
 		90A7C7AE24A3915A0028FAB6 /* substance.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = substance.plist; sourceTree = "<group>"; };
 		90A9131D24E91BA300FAC17E /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		90ACF60824F2D3CD000E7049 /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
+		90ACF60A24F3C606000E7049 /* AcidSugarReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcidSugarReaction.swift; sourceTree = "<group>"; };
+		90ACF60C24F3C6BF000E7049 /* experiment_substances.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = experiment_substances.plist; sourceTree = "<group>"; };
 		90AF09AB24A9F87F00DAC4D7 /* ToolMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolMenuManager.swift; sourceTree = "<group>"; };
 		90B1B14824EA94F900DF011C /* ExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationViewController.swift; sourceTree = "<group>"; };
 		90B1FAD724968673006486C2 /* ToolMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolMenu.swift; sourceTree = "<group>"; };
@@ -182,7 +185,7 @@
 		90B200552459AF5600C0DD86 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		90B2CC5D2460648C0088727B /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		90B4FAE224AE33B0009F1030 /* Interaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interaction.swift; sourceTree = "<group>"; };
-		90B4FAE424AE33CF009F1030 /* InteractionSubstanceBurning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionSubstanceBurning.swift; sourceTree = "<group>"; };
+		90B4FAE424AE33CF009F1030 /* InteractionBeccoBunsen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionBeccoBunsen.swift; sourceTree = "<group>"; };
 		90B4FAE624AE440A009F1030 /* ActiveState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveState.swift; sourceTree = "<group>"; };
 		90B4FAE924AE6820009F1030 /* InteractionBeccoPiattino.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionBeccoPiattino.swift; sourceTree = "<group>"; };
 		90B5C0A224B0C3370077D042 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
@@ -200,7 +203,6 @@
 		90BBABA42443C57D001BEC81 /* ScienceLabARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScienceLabARUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90BBABA82443C57D001BEC81 /* asuydasdbasdyasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asuydasdbasdyasUITests.swift; sourceTree = "<group>"; };
 		90BBABAA2443C57D001BEC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90BBABB62443CB23001BEC81 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		90BBABB82443D0A4001BEC81 /* MeshRendererComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshRendererComponent.swift; sourceTree = "<group>"; };
 		90C5FF22249903920039E2CB /* SelectionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSystem.swift; sourceTree = "<group>"; };
 		90C5FF2424991B890039E2CB /* experiments.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = experiments.plist; sourceTree = "<group>"; };
@@ -222,13 +224,11 @@
 		90E4B6112492C46600C36DCA /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		90E4B6132492C54300C36DCA /* Substance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Substance.swift; sourceTree = "<group>"; };
 		90E4B6152492CA4200C36DCA /* EntityHitDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHitDelegate.swift; sourceTree = "<group>"; };
-		90E52652245739D5005B35A1 /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		90EF7814249A2AA5009870BB /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		90EF7816249A78AE009870BB /* ToolStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolStateMachine.swift; sourceTree = "<group>"; };
 		90F7A56324ACD2D7003116F8 /* Stackable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stackable.swift; sourceTree = "<group>"; };
 		90F7CE002450723700851518 /* SimdFloat2Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimdFloat2Extension.swift; sourceTree = "<group>"; };
 		90F7CE032450802900851518 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		90F7CE062450C0AC00851518 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		90FCF12C249E52CE00DE3D40 /* ToolStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,6 +260,7 @@
 		9010D59424966DA40010F5C9 /* Experiment */ = {
 			isa = PBXGroup;
 			children = (
+				90ACF60724F2D398000E7049 /* Reactions */,
 				9019E89224E7E0410002BDFB /* Hints */,
 				90B4FAE124AE33A5009F1030 /* Interactions */,
 				9088DBB724ACE3CE007AE6BD /* Substance */,
@@ -388,6 +389,15 @@
 			path = GlowEffect;
 			sourceTree = "<group>";
 		};
+		90ACF60724F2D398000E7049 /* Reactions */ = {
+			isa = PBXGroup;
+			children = (
+				90ACF60824F2D3CD000E7049 /* Reaction.swift */,
+				90ACF60A24F3C606000E7049 /* AcidSugarReaction.swift */,
+			);
+			path = Reactions;
+			sourceTree = "<group>";
+		};
 		90AF09A824A9EC1F00DAC4D7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,7 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				90B4FAE224AE33B0009F1030 /* Interaction.swift */,
-				90B4FAE424AE33CF009F1030 /* InteractionSubstanceBurning.swift */,
+				90B4FAE424AE33CF009F1030 /* InteractionBeccoBunsen.swift */,
 				90B4FAE924AE6820009F1030 /* InteractionBeccoPiattino.swift */,
 				9019E89024E7CE880002BDFB /* InteractionBeccoBecker.swift */,
 				9090FF8224EBDCE200A20DB6 /* InteractionBeckerSelf.swift */,
@@ -539,6 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				9077B5122465B6AE0041FDBC /* CoreData */,
+				90ACF60C24F3C6BF000E7049 /* experiment_substances.plist */,
 				90C5FF2424991B890039E2CB /* experiments.plist */,
 				90A7C7AE24A3915A0028FAB6 /* substance.plist */,
 				9064043A24AF8B3100C94096 /* ExperimentPersistence.swift */,
@@ -547,16 +558,6 @@
 				9090FF7E24EADCA200A20DB6 /* experiment_explanation.plist */,
 			);
 			path = Persistence;
-			sourceTree = "<group>";
-		};
-		90CCE9922445BCB9000F7C62 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				90F7CE052450C09F00851518 /* AI */,
-				90E52652245739D5005B35A1 /* GameLevel.swift */,
-				90BBABB62443CB23001BEC81 /* Player.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		90CCE9932445BCC5000F7C62 /* Components */ = {
@@ -577,7 +578,6 @@
 				90E52654245739DC005B35A1 /* Managers */,
 				90F7CE022450801A00851518 /* Controller */,
 				90CCE9932445BCC5000F7C62 /* Components */,
-				90CCE9922445BCB9000F7C62 /* Entities */,
 				909C99DB24643EDC00E41C4D /* EntityCollisionProtocol.swift */,
 				90E4B6152492CA4200C36DCA /* EntityHitDelegate.swift */,
 				905C825F249C22020068D749 /* NodePool.swift */,
@@ -636,14 +636,6 @@
 				90F7CE032450802900851518 /* Controller.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		90F7CE052450C09F00851518 /* AI */ = {
-			isa = PBXGroup;
-			children = (
-				90F7CE062450C0AC00851518 /* Enemy.swift */,
-			);
-			path = AI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -751,6 +743,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90ACF60D24F3C6BF000E7049 /* experiment_substances.plist in Resources */,
 				9095AEC224941BBD00271E31 /* art.scnassets in Resources */,
 				90BBAB932443C57D001BEC81 /* LaunchScreen.storyboard in Resources */,
 				9085E3B024B3949600A5D27E /* experiment_properties.plist in Resources */,
@@ -793,9 +786,9 @@
 				90296AA8244F052400FB7A0F /* ControllerButton.swift in Sources */,
 				900EB1C424548E9800CDBA39 /* GameManager.swift in Sources */,
 				90D33D4924A7B78000BAD689 /* ARViewController+CoachingDelegate.swift in Sources */,
-				90E52653245739D5005B35A1 /* GameLevel.swift in Sources */,
 				90BBABB92443D0A4001BEC81 /* MeshRendererComponent.swift in Sources */,
 				90E4B60D2492995A00C36DCA /* Tool.swift in Sources */,
+				90ACF60B24F3C606000E7049 /* AcidSugarReaction.swift in Sources */,
 				9039576124A90C7F0066D782 /* ARViewController+ARSceneDelegate.swift in Sources */,
 				9090FF8124EAE78B00A20DB6 /* Constants.swift in Sources */,
 				90AF09AC24A9F87F00DAC4D7 /* ToolMenuManager.swift in Sources */,
@@ -807,7 +800,6 @@
 				90B1B14924EA94F900DF011C /* ExplanationViewController.swift in Sources */,
 				90B4FAE324AE33B0009F1030 /* Interaction.swift in Sources */,
 				90C5FF23249903920039E2CB /* SelectionSystem.swift in Sources */,
-				90BBABB72443CB23001BEC81 /* Player.swift in Sources */,
 				90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */,
 				903D2D6824B232F300055B4C /* OptionsViewController.swift in Sources */,
 				9039576324A90CBA0066D782 /* ARViewController+ARSessionDelegate.swift in Sources */,
@@ -845,13 +837,12 @@
 				90E4B60B2492951A00C36DCA /* Experiment.swift in Sources */,
 				90A188EC24954352001A722C /* NodeLoader.swift in Sources */,
 				90A188E824951814001A722C /* AdjustController.swift in Sources */,
-				90B4FAE524AE33CF009F1030 /* InteractionSubstanceBurning.swift in Sources */,
+				90B4FAE524AE33CF009F1030 /* InteractionBeccoBunsen.swift in Sources */,
 				908DB6BF24ACEA38000010A6 /* IdleState.swift in Sources */,
 				90FCF12D249E52CE00DE3D40 /* ToolStack.swift in Sources */,
 				9019E89424E7E1730002BDFB /* GoalSystem.swift in Sources */,
 				903D2D6A24B240B900055B4C /* OptionTableViewCell.swift in Sources */,
 				90C5FF272499224D0039E2CB /* Heater.swift in Sources */,
-				90F7CE072450C0AC00851518 /* Enemy.swift in Sources */,
 				9019E89124E7CE880002BDFB /* InteractionBeccoBecker.swift in Sources */,
 				908DB6C424ACEA9D000010A6 /* PositionedState.swift in Sources */,
 				9049E4DA24966B180037B755 /* HintSystem.swift in Sources */,
@@ -863,6 +854,7 @@
 				9095AEC12493DB5E00271E31 /* SCNNodeExtension.swift in Sources */,
 				908DB6CA24ACEB00000010A6 /* ToolState.swift in Sources */,
 				9064043124AF7F3800C94096 /* SelectionMenuViewController.swift in Sources */,
+				90ACF60924F2D3CD000E7049 /* Reaction.swift in Sources */,
 				909C99DC24643EDC00E41C4D /* EntityCollisionProtocol.swift in Sources */,
 				90A9131E24E91BA300FAC17E /* Goal.swift in Sources */,
 				9064043924AF82B900C94096 /* ExperimentCollectionViewCell.swift in Sources */,

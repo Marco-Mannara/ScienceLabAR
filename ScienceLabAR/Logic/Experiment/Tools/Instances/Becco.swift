@@ -15,7 +15,7 @@ class Becco : Container{
     override init(_ node: SCNNode, _ displayName: String, _ volumeCapacity: Float) {
         super.init(node, displayName, volumeCapacity)
         interaction = [:]
-        interaction?["bunsen"] = InteractionSubstanceBurning(self)
+        interaction?["bunsen"] = InteractionBeccoBunsen(self)
         interaction?["piattino"] = InteractionBeccoPiattino(self)
         interaction?["becker"] = InteractionBeccoBecker(self)
     }
@@ -55,7 +55,7 @@ class Becco : Container{
         }
     }
     
-    override func fill(with substance: Substance, volume: Int) {
+    override func fill(with substance: Substance, volume: Float) {
         super.fill(with: substance,volume: volume)
     }
 }
