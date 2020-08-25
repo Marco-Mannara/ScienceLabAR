@@ -31,8 +31,14 @@ class AcidSugarReaction : Reaction{
         self.substanceA = "acidosolforico"
         self.substanceB = "saccarosio"
         self.resultSubstance = SubstanceDictionary.getSubstance("Carbonio")
-        let colorTransition = SCNAction.customAction(duration: 8) { (node, time) in
-            let rgbValues = vDSP.linearInterpolate([1.0,1.0,1.0], [0.0,0.0,0.0], using: Double(time) / 3.0)
+        
+        let colorTransition0 = SCNAction.customAction(duration: 3) { (node, time) in
+            let rgbValues = vDSP.linearInterpolate([1.0,1.0,1.0], [0.8,0.8,0.0], using: Double(time) / 2.5)
+            node.geometry?.materials.first?.diffuse.contents = UIColor(cgColor: CGColor(srgbRed: CGFloat(rgbValues[0]), green: CGFloat(rgbValues[1]), blue: CGFloat(rgbValues[2]), alpha: 1.0))
+        }
+        
+        let colorTransition1 = SCNAction.customAction(duration: 8) { (node, time) in
+            let rgbValues = vDSP.linearInterpolate([0.8,0.8,0.0], [0.0,0.0,0.0], using: Double(time) / 4.0)
             node.geometry?.materials.first?.diffuse.contents = UIColor(cgColor: CGColor(srgbRed: CGFloat(rgbValues[0]), green: CGFloat(rgbValues[1]), blue: CGFloat(rgbValues[2]), alpha: 1.0))
         }
         var lastTime1 : CGFloat = 0.0
@@ -43,34 +49,17 @@ class AcidSugarReaction : Reaction{
             lastTime1 = time
         }
         
-        self.animation = SCNAction.group([colorTransition,mixtureSwelling])
+        self.animation = SCNAction.sequence([SCNAction.wait(duration: 1.0),colorTransition0, SCNAction.group([colorTransition1,mixtureSwelling])])
     }
     
     override func start(in container : Container){
-        var acidFlag = false
-        var sugarFlag = false
+        let sceneRoot = GameManager.getInstance().sceneManager.currentExperiment?.sceneRoot
         
-        for s in container.contents.keys{
-            if s.name == "acidosolforico"{
-                acidFlag = true
-            }
-            else if s.name == "saccarosio"{
-                sugarFlag = true
-            }
-        }
+        sceneRoot?.addChildNode(smokeParticle)
+        smokeParticle.position = container.getAnchor(.up)
         
-        if acidFlag && sugarFlag{
-            print("reaction start")
-            let sceneRoot = GameManager.getInstance().sceneManager.currentExperiment?.sceneRoot
-            sceneRoot?.addChildNode(smokeParticle)
-            smokeParticle.position = container.getAnchor(.up)
-            container.contentsNode.runAction(self.animation) {
-                self.smokeParticle.removeFromParentNode()
-            }
-        }
-        else{
-            print("Reactors not present.")
+        container.contentsNode.runAction(self.animation) {
+            self.smokeParticle.removeFromParentNode()
         }
     }
-    
 }

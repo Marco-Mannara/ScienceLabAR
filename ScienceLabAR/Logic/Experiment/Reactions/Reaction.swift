@@ -15,11 +15,14 @@ class Reaction{
     var substanceB : String!
     var resultSubstance : Substance!
     
-    init(){
-        
+    init(){}
+    
+    init(_ substanceA : String, _ substanceB : String, _ animation : SCNAction, _ resultSubstance : Substance){
+        self.animation = animation
+        self.substanceA = substanceA
+        self.substanceB = substanceB
+        self.resultSubstance = resultSubstance
     }
     
-    func start(in container : Container){
-        
-    }
+    func start(in container : Container){}
 }

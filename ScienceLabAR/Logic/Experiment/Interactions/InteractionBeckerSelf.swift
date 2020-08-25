@@ -22,7 +22,15 @@ class InteractionBeckerSelf : Interaction{
             print("interaction end")
             DispatchQueue.main.async {
                 GameManager.getInstance().sceneManager.currentExperiment?.goals?.onToolAction(self.beckerActive!, self.beckerReceiver!)
-                AcidSugarReaction.instance.start(in: self.beckerReceiver!)
+                let contents = self.beckerReceiver!.contents
+                if contents.count == 2{
+                    let substance0 = contents.first!.substance
+                    let substance1 = contents[1].substance
+                    print(substance0.name, substance1.name)
+                    if let reaction = ReactionDictionary.getReaction(substance0, substance1){
+                        reaction.start(in: self.beckerReceiver!)
+                    }
+                }
                 self.beckerReceiver = nil
             }
         }
@@ -46,8 +54,9 @@ class InteractionBeckerSelf : Interaction{
             var last : CGFloat = 0.0
             let pourAction = SCNAction.customAction(duration: 3.0) { (node, time) in
                 let amount = Float( (time - last) * 30)
-                let substance = beckerActive.draw(amount)!
-                beckerReceiver.fill(with: substance, volume: amount)
+                if let substance = beckerActive.draw(amount){
+                    beckerReceiver.fill(with: substance, volume: amount)
+                }
                 last = time
             }
             

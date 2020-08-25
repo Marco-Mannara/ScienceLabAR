@@ -10,6 +10,6 @@ import Foundation
 
 class Constants{
     public static let ToolStateDebug : Bool = false
-    public static let LoadTestEnvironment : Bool = false
+    public static let LoadTestEnvironment : Bool = true
     public static let ShowPlaneAnchors : Bool = false
 }

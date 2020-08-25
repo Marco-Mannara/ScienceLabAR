@@ -39,6 +39,7 @@ class ExperimentPersistence{
         let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:Any]
         
         loadSubstances(experimentName)
+        ReactionDictionary.init()
         
         if let experimentData = dict[experimentName] as? [String:Any]{
             experiment.tools.append(contentsOf: loadTools(experimentData))
@@ -71,7 +72,7 @@ class ExperimentPersistence{
         case "saggioallafiamma":
             let goal0 = Goal("Saggio Cloruro di Litio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodilitio"{
+                    if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodilitio"{
                         return true
                     }
                 }
@@ -79,7 +80,7 @@ class ExperimentPersistence{
             })
             let goal1 = Goal("Saggio Nitrato Rameico",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratorameico"{
+                    if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratorameico"{
                         return true
                     }
                 }
@@ -87,7 +88,7 @@ class ExperimentPersistence{
             })
             let goal2 = Goal("Saggio Nitrato di Potassio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratodipotassio"{
+                    if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratodipotassio"{
                         return true
                     }
                 }
@@ -95,7 +96,7 @@ class ExperimentPersistence{
             })
             let goal3 = Goal("Saggio Cloruro Rameoso",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurorameoso"{
+                    if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurorameoso"{
                         return true
                     }
                 }
@@ -103,7 +104,7 @@ class ExperimentPersistence{
             })
             let goal4 = Goal("Saggio Cloruro di Sodio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
-                    if becco.contents.first?.key.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodisodio"{
+                    if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodisodio"{
                         return true
                     }
                 }
@@ -120,10 +121,10 @@ class ExperimentPersistence{
                     var acidoFlag = false
                     var zuccheroFlag = false
                     for c in beckerReceiver.contents{
-                        if c.key.name == "acidosolforico"{
+                        if c.substance.name == "acidosolforico"{
                             acidoFlag = true
                         }
-                        else if c.key.name == "saccarosio"{
+                        else if c.substance.name == "saccarosio"{
                             zuccheroFlag = true
                         }
                     }

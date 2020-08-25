@@ -42,7 +42,7 @@ class InteractionBeccoBunsen : Interaction{
         let target = start - SCNVector3(0,0.07,0)
         
         let flameColorToSubstance = SCNAction.customAction(duration: 0, action: { (node, delta) in
-            if let substance = self.becco.contents.first?.key{
+            if let substance = self.becco.contents.first?.substance{
                 self.bunsen!.fireParticle.particleSystems?.first?.particleColor = substance.flameColor
                 //self.becco.clearContents()
             }

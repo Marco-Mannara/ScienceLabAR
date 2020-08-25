@@ -11,20 +11,20 @@ import SceneKit
 
 
 class Container : Tool{
-    var contents : [Substance : Float]
+    var contents : [(substance : Substance, volume : Float)]
     var contentsNode : SCNNode
     
     var contentsVolumeInMilliliters : Float{
         var vol : Float = 0.0
         for c in contents{
-            vol += c.value
+            vol += c.volume
         }
         return vol
     }
     var contentsWeight : Float{
         var weight = 0.0
         for c in contents{
-            weight += Double(c.value) * c.key.density
+            weight += Double(c.volume) * c.substance.density
         }
         return Float(weight)
     }
@@ -38,7 +38,7 @@ class Container : Tool{
     
     init(_ node : SCNNode, _ displayName : String , _ volumeCapacity : Float){
         self.volumeCapacity = volumeCapacity
-        self.contents = [:]
+        self.contents = []
         self.contentsNode = node.childNode(withName: "contents", recursively: true)!
         self.contentsNode.isHidden = true
         
@@ -51,10 +51,14 @@ class Container : Tool{
     
     func fill(with substance: Substance, volume : Float){
         
-        if contents.keys.contains(substance){
-            contents[substance]! += volume
-        }else{
-            contents[substance] = volume
+        let index = contents.firstIndex { (tuple : (substance: Substance, volume: Float)) -> Bool in
+            return substance == tuple.substance
+        }
+        if let index = index{
+            contents[index].volume += volume
+        }
+        else{
+            contents.append((substance,volume))
         }
         
         contentsNode.isHidden = false
@@ -68,11 +72,11 @@ class Container : Tool{
             var proportions : Float = 0.0
             
             for content in contents{
-                proportions = Float(content.value) / contentsVolume
-                sumColorR += (content.key.color.cgColor.components?[0] ?? 0.0) * CGFloat(proportions)
-                sumColorG += (content.key.color.cgColor.components?[1] ?? 0.0) * CGFloat(proportions)
-                sumColorB += (content.key.color.cgColor.components?[2] ?? 0.0) * CGFloat(proportions)
-                sumColorA += (content.key.color.cgColor.components?[3] ?? 1.0) * CGFloat(proportions)
+                proportions = Float(content.volume) / contentsVolume
+                sumColorR += (content.substance.color.cgColor.components?[0] ?? 0.0) * CGFloat(proportions)
+                sumColorG += (content.substance.color.cgColor.components?[1] ?? 0.0) * CGFloat(proportions)
+                sumColorB += (content.substance.color.cgColor.components?[2] ?? 0.0) * CGFloat(proportions)
+                sumColorA += (content.substance.color.cgColor.components?[3] ?? 1.0) * CGFloat(proportions)
             }
         }
         else if contents.count == 1{
@@ -81,13 +85,14 @@ class Container : Tool{
     }
     
     func draw(_ volumeInMilliliters: Float) -> Substance?{
-        
-        if contentsVolumeInMilliliters > 0 && volumeInMilliliters <= contentsVolumeInMilliliters{
+        let contentsVolume = contentsVolumeInMilliliters
+        if contentsVolume > 0 && volumeInMilliliters <= contentsVolume{
+            contents[0].volume -= volumeInMilliliters
             if volumeInMilliliters >= contentsVolumeInMilliliters - 0.001 && volumeInMilliliters <= contentsVolumeInMilliliters + 0.001{
                 contentsNode.isHidden = true
                 contents.removeAll()
             }
-            return contents.first?.key
+            return contents.first?.substance
         }
         return nil
     }

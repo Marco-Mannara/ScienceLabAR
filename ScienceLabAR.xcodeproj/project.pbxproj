@@ -57,6 +57,7 @@
 		90A188EA2495409E001A722C /* Pipetta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188E92495409E001A722C /* Pipetta.swift */; };
 		90A188EC24954352001A722C /* NodeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188EB24954352001A722C /* NodeLoader.swift */; };
 		90A7C7AF24A3915A0028FAB6 /* substance.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90A7C7AE24A3915A0028FAB6 /* substance.plist */; };
+		90A89C8324F53F9B0086FFC0 /* ReactionDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A89C8224F53F9B0086FFC0 /* ReactionDictionary.swift */; };
 		90A9131E24E91BA300FAC17E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A9131D24E91BA300FAC17E /* Goal.swift */; };
 		90ACF60924F2D3CD000E7049 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ACF60824F2D3CD000E7049 /* Reaction.swift */; };
 		90ACF60B24F3C606000E7049 /* AcidSugarReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ACF60A24F3C606000E7049 /* AcidSugarReaction.swift */; };
@@ -174,6 +175,7 @@
 		90A188E92495409E001A722C /* Pipetta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pipetta.swift; sourceTree = "<group>"; };
 		90A188EB24954352001A722C /* NodeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeLoader.swift; sourceTree = "<group>"; };
 		90A7C7AE24A3915A0028FAB6 /* substance.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = substance.plist; sourceTree = "<group>"; };
+		90A89C8224F53F9B0086FFC0 /* ReactionDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDictionary.swift; sourceTree = "<group>"; };
 		90A9131D24E91BA300FAC17E /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		90ACF60824F2D3CD000E7049 /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 		90ACF60A24F3C606000E7049 /* AcidSugarReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcidSugarReaction.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			children = (
 				90ACF60824F2D3CD000E7049 /* Reaction.swift */,
 				90ACF60A24F3C606000E7049 /* AcidSugarReaction.swift */,
+				90A89C8224F53F9B0086FFC0 /* ReactionDictionary.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				9064043924AF82B900C94096 /* ExperimentCollectionViewCell.swift in Sources */,
 				90F7CE012450723700851518 /* SimdFloat2Extension.swift in Sources */,
 				90E4B6122492C46600C36DCA /* Container.swift in Sources */,
+				90A89C8324F53F9B0086FFC0 /* ReactionDictionary.swift in Sources */,
 				905AF154244CC38200010E06 /* PlayerCameraComponent.swift in Sources */,
 				90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */,
 			);

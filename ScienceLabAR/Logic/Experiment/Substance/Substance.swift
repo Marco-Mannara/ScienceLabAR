@@ -9,7 +9,7 @@
 import Foundation
 import SceneKit
 
-class Substance : NSObject, NSCoding{
+class Substance : NSObject{
     
     var name : String = ""
     var molecule : String = ""
@@ -61,9 +61,11 @@ class Substance : NSObject, NSCoding{
         self.flameColor = UIColor(red: flameColor[0] as! CGFloat, green: flameColor[1] as! CGFloat, blue: flameColor[2] as! CGFloat, alpha: 1)
     }
     
-    
-    func encode(with coder: NSCoder) {
-        
+    static func == (lhs : Substance, rhs : Substance) -> Bool{
+        if lhs.name == rhs.name{
+            return true
+        }
+        return false 
     }
 }
 
