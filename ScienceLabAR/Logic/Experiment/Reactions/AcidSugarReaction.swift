@@ -33,13 +33,13 @@ class AcidSugarReaction : Reaction{
         self.resultSubstance = SubstanceDictionary.getSubstance("Carbonio")
         
         let colorTransition0 = SCNAction.customAction(duration: 3) { (node, time) in
-            let rgbValues = vDSP.linearInterpolate([1.0,1.0,1.0], [0.8,0.8,0.0], using: Double(time) / 2.5)
+            let rgbValues = vDSP.linearInterpolate([1.0,1.0,1.0], [0.8,0.8,0.0], using: Double(time) / 3.0)
             node.geometry?.materials.first?.diffuse.contents = UIColor(cgColor: CGColor(srgbRed: CGFloat(rgbValues[0]), green: CGFloat(rgbValues[1]), blue: CGFloat(rgbValues[2]), alpha: 1.0))
         }
         
         let colorTransition1 = SCNAction.customAction(duration: 8) { (node, time) in
             let rgbValues = vDSP.linearInterpolate([0.8,0.8,0.0], [0.0,0.0,0.0], using: Double(time) / 4.0)
-            node.geometry?.materials.first?.diffuse.contents = UIColor(cgColor: CGColor(srgbRed: CGFloat(rgbValues[0]), green: CGFloat(rgbValues[1]), blue: CGFloat(rgbValues[2]), alpha: 1.0))
+            node.geometry?.materials.first?.diffuse.contents = UIColor(cgColor: CGColor(srgbRed: CGFloat(rgbValues[0]), green: CGFloat(rgbValues[1]), blue: CGFloat(rgbValues[2]), alpha: 3.0))
         }
         var lastTime1 : CGFloat = 0.0
         let mixtureSwelling = SCNAction.customAction(duration: 8) { (node, time) in
@@ -60,6 +60,10 @@ class AcidSugarReaction : Reaction{
         
         container.contentsNode.runAction(self.animation) {
             self.smokeParticle.removeFromParentNode()
+            container.setContents([(self.resultSubstance, volume: 1200)])
+            DispatchQueue.main.async {
+                GameManager.getInstance().sceneManager.currentExperiment?.goals?.eventNotify(self)
+            }
         }
     }
 }

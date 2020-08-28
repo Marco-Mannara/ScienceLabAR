@@ -18,7 +18,7 @@ class ExperimentPersistence{
         var props : [ExperimentProperties] = []
         
         for prop in dict{
-            props.append(ExperimentProperties(prop["name"] as! String,prop["storedName"] as! String, prop["imageName"] as? String))
+            props.append(ExperimentProperties(prop["name"] as! String,prop["storedName"] as! String,prop["completed"] as! Bool ,prop["imageName"] as? String))
         }
         return props
     }
@@ -39,7 +39,7 @@ class ExperimentPersistence{
         let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:Any]
         
         loadSubstances(experimentName)
-        ReactionDictionary.init()
+        let _ = ReactionDictionary.init()
         
         if let experimentData = dict[experimentName] as? [String:Any]{
             experiment.tools.append(contentsOf: loadTools(experimentData))

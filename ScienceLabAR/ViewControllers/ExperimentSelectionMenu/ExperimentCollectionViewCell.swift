@@ -12,6 +12,7 @@ class ExperimentCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var experimentNameLabel: UILabel!
     @IBOutlet var experimentImage: UIImageView!
+    @IBOutlet var completitionMarker: UIImageView!
     
     override func awakeFromNib() {
         layer.borderColor = CGColor(srgbRed: 0.7,green: 0.7,blue: 0.7,alpha: 0.8)

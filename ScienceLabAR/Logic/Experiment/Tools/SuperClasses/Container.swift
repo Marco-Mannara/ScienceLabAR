@@ -99,7 +99,12 @@ class Container : Tool{
     
     func clearContents(){
         contents.removeAll()
-        contentsNode.isHidden = false
+        contentsNode.isHidden = true
+    }
+    
+    func setContents(_ newContents : [(substance : Substance, volume : Float)]){
+        contents.removeAll()
+        contents.append(contentsOf: newContents)
     }
     
     static func instantiate(_ node: SCNNode,_ containerName: String, _ params: [String:Any]?) -> Container? {

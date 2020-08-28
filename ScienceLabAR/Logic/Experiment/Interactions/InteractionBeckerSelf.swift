@@ -19,14 +19,12 @@ class InteractionBeckerSelf : Interaction{
             self.beckerActive!.state?.enter(StateIdle.self)
             self.beckerReceiver!.state?.enter(StatePositioned.self)
             
-            print("interaction end")
+           // print("interaction end")
             DispatchQueue.main.async {
-                GameManager.getInstance().sceneManager.currentExperiment?.goals?.eventNotify(self.beckerActive!, self.beckerReceiver!)
                 let contents = self.beckerReceiver!.contents
                 if contents.count == 2{
                     let substance0 = contents.first!.substance
                     let substance1 = contents[1].substance
-                    print(substance0.name, substance1.name)
                     if let reaction = ReactionDictionary.getReaction(substance0, substance1){
                         reaction.start(in: self.beckerReceiver!)
                     }

@@ -15,7 +15,7 @@ class Experiment {
     
     var scene : SCNScene?
     var sceneRoot : SCNNode?
-    var restPoints : [SCNNode]
+    private var restPoints : [SCNNode]
     
     var workPosition : WorkPosition?
     var selection : SelectionSystem?
@@ -26,7 +26,6 @@ class Experiment {
     init(){
         self.restPoints = []
         self.tools = []
-
     }
     
     func load(_ experimentName : String){

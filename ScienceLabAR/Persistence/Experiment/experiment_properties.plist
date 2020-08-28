@@ -3,6 +3,8 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>completed</key>
+		<false/>
 		<key>storedName</key>
 		<string>saggioAllaFiamma</string>
 		<key>name</key>
@@ -11,6 +13,8 @@
 		<string>bunsen</string>
 	</dict>
 	<dict>
+		<key>completed</key>
+		<false/>
 		<key>name</key>
 		<string>Carbonizzazione del saccarosio</string>
 		<key>storedName</key>

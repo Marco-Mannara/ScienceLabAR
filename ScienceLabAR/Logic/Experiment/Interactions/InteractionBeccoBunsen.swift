@@ -26,9 +26,10 @@ class InteractionBeccoBunsen : Interaction{
             self.bunsen!.state?.enter(StatePositioned.self)
             self.becco.state?.enter(StateIdle.self)
             
-            GameManager.getInstance().sceneManager!.currentExperiment!.goals!.eventNotify(self.becco,self.bunsen!)
-            
-            self.bunsen = nil
+            DispatchQueue.main.async {
+                GameManager.getInstance().sceneManager!.currentExperiment!.goals!.eventNotify(self.bunsen!,self.becco)
+                self.bunsen = nil
+            }
         }
     }
     

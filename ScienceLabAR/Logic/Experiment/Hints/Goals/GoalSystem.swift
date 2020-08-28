@@ -30,6 +30,19 @@ class GoalSystem{
         else if let arViewController = GameManager.getInstance().viewController as? ARViewController{
             arViewController.progressIndicator.text = "\(goalProgress)/\(goals.count)"
         }
+        
+        if goalProgress == goals.count{
+            notifyExperimentCompletition()
+        }
+    }
+    
+    private func checkGoals(_ params : [Any]){
+        for g in goals{
+            if !g.completed && g.checkCompletition(params){
+                goalProgress += 1
+                updateExperimentProgression()
+            }
+        }
     }
     
     private func presentLevelCompleteAlert(){
@@ -44,12 +57,9 @@ class GoalSystem{
         }
     }
     
-    private func checkGoals(_ params : [Any]){
-        for g in goals{
-            if !g.completed && g.checkCompletition(params){
-                goalProgress += 1
-                updateExperimentProgression()
-            }
-        }
+    private func notifyExperimentCompletition(){
+        presentLevelCompleteAlert()
+        let experiment = GameManager.getInstance().sceneManager.currentExperiment
+        
     }
 }

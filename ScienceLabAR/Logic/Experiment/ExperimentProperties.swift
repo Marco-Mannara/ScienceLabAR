@@ -11,11 +11,13 @@ import Foundation
 struct ExperimentProperties{
     var name : String
     var storedName : String
+    var completed : Bool
     var imageName : String?
     
-    init(_ name : String,_ storedName : String ,_ imageName: String? = nil){
+    init(_ name : String,_ storedName : String , _ completed : Bool,_ imageName: String? = nil){
         self.name = name
         self.storedName = storedName
+        self.completed = completed
         self.imageName = imageName
     }
 }

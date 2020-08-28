@@ -20,6 +20,7 @@ extension SelectionMenuViewController : UICollectionViewDataSource{
         let properties = experimentsProps[indexPath.row]
         
         cell.experimentNameLabel.text = properties.name
+        cell.completitionMarker.image = (properties.completed) ? UIImage(systemName: "checkmark") : UIImage(systemName: "circle")
         
         if let imageName =  properties.imageName{
             cell.experimentImage.image = UIImage(named: imageName)
