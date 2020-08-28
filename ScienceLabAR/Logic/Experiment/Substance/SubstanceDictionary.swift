@@ -21,19 +21,22 @@ class SubstanceDictionary{
         fileHandle = dict
     }
     
-    static func getSubstance(_ name : String) -> Substance?{
-        if let substance = substances[name]{
-            return substance
-        }
-        else if let properties = fileHandle?[name] as? [String:Any]{
+    static func loadSubstance(_ name : String){
+        if let properties = fileHandle?[name] as? [String:Any]{
             let substance = Substance(properties)
             substances[name] = substance
-            return substance
         }
         else{
-            print("Couldn't find substance \(name)")
+            print("Couldn't load substance \(name)")
         }
-        return nil
+    }
+    
+    static func getSubstance(_ name : String) -> Substance?{
+        guard let substance = substances[name] else{
+            print("Couldn't find substance \(name) in dictionary")
+            return nil
+        }
+        return substance
     }
     
     static func close(){

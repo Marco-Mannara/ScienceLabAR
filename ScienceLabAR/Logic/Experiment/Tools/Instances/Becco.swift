@@ -39,19 +39,18 @@ class Becco : Container{
             let i = interaction!["piattino"]!
             i.setTools([otherTool])
             i.run()
-            GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
+            //GameManager.getInstance().sceneManager!.currentExperiment?.goals?.eventNotify(otherTool,self)
         }
         else if let _ = otherTool as? Bunsen{
             let i = interaction!["bunsen"]!
             i.setTools([otherTool])
             i.run()
-            GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
         }
         else if let _ = otherTool as? Becker{
             let i = interaction!["becker"]!
             i.setTools([otherTool])
             i.run()
-            GameManager.getInstance().sceneManager!.currentExperiment?.goals?.onToolAction(otherTool,self)
+            //GameManager.getInstance().sceneManager!.currentExperiment?.goals?.actionNotify(otherTool,self)
         }
     }
     

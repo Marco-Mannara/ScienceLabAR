@@ -21,7 +21,7 @@ class InteractionBeckerSelf : Interaction{
             
             print("interaction end")
             DispatchQueue.main.async {
-                GameManager.getInstance().sceneManager.currentExperiment?.goals?.onToolAction(self.beckerActive!, self.beckerReceiver!)
+                GameManager.getInstance().sceneManager.currentExperiment?.goals?.eventNotify(self.beckerActive!, self.beckerReceiver!)
                 let contents = self.beckerReceiver!.contents
                 if contents.count == 2{
                     let substance0 = contents.first!.substance

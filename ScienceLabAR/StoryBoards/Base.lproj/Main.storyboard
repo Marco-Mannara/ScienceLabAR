@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bKr-gP-3yN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bKr-gP-3yN">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -157,6 +157,7 @@
                         <outlet property="scanView" destination="gSU-Vc-kuf" id="gnQ-MJ-5eE"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <segue destination="NDg-9B-yd8" kind="showDetail" identifier="explanation" id="Pbk-jv-S1e"/>
+                        <segue destination="Fxe-s3-1yR" kind="show" identifier="selectionMenu" id="wZc-Au-Q15"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -372,11 +373,12 @@
                         <outlet property="progressIndicator" destination="5T5-Zv-47S" id="MKe-yt-aGd"/>
                         <outlet property="sceneView" destination="REU-2T-wFB" id="Jd5-xZ-xjt"/>
                         <segue destination="NDg-9B-yd8" kind="showDetail" identifier="explanation" id="4rI-qm-WJN"/>
+                        <segue destination="Fxe-s3-1yR" kind="show" identifier="selectionMenu" id="NiT-Hw-AZN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9U-Sm-K7G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-345" y="2990"/>
+            <point key="canvasLocation" x="-692" y="2990"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="EDQ-GS-uDh">
@@ -623,9 +625,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4rI-qm-WJN"/>
-        <segue reference="Zjt-Ep-dL1"/>
-        <segue reference="w4a-0g-Ebf"/>
+        <segue reference="Pbk-jv-S1e"/>
+        <segue reference="NiT-Hw-AZN"/>
+        <segue reference="8Eb-Ns-h7l"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="eye.fill" catalog="system" width="128" height="78"/>

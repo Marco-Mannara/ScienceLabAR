@@ -25,6 +25,9 @@ class InteractionBeccoBunsen : Interaction{
         self.completitionHandler = {() -> Void in
             self.bunsen!.state?.enter(StatePositioned.self)
             self.becco.state?.enter(StateIdle.self)
+            
+            GameManager.getInstance().sceneManager!.currentExperiment!.goals!.eventNotify(self.becco,self.bunsen!)
+            
             self.bunsen = nil
         }
     }

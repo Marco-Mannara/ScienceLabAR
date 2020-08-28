@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import ARKit
 
 class Constants{
     public static let ToolStateDebug : Bool = false
-    public static let LoadTestEnvironment : Bool = true
+    public static var LoadTestEnvironment : Bool = true
     public static let ShowPlaneAnchors : Bool = false
 }

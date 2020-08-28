@@ -59,7 +59,7 @@ class ExperimentPersistence{
         
         if let experimentSubstances = dict[experimentName] as? [String]{
             for substance in experimentSubstances{
-                SubstanceDictionary.getSubstance(substance)
+                SubstanceDictionary.loadSubstance(substance)
             }
         }
         SubstanceDictionary.close()
@@ -70,7 +70,7 @@ class ExperimentPersistence{
         let name = experimentName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         switch name {
         case "saggioallafiamma":
-            let goal0 = Goal("Saggio Cloruro di Litio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
+            let goal0 = InteractionGoal("Saggio Cloruro di Litio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
                     if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodilitio"{
                         return true
@@ -78,7 +78,7 @@ class ExperimentPersistence{
                 }
                 return false
             })
-            let goal1 = Goal("Saggio Nitrato Rameico",{ (tool0 : Tool,tool1 : Tool) -> Bool in
+            let goal1 = InteractionGoal("Saggio Nitrato Rameico",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
                     if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratorameico"{
                         return true
@@ -86,7 +86,7 @@ class ExperimentPersistence{
                 }
                 return false
             })
-            let goal2 = Goal("Saggio Nitrato di Potassio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
+            let goal2 = InteractionGoal("Saggio Nitrato di Potassio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
                     if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "nitratodipotassio"{
                         return true
@@ -94,7 +94,7 @@ class ExperimentPersistence{
                 }
                 return false
             })
-            let goal3 = Goal("Saggio Cloruro Rameoso",{ (tool0 : Tool,tool1 : Tool) -> Bool in
+            let goal3 = InteractionGoal("Saggio Cloruro Rameoso",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
                     if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurorameoso"{
                         return true
@@ -102,7 +102,7 @@ class ExperimentPersistence{
                 }
                 return false
             })
-            let goal4 = Goal("Saggio Cloruro di Sodio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
+            let goal4 = InteractionGoal("Saggio Cloruro di Sodio",{ (tool0 : Tool,tool1 : Tool) -> Bool in
                 if let _ = tool0 as? Bunsen,let becco = tool1 as? Becco{
                     if becco.contents.first?.substance.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "clorurodisodio"{
                         return true
@@ -116,7 +116,13 @@ class ExperimentPersistence{
             goalSystem.goals.append(goal3)
             goalSystem.goals.append(goal4)
         case "carbonizzazionedelsaccarosio":
-            let goal0 = Goal("Carbonizzazione Saccarosio Acido",{ (tool0 : Tool,tool1 : Tool) -> Bool in
+            let goal0 = ReactionGoal("Carbonizzazione Saccarosio Acido",{ (reaction : Reaction) -> Bool in
+                
+                if let _ = reaction as? AcidSugarReaction {
+                    return true
+                }
+                return false
+                /*
                 if let _ = tool0 as? Becker,let beckerReceiver = tool1 as? Becker{
                     var acidoFlag = false
                     var zuccheroFlag = false
@@ -135,7 +141,7 @@ class ExperimentPersistence{
                         return false
                     }
                 }
-                return false
+                return false*/
             })
             goalSystem.goals.append(goal0)
         default:

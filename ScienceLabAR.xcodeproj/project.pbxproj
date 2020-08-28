@@ -38,6 +38,8 @@
 		906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906EB3CD2445C6410067B607 /* Matrix4Extension.swift */; };
 		9077B5172465B7B20041FDBC /* GamePersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */; };
 		9085E3B024B3949600A5D27E /* experiment_properties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9085E3AF24B3949600A5D27E /* experiment_properties.plist */; };
+		90877CC824F95DA20026C180 /* InteractionGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90877CC724F95DA20026C180 /* InteractionGoal.swift */; };
+		90877CCA24F95DB90026C180 /* ReactionGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90877CC924F95DB90026C180 /* ReactionGoal.swift */; };
 		908DB6BF24ACEA38000010A6 /* IdleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DB6BE24ACEA38000010A6 /* IdleState.swift */; };
 		908DB6C224ACEA92000010A6 /* IdleMenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DB6C124ACEA92000010A6 /* IdleMenuState.swift */; };
 		908DB6C424ACEA9D000010A6 /* PositionedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DB6C324ACEA9D000010A6 /* PositionedState.swift */; };
@@ -157,6 +159,8 @@
 		906EB3CD2445C6410067B607 /* Matrix4Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4Extension.swift; sourceTree = "<group>"; };
 		9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePersistenceManager.swift; sourceTree = "<group>"; };
 		9085E3AF24B3949600A5D27E /* experiment_properties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = experiment_properties.plist; sourceTree = "<group>"; };
+		90877CC724F95DA20026C180 /* InteractionGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionGoal.swift; sourceTree = "<group>"; };
+		90877CC924F95DB90026C180 /* ReactionGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionGoal.swift; sourceTree = "<group>"; };
 		908DB6BE24ACEA38000010A6 /* IdleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleState.swift; sourceTree = "<group>"; };
 		908DB6C124ACEA92000010A6 /* IdleMenuState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleMenuState.swift; sourceTree = "<group>"; };
 		908DB6C324ACEA9D000010A6 /* PositionedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionedState.swift; sourceTree = "<group>"; };
@@ -278,9 +282,8 @@
 		9019E89224E7E0410002BDFB /* Hints */ = {
 			isa = PBXGroup;
 			children = (
+				90877CCB24F9616C0026C180 /* Goals */,
 				9049E4D924966B180037B755 /* HintSystem.swift */,
-				9019E89324E7E1730002BDFB /* GoalSystem.swift */,
-				90A9131D24E91BA300FAC17E /* Goal.swift */,
 			);
 			path = Hints;
 			sourceTree = "<group>";
@@ -347,6 +350,17 @@
 				9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		90877CCB24F9616C0026C180 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				9019E89324E7E1730002BDFB /* GoalSystem.swift */,
+				90A9131D24E91BA300FAC17E /* Goal.swift */,
+				90877CC724F95DA20026C180 /* InteractionGoal.swift */,
+				90877CC924F95DB90026C180 /* ReactionGoal.swift */,
+			);
+			path = Goals;
 			sourceTree = "<group>";
 		};
 		9088DBB724ACE3CE007AE6BD /* Substance */ = {
@@ -808,6 +822,7 @@
 				9039576324A90CBA0066D782 /* ARViewController+ARSessionDelegate.swift in Sources */,
 				90C5FF2924992E510039E2CB /* Bunsen.swift in Sources */,
 				90DF67BD244A01E700D57233 /* GameViewController.swift in Sources */,
+				90877CC824F95DA20026C180 /* InteractionGoal.swift in Sources */,
 				90F7A56424ACD2D7003116F8 /* Stackable.swift in Sources */,
 				9039575924A8EC9F0066D782 /* Becco.swift in Sources */,
 				90D265D824A6552A00B3F41B /* Piattino.swift in Sources */,
@@ -863,6 +878,7 @@
 				9064043924AF82B900C94096 /* ExperimentCollectionViewCell.swift in Sources */,
 				90F7CE012450723700851518 /* SimdFloat2Extension.swift in Sources */,
 				90E4B6122492C46600C36DCA /* Container.swift in Sources */,
+				90877CCA24F95DB90026C180 /* ReactionGoal.swift in Sources */,
 				90A89C8324F53F9B0086FFC0 /* ReactionDictionary.swift in Sources */,
 				905AF154244CC38200010E06 /* PlayerCameraComponent.swift in Sources */,
 				90B200562459AF5600C0DD86 /* SceneManager.swift in Sources */,
