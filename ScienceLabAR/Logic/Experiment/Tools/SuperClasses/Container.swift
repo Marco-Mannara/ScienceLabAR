@@ -107,6 +107,15 @@ class Container : Tool{
         contents.append(contentsOf: newContents)
     }
     
+    override func getInfo() -> [String] {
+        var info = super.getInfo()
+        
+        for content in contents{
+            info.append(contentsOf: [content.substance.name, content.substance.molecule,String(content.volume) + "ml"])
+        }
+        return info
+    }
+    
     static func instantiate(_ node: SCNNode,_ containerName: String, _ params: [String:Any]?) -> Container? {
         
         if containerName == "becker"{

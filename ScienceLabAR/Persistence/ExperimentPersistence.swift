@@ -10,17 +10,34 @@ import Foundation
 
 class ExperimentPersistence{
     
+    private static var experimentProps : [ExperimentProperties] = []
+    
     static func fetchAllExperimentProperties() -> [ExperimentProperties]?{
-        guard let url = Bundle.main.url(forResource: "experiment_properties", withExtension: "plist") else {return nil}
-        let data = try! Data(contentsOf: url)
-        let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [[String:Any]]
-        
-        var props : [ExperimentProperties] = []
-        
-        for prop in dict{
-            props.append(ExperimentProperties(prop["name"] as! String,prop["storedName"] as! String,prop["completed"] as! Bool ,prop["imageName"] as? String))
+        if experimentProps.count > 0{
+            return experimentProps
         }
-        return props
+        else{
+            guard let url = Bundle.main.url(forResource: "experiment_properties", withExtension: "plist") else {return nil}
+            let data = try! Data(contentsOf: url)
+            let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [[String:Any]]
+            
+            var props : [ExperimentProperties] = []
+            
+            for prop in dict{
+                props.append(ExperimentProperties(prop["name"] as! String,prop["storedName"] as! String ,prop["imageName"] as? String))
+            }
+            experimentProps.append(contentsOf: props)
+            return props
+        }
+    }
+    
+    static func updateExperimentCompletition(for experiment: String){
+        guard let url = Bundle.main.url(forResource: "experiment_properties", withExtension: "plist") else {return}
+        let data = try! Data(contentsOf: url)
+        let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! [[String:Any]]
+        for var prop in dict{
+            prop["completed"] = true
+        }
     }
     
     static func loadExplanation(with name: String) -> String?{
@@ -32,13 +49,14 @@ class ExperimentPersistence{
     }
     
     static func loadExperiment(_ experimentName : String) -> Experiment?{
-        let experiment = Experiment()
+        let experiment = Experiment(experimentName)
         
         guard let url = Bundle.main.url(forResource: "experiments", withExtension: "plist") else {return nil}
         let data = try! Data(contentsOf: url)
         let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:Any]
         
         loadSubstances(experimentName)
+        
         let _ = ReactionDictionary.init()
         
         if let experimentData = dict[experimentName] as? [String:Any]{

@@ -12,18 +12,20 @@ import SpriteKit
 class Experiment {
     
     var tools : [Tool]
+    var sceneRoot : SCNNode!
+    var name : String
     
-    var scene : SCNScene?
-    var sceneRoot : SCNNode?
+    private var scene : SCNScene?
     private var restPoints : [SCNNode]
     
-    var workPosition : WorkPosition?
-    var selection : SelectionSystem?
-    var hint : HintSystem?
-    var menuManager : ToolMenuManager?
+    private (set) var workPosition : WorkPosition?
+    private (set) var selection : SelectionSystem?
+    private (set) var hint : HintSystem?
+    private (set) var menuManager : ToolMenuManager?
     var goals : GoalSystem?
     
-    init(){
+    init(_ name : String){
+        self.name = name
         self.restPoints = []
         self.tools = []
     }

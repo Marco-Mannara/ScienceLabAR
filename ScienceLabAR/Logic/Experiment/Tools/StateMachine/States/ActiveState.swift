@@ -19,6 +19,9 @@ class StateActive : ToolState{
         else if stateClass == StatePositioned.self{
             return true
         }
+        else if stateClass == StateDisabled.self{
+            return true
+        }
         return false
     }
     override func didEnter(from previousState: GKState?) {

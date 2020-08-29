@@ -27,6 +27,10 @@
 		905AF154244CC38200010E06 /* PlayerCameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF153244CC38200010E06 /* PlayerCameraComponent.swift */; };
 		905AF156244CDFDE00010E06 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AF155244CDFDE00010E06 /* Vector3.swift */; };
 		905C8260249C22020068D749 /* NodePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C825F249C22020068D749 /* NodePool.swift */; };
+		905E5C9C24FA9E8D00B1C2E6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 905E5C9A24FA9E8D00B1C2E6 /* Model.xcdatamodeld */; };
+		905E5CAB24FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905E5CA924FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataClass.swift */; };
+		905E5CAC24FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905E5CAA24FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataProperties.swift */; };
+		905E5CAE24FAC0EC00B1C2E6 /* StateDisabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905E5CAD24FAC0EC00B1C2E6 /* StateDisabled.swift */; };
 		906030C92497C116002E0B14 /* Workposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906030C82497C116002E0B14 /* Workposition.swift */; };
 		9064043124AF7F3800C94096 /* SelectionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064043024AF7F3700C94096 /* SelectionMenuViewController.swift */; };
 		9064043324AF7F7100C94096 /* SelectionMenuViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064043224AF7F7100C94096 /* SelectionMenuViewController+CollectionViewDelegate.swift */; };
@@ -36,7 +40,7 @@
 		9064043B24AF8B3100C94096 /* ExperimentPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064043A24AF8B3100C94096 /* ExperimentPersistence.swift */; };
 		9065ECC5244A0E7C0035AC37 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */; };
 		906EB3CE2445C6410067B607 /* Matrix4Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906EB3CD2445C6410067B607 /* Matrix4Extension.swift */; };
-		9077B5172465B7B20041FDBC /* GamePersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */; };
+		9077B5172465B7B20041FDBC /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9077B5162465B7B20041FDBC /* PersistenceManager.swift */; };
 		9085E3B024B3949600A5D27E /* experiment_properties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9085E3AF24B3949600A5D27E /* experiment_properties.plist */; };
 		90877CC824F95DA20026C180 /* InteractionGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90877CC724F95DA20026C180 /* InteractionGoal.swift */; };
 		90877CCA24F95DB90026C180 /* ReactionGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90877CC924F95DB90026C180 /* ReactionGoal.swift */; };
@@ -147,6 +151,10 @@
 		905AF153244CC38200010E06 /* PlayerCameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCameraComponent.swift; sourceTree = "<group>"; };
 		905AF155244CDFDE00010E06 /* Vector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		905C825F249C22020068D749 /* NodePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodePool.swift; sourceTree = "<group>"; };
+		905E5C9B24FA9E8D00B1C2E6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		905E5CA924FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentStatistics+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		905E5CAA24FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentStatistics+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		905E5CAD24FAC0EC00B1C2E6 /* StateDisabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDisabled.swift; sourceTree = "<group>"; };
 		906030C82497C116002E0B14 /* Workposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workposition.swift; sourceTree = "<group>"; };
 		9064042E24AF7C8800C94096 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		9064043024AF7F3700C94096 /* SelectionMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionMenuViewController.swift; sourceTree = "<group>"; };
@@ -157,7 +165,7 @@
 		9064043A24AF8B3100C94096 /* ExperimentPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentPersistence.swift; sourceTree = "<group>"; };
 		9065ECC4244A0E7C0035AC37 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		906EB3CD2445C6410067B607 /* Matrix4Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4Extension.swift; sourceTree = "<group>"; };
-		9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePersistenceManager.swift; sourceTree = "<group>"; };
+		9077B5162465B7B20041FDBC /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		9085E3AF24B3949600A5D27E /* experiment_properties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = experiment_properties.plist; sourceTree = "<group>"; };
 		90877CC724F95DA20026C180 /* InteractionGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionGoal.swift; sourceTree = "<group>"; };
 		90877CC924F95DB90026C180 /* ReactionGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionGoal.swift; sourceTree = "<group>"; };
@@ -358,7 +366,10 @@
 		9077B5122465B6AE0041FDBC /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				9077B5162465B7B20041FDBC /* GamePersistenceManager.swift */,
+				905E5CA924FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataClass.swift */,
+				905E5CAA24FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataProperties.swift */,
+				9077B5162465B7B20041FDBC /* PersistenceManager.swift */,
+				905E5C9A24FA9E8D00B1C2E6 /* Model.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -403,6 +414,7 @@
 				908DB6C924ACEB00000010A6 /* ToolState.swift */,
 				908DB6CB24ACED39000010A6 /* InspectState.swift */,
 				90B4FAE624AE440A009F1030 /* ActiveState.swift */,
+				905E5CAD24FAC0EC00B1C2E6 /* StateDisabled.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -823,10 +835,12 @@
 				9064043724AF822B00C94096 /* ExperimentProperties.swift in Sources */,
 				905C8260249C22020068D749 /* NodePool.swift in Sources */,
 				90B1B14924EA94F900DF011C /* ExplanationViewController.swift in Sources */,
+				905E5CAB24FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataClass.swift in Sources */,
 				90B4FAE324AE33B0009F1030 /* Interaction.swift in Sources */,
 				90C5FF23249903920039E2CB /* SelectionSystem.swift in Sources */,
 				90B2CC5E2460648C0088727B /* MainMenuViewController.swift in Sources */,
 				903D2D6824B232F300055B4C /* OptionsViewController.swift in Sources */,
+				905E5CAC24FAAB5300B1C2E6 /* ExperimentStatistics+CoreDataProperties.swift in Sources */,
 				9039576324A90CBA0066D782 /* ARViewController+ARSessionDelegate.swift in Sources */,
 				90C5FF2924992E510039E2CB /* Bunsen.swift in Sources */,
 				90DF67BD244A01E700D57233 /* GameViewController.swift in Sources */,
@@ -856,7 +870,7 @@
 				90F7CE042450802900851518 /* Controller.swift in Sources */,
 				90EF7815249A2AA5009870BB /* InputManager.swift in Sources */,
 				9064043B24AF8B3100C94096 /* ExperimentPersistence.swift in Sources */,
-				9077B5172465B7B20041FDBC /* GamePersistenceManager.swift in Sources */,
+				9077B5172465B7B20041FDBC /* PersistenceManager.swift in Sources */,
 				90E4B6142492C54300C36DCA /* Substance.swift in Sources */,
 				90EF7817249A78AE009870BB /* ToolStateMachine.swift in Sources */,
 				90DF67BB2449F32600D57233 /* SimdFloat3Extension.swift in Sources */,
@@ -864,6 +878,7 @@
 				90A188EC24954352001A722C /* NodeLoader.swift in Sources */,
 				90A188E824951814001A722C /* AdjustController.swift in Sources */,
 				90B4FAE524AE33CF009F1030 /* InteractionBeccoBunsen.swift in Sources */,
+				905E5CAE24FAC0EC00B1C2E6 /* StateDisabled.swift in Sources */,
 				908DB6BF24ACEA38000010A6 /* IdleState.swift in Sources */,
 				90FCF12D249E52CE00DE3D40 /* ToolStack.swift in Sources */,
 				9019E89424E7E1730002BDFB /* GoalSystem.swift in Sources */,
@@ -878,6 +893,7 @@
 				905AF150244B5D2200010E06 /* PlayerMovementComponent.swift in Sources */,
 				908DB6CC24ACED39000010A6 /* InspectState.swift in Sources */,
 				9095AEC12493DB5E00271E31 /* SCNNodeExtension.swift in Sources */,
+				905E5C9C24FA9E8D00B1C2E6 /* Model.xcdatamodeld in Sources */,
 				908DB6CA24ACEB00000010A6 /* ToolState.swift in Sources */,
 				9064043124AF7F3800C94096 /* SelectionMenuViewController.swift in Sources */,
 				90ACF60924F2D3CD000E7049 /* Reaction.swift in Sources */,
@@ -1225,6 +1241,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		905E5C9A24FA9E8D00B1C2E6 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				905E5C9B24FA9E8D00B1C2E6 /* Model.xcdatamodel */,
+			);
+			currentVersion = 905E5C9B24FA9E8D00B1C2E6 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 90BBAB7B2443C57B001BEC81 /* Project object */;
 }

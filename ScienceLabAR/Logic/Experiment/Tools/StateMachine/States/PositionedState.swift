@@ -40,6 +40,9 @@ class StatePositioned : ToolState{
         else if stateClass == StateActive.self{
             return true
         }
+        else if stateClass == StateDisabled.self{
+            return true
+        }
         return false
     }
 }

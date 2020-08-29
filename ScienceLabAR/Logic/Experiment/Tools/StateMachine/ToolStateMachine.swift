@@ -18,7 +18,7 @@ class ToolStateMachine : GKStateMachine{
         self.tool = tool
         self.experiment = experiment
         
-        let states : [GKState] = [StateIdle(), StatePositioned(), StatePickedUp(),StateMenuIdle(), StateMenuActive(), StateActive(),StateInspect()]
+        let states : [GKState] = [StateIdle(), StatePositioned(), StatePickedUp(),StateMenuIdle(), StateMenuActive(), StateActive(),StateInspect(),StateDisabled()]
         super.init(states: states)
     }
 }

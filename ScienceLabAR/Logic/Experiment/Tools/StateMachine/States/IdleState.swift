@@ -22,6 +22,9 @@ class StateIdle : ToolState{
         else if stateClass == StatePickedUp.self{
             return true
         }
+        else if stateClass == StateDisabled.self{
+            return true
+        }
         return false
     }
     

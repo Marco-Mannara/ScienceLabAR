@@ -83,10 +83,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
     }
     @IBAction func infoButtonPressed(_ sender: UIButton) {
-        
-    }
-    @IBAction func settingsButtonPressed(_ sender: UIButton) {
-        
+        //performSegue(withIdentifier: "explanation", sender: nil)
     }
     
     /*

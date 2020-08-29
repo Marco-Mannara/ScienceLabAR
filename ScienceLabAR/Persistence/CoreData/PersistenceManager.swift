@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class GamePersistenceManager : NSPersistentContainer {
+class PersistenceManager : NSPersistentContainer {
    
     
     static var context: NSManagedObjectContext {
@@ -17,7 +17,7 @@ class GamePersistenceManager : NSPersistentContainer {
     }
    
     static var persistentContainer: NSPersistentContainer = {
-           let container = NSPersistentContainer(name: "AppModel")
+           let container = NSPersistentContainer(name: "Model")
            container.loadPersistentStores { description, error in
                if let error = error {
                    fatalError("Unable to load persistent stores: \(error)")
@@ -28,12 +28,16 @@ class GamePersistenceManager : NSPersistentContainer {
     
     
     static func saveContext(backgroundContext: NSManagedObjectContext? = nil) {
-        let context = GamePersistenceManager.context
+        let context = PersistenceManager.context
         guard context.hasChanges else { return }
         do {
             try context.save()
         } catch let error as NSError {
             print("Error: \(error), \(error.userInfo)")
         }
+    }
+    
+    static func populateDB(){
+        ExperimentStatistics.populate()
     }
 }

@@ -144,6 +144,9 @@ class Tool : GKEntity{
         return nil
     }
     
+    func getInfo() -> [String]{
+        return [displayName]
+    }
 }
 
 enum AnchorType{

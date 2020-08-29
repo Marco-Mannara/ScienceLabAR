@@ -20,13 +20,14 @@ class OptionsViewController: UITableViewController {
         
         sectionTitles = ["Tracking Options","Other"]
         arOptionLabels = [("Retrack Environment", retrackEnvironment)]
-        otherOptionLabels = [("Back to Menu", exitToMenu)]
+        otherOptionLabels = [("Back to Menu", exitToMenu),("Back to experiment", closeMenu)]
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
     // MARK: - Table view data source
@@ -81,6 +82,10 @@ class OptionsViewController: UITableViewController {
         performSegue(withIdentifier: "mainMenu", sender: self)
     }
     
+    
+    @objc func closeMenu(){
+        dismiss(animated: true, completion: nil)
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

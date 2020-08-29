@@ -58,8 +58,18 @@ class GoalSystem{
     }
     
     private func notifyExperimentCompletition(){
-        presentLevelCompleteAlert()
-        let experiment = GameManager.getInstance().sceneManager.currentExperiment
+        let experiment = GameManager.getInstance().sceneManager.currentExperiment!
+        for tool in experiment.tools{
+            tool.state?.enter(StateDisabled.self)
+        }
         
+        presentLevelCompleteAlert()
+        
+        if let stat = ExperimentStatistics.fetchByName(experiment.name){
+            stat.completed = true
+            PersistenceManager.saveContext()
+        }else{
+            print("Couldn't save statistics for experiment \(experiment.name)")
+        }
     }
 }

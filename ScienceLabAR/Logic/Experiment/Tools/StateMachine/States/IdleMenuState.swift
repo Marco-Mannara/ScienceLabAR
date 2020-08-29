@@ -24,6 +24,9 @@ class StateMenuIdle : ToolState{
         else if stateClass == StateInspect.self{
             return true
         }
+        else if stateClass == StateDisabled.self{
+            return true
+        }
         return false
     }
     

@@ -18,9 +18,10 @@ extension SelectionMenuViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "experimentCell", for: indexPath) as! ExperimentCollectionViewCell
         let properties = experimentsProps[indexPath.row]
+        let stat = ExperimentStatistics.fetchByName(properties.storedName)
         
         cell.experimentNameLabel.text = properties.name
-        cell.completitionMarker.image = (properties.completed) ? UIImage(systemName: "checkmark") : UIImage(systemName: "circle")
+        cell.completitionMarker.image = (stat?.completed ?? false) ? UIImage(systemName: "checkmark") : UIImage(systemName: "circle")
         
         if let imageName =  properties.imageName{
             cell.experimentImage.image = UIImage(named: imageName)
