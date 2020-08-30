@@ -68,4 +68,8 @@ class WorkPosition : GKEntity, EntityHitProtocol{
         leftCompatibleTools.append(contentsOf: rightCompatibleTools)
         return leftCompatibleTools
     }
+    
+    func isEmpty() -> Bool{
+        return leftStack.isEmpty() && rightStack.isEmpty()
+    }
 }

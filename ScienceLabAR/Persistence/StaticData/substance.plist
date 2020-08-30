@@ -4,6 +4,8 @@
 <dict>
 	<key>Carbonio</key>
 	<dict>
+		<key>molecule</key>
+		<string>C</string>
 		<key>name</key>
 		<string>carbonio</string>
 		<key>flameColor</key>
@@ -26,6 +28,8 @@
 	</dict>
 	<key>Saccarosio</key>
 	<dict>
+		<key>molecule</key>
+		<string>C12H22O11</string>
 		<key>name</key>
 		<string>saccarosio</string>
 		<key>flameColor</key>
@@ -48,6 +52,8 @@
 	</dict>
 	<key>Acido Solforico</key>
 	<dict>
+		<key>molecule</key>
+		<string>H2SO4</string>
 		<key>name</key>
 		<string>acidosolforico</string>
 		<key>flameColor</key>
@@ -70,6 +76,8 @@
 	</dict>
 	<key>Cloruro Di Litio</key>
 	<dict>
+		<key>molecule</key>
+		<string>LiCl</string>
 		<key>name</key>
 		<string>clorurodilitio</string>
 		<key>flameColor</key>
@@ -92,6 +100,8 @@
 	</dict>
 	<key>Nitrato Rameico</key>
 	<dict>
+		<key>molecule</key>
+		<string>Cu(NO3)2</string>
 		<key>name</key>
 		<string>nitratorameico</string>
 		<key>flameColor</key>
@@ -114,6 +124,8 @@
 	</dict>
 	<key>Cloruro Rameoso</key>
 	<dict>
+		<key>molecule</key>
+		<string>CuCl</string>
 		<key>name</key>
 		<string>clorurorameoso</string>
 		<key>flameColor</key>
@@ -136,6 +148,8 @@
 	</dict>
 	<key>Cloruro Di Sodio</key>
 	<dict>
+		<key>molecule</key>
+		<string>NaCl</string>
 		<key>name</key>
 		<string>clorurodisodio</string>
 		<key>flameColor</key>
@@ -158,6 +172,8 @@
 	</dict>
 	<key>Nitrato Di Potassio</key>
 	<dict>
+		<key>molecule</key>
+		<string>KNO3</string>
 		<key>name</key>
 		<string>nitratodipotassio</string>
 		<key>flameColor</key>

@@ -12,6 +12,7 @@ import SceneKit
 class Substance : NSObject{
     
     var name : String = ""
+    var capName : String = ""
     var molecule : String = ""
     var PH : Double = 7.0 {
         didSet{

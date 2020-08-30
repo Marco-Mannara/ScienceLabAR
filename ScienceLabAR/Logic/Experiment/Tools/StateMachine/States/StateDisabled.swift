@@ -8,11 +8,20 @@
 
 import Foundation
 import SceneKit
+import GameplayKit
 
 class StateDisabled : ToolState{
+    private var selected = false
     override func onTap() {
         let toolState = stateMachine as! ToolStateMachine
         toolState.experiment.selection?.selectTool(toolState.tool)
+        selected = !selected
+        if selected{
+            toolState.experiment.hint?.highLightTool(toolState.tool)
+        }
+        else{
+            toolState.experiment.hint?.disableHighlight(toolState.tool)
+        }
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
@@ -20,5 +29,12 @@ class StateDisabled : ToolState{
             return true
         }
         return false
+    }
+    
+    override func didEnter(from previousState: GKState?) {
+        let toolState = stateMachine as! ToolStateMachine
+        
+        toolState.experiment.hint?.disableHighlight(toolState.tool)
+        toolState.experiment.hint?.disableArrow(toolState.tool.node)
     }
 }

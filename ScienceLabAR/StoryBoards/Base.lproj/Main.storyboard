@@ -43,7 +43,7 @@
                                 <rect key="frame" x="552" y="0.0" width="300" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="UOZ-GG-9zs">
-                                        <rect key="frame" x="10" y="20" width="280" height="40"/>
+                                        <rect key="frame" x="90" y="20" width="200" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgh-k4-hzL" userLabel="InspectButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -58,20 +58,8 @@
                                                     <action selector="inspectButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="x9G-Qd-ItQ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mc-z6-JN6" userLabel="ResetButton">
-                                                <rect key="frame" x="80" y="0.0" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="TTq-Zi-xI4"/>
-                                                    <constraint firstAttribute="height" constant="40" id="ZQ3-DO-93P"/>
-                                                </constraints>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="gobackward" catalog="system"/>
-                                                <connections>
-                                                    <action selector="resetButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="9u6-Wr-iqo"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M51-7q-3Wo" userLabel="InfoButton">
-                                                <rect key="frame" x="160" y="0.0" width="40" height="40"/>
+                                                <rect key="frame" x="80" y="0.0" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="4Ve-Pg-uai"/>
                                                     <constraint firstAttribute="height" constant="40" id="GiM-Dp-AcO"/>
@@ -83,7 +71,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9HV-AT-XzF" userLabel="SettingsButton">
-                                                <rect key="frame" x="240" y="0.0" width="40" height="40"/>
+                                                <rect key="frame" x="160" y="0.0" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ZNN-ys-gDF"/>
                                                     <constraint firstAttribute="width" constant="40" id="dMm-US-U3h"/>
@@ -269,7 +257,7 @@
                                 <rect key="frame" x="532" y="20" width="300" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="cCB-OR-5ON">
-                                        <rect key="frame" x="10" y="10" width="280" height="40"/>
+                                        <rect key="frame" x="90" y="10" width="200" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgQ-P0-Foq" userLabel="InspectButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -285,21 +273,8 @@
                                                     <action selector="inspectButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="7dG-us-R7T"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAb-0a-4NP" userLabel="ResetButton">
-                                                <rect key="frame" x="80" y="0.0" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="V6U-jy-9HW"/>
-                                                    <constraint firstAttribute="height" constant="40" id="azP-p1-VLW"/>
-                                                </constraints>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="gobackward" catalog="system"/>
-                                                <connections>
-                                                    <action selector="resetButtonPressed:" destination="ZO7-Sf-4kS" eventType="touchUpInside" id="eT0-PD-lbl"/>
-                                                    <action selector="resetButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="JnD-UT-qEq"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjf-y9-5jL" userLabel="InfoButton">
-                                                <rect key="frame" x="160" y="0.0" width="40" height="40"/>
+                                                <rect key="frame" x="80" y="0.0" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="4d5-bP-4jW"/>
                                                     <constraint firstAttribute="width" constant="40" id="VZ6-hf-GwT"/>
@@ -312,7 +287,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tic-aY-96D" userLabel="SettingsButton">
-                                                <rect key="frame" x="240" y="0.0" width="40" height="40"/>
+                                                <rect key="frame" x="160" y="0.0" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="BcZ-kt-ggb"/>
                                                     <constraint firstAttribute="width" constant="40" id="G7A-Es-SWg"/>
@@ -571,7 +546,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Z1-JN-PyP">
                                         <rect key="frame" x="0.0" y="0.0" width="688" height="72"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytH-t1-obg">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytH-t1-obg">
                                                 <rect key="frame" x="20" y="20" width="648" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
@@ -636,15 +611,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Avf-sA-4KP"/>
         <segue reference="Pbk-jv-S1e"/>
-        <segue reference="NiT-Hw-AZN"/>
+        <segue reference="wZc-Au-Q15"/>
         <segue reference="8Eb-Ns-h7l"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="eye.fill" catalog="system" width="128" height="78"/>
         <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="gobackward" catalog="system" width="121" height="128"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="star" catalog="system" width="128" height="116"/>
     </resources>

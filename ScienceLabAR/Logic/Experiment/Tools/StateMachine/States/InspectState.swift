@@ -40,6 +40,7 @@ class StateInspect : ToolState{
     override func didEnter(from previousState: GKState?) {
         let toolState = stateMachine as! ToolStateMachine
         let tool = toolState.tool
+        
         let info = tool.getInfo()
         var string = ""
         
@@ -47,33 +48,25 @@ class StateInspect : ToolState{
             string += info[i] + "\n"
         }
         
-        let textGeometry = SCNText(string: string, extrusionDepth: 0.05)
-        textGeometry.font = UIFont(name: "Helvetica", size: 2)
-        textGeometry.materials.first?.diffuse.contents = UIColor.white
+        let textGeometry = SCNText(string: string, extrusionDepth: 0.1)
+        textGeometry.font = UIFont(name: "Helvetica", size: 1)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.white
+        material.lightingModel = .constant
+        textGeometry.materials = [material]
         let infoNode = SCNNode(geometry: textGeometry)
         
-        infoNode.scale = SCNVector3(0.1,0.1,0.1)
+        infoNode.scale = SCNVector3(0.03 * 1.0 / tool.node.scale.x,0.03 * 1.0 / tool.node.scale.y, 0.03 * 1.0 / tool.node.scale.z)
         infoNode.position = tool.getAnchor(.upRight)
+        infoNode.constraints = [SCNBillboardConstraint()]
         tool.node.addChildNode(infoNode)
         self.infoNode = infoNode
         
         self.previousState = previousState
-        //print("inspect mode")
-        /*let mainCameraNode = GameManager.getInstance().sceneManager.mainCameraNode!
-         
-         node.runAction(SCNAction.move(to: mainCameraNode.position + mainCameraNode.worldFront * 0.3, duration: 0.5))
-         mainCameraNode.addChildNode(node)*/
     }
     
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
-        /*
-         let toolState = stateMachine as! ToolStateMachine
-         let node = toolState.tool.node
-         
-         toolState.experiment.sceneRoot!.addChildNode(node)
-         node.runAction(SCNAction.move(to: lastPosition!, duration: 0.5))
-         */
         infoNode?.removeFromParentNode()
     }
 }

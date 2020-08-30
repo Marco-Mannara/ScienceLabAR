@@ -8,7 +8,7 @@
 
 import Foundation
 import SceneKit
-
+import Accelerate
 
 class Container : Tool{
     var contents : [(substance : Substance, volume : Float)]
@@ -64,20 +64,16 @@ class Container : Tool{
         contentsNode.isHidden = false
         
         if contents.count > 1{
-            var sumColorR : CGFloat = 0.0
-            var sumColorG : CGFloat = 0.0
-            var sumColorB : CGFloat = 0.0
-            var sumColorA : CGFloat = 0.0
             let contentsVolume = Float(contentsVolumeInMilliliters)
-            var proportions : Float = 0.0
+            let proportions = volume / contentsVolume
+            let diffuse = contentsNode.geometry!.materials.first!.diffuse
+            let color = (diffuse.contents! as! UIColor).cgColor.components!
+            let substanceColor = substance.color.cgColor.components!
             
-            for content in contents{
-                proportions = Float(content.volume) / contentsVolume
-                sumColorR += (content.substance.color.cgColor.components?[0] ?? 0.0) * CGFloat(proportions)
-                sumColorG += (content.substance.color.cgColor.components?[1] ?? 0.0) * CGFloat(proportions)
-                sumColorB += (content.substance.color.cgColor.components?[2] ?? 0.0) * CGFloat(proportions)
-                sumColorA += (content.substance.color.cgColor.components?[3] ?? 1.0) * CGFloat(proportions)
-            }
+            let interpColor : [Float] = vDSP.linearInterpolate( [Float(color[0]),Float(color[1]),Float(color[2]),Float(color[3])],[Float(substanceColor[0]),Float(substanceColor[1]),Float(substanceColor[2]),Float(substanceColor[3])],
+                using: proportions)
+            
+            diffuse.contents = UIColor(_colorLiteralRed: interpColor[0],green: interpColor[1],blue: interpColor[2],alpha: interpColor[3])
         }
         else if contents.count == 1{
             contentsNode.geometry?.materials.first?.diffuse.contents = substance.color
@@ -109,9 +105,8 @@ class Container : Tool{
     
     override func getInfo() -> [String] {
         var info = super.getInfo()
-        
         for content in contents{
-            info.append(contentsOf: [content.substance.name, content.substance.molecule,String(content.volume) + "ml"])
+            info.append(contentsOf: [content.substance.capName, content.substance.molecule,String(content.volume) + "ml"])
         }
         return info
     }

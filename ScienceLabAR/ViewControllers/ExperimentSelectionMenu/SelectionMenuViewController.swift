@@ -26,7 +26,6 @@ class SelectionMenuViewController: UIViewController {
             let res = a.name.compare(b.name).rawValue
             return res < 1
         }) ?? []
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - Navigation

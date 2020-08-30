@@ -68,7 +68,7 @@ class HintSystem {
             highlightedElements.removeValue(forKey: node)
         }
         else{
-            print("THERE IS NO HIGHLIGHT RING TO DISABLE")
+            //print("THERE IS NO HIGHLIGHT RING TO DISABLE")
         }
     }
     
@@ -83,13 +83,29 @@ class HintSystem {
         }
     }
     
+    func enableArrow(_ nodes: [SCNNode]){
+        for node in nodes {
+            enableArrow(node)
+        }
+    }
+    
+    func enableArrow(_ tool : Tool){
+        enableArrow(tool.node)
+    }
+    
+    func enableArrow(_ tools: [Tool]){
+        for tool in tools{
+            enableArrow(tool)
+        }
+    }
+    
     func disableArrow(_ node : SCNNode){
         if let arrow = highlightedElements[node]{
             hintArrowPool.release(arrow)
             pointedElements.removeValue(forKey: node)
         }
         else{
-            print("THERE IS NO ARROW TO DISABLE")
+            //print("THERE IS NO ARROW TO DISABLE")
         }
     }
     

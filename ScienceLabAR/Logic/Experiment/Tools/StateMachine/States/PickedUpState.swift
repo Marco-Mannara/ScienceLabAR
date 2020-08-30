@@ -37,29 +37,35 @@ class StatePickedUp : ToolState{
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         let toolState = stateMachine as! ToolStateMachine
-        
+        let hint = toolState.experiment.hint!
+        hint.disableAllArrows()
         toolState.experiment.selection?.clearSelection()
-        
-        toolState.experiment.hint?.disableAllArrows()
-        toolState.experiment.hint?.disableAllHighlights()
         
         if nextState is StatePositioned{
             toolState.experiment.workPosition?.place(toolState.tool)
+        }
+        if !(nextState is StateInspect){
+            hint.disableAllHighlights()
         }
     }
     
     override func didEnter(from previousState: GKState?) {
         let toolState = stateMachine as! ToolStateMachine
         let hint = toolState.experiment.hint!
-        
+        let workposition = toolState.experiment.workPosition!
         
         toolState.tool.place(toolState.tool.restPoint.position + SCNVector3(0,0.1,0))
         
-        hint.highlightNode(toolState.experiment.workPosition!.node)
         hint.highLightTool(toolState.tool)
-        
-        hint.enableArrow(toolState.experiment.workPosition!.node)
-        hint.enableArrow(toolState.tool.node)
+           hint.enableArrow(toolState.tool.node)
+        if workposition.isEmpty(){
+            hint.highlightNode(workposition.node)
+            hint.enableArrow(toolState.experiment.workPosition!.node)
+        }else{
+            let compTools = workposition.getCompatibleTools(for: toolState.tool)
+            hint.highlightTools(compTools)
+            hint.enableArrow(compTools)
+        }
         
         if !toolState.experiment.selection!.selectTool(toolState.tool){
             stateMachine?.enter(StateIdle.self)

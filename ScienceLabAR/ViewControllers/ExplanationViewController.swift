@@ -20,12 +20,16 @@ class ExplanationViewController: UIViewController {
         gotitButton.layer.borderWidth = 0.9
         gotitButton.layer.cornerRadius = 7
         
-        explanationLabel.numberOfLines = 0
-        explanationLabel.text = explanation
-        explanationLabel.sizeToFit()
+        
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        explanationLabel.numberOfLines = 0
+        
+        explanationLabel.text = explanation
+        explanationLabel.sizeToFit()
+    }
     
     @IBAction func onButtonPressed(_ sender: Any) {
         if Constants.LoadTestEnvironment{
@@ -36,13 +40,13 @@ class ExplanationViewController: UIViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

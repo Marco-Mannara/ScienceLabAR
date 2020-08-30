@@ -1,0 +1,13 @@
+Il saggio alla fiamma è una semplice tecnica di analisi qualitativa per verificare la presenza di ioni di metalli alcalini, alcalino-terrosi e alcuni metalli di transizione.
+
+Si basa sull'emissione di luce a determinate frequenze da parte degli atomi di un campione, eccitati per via termica. Sullo stesso principio si basano i fuochi d'artificio.
+
+Gli atomi del metallo presenti nel campione, che grazie all'energia termica sono passati a uno stato eccitato, conferiscono alla fiamma un colore tipico, dal quale se ne deduce la presenza. Il colore è dato dallo spettro di emissione dello ione.
+
+Cloruro di Litio = Rosso
+Nitrato Rameico = Verde
+Cloruro Rameoso = Verde
+Cloruro di Sodio = Giallo
+Nitrato di Potassio = Violetto
+
+Si può notare come la presenza di rame è indicata da una fiamma verde, quella del litio da una rossa, gialla per il sodio e viola per il potassio.

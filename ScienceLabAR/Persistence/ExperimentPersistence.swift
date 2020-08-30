@@ -45,7 +45,12 @@ class ExperimentPersistence{
         let data = try! Data(contentsOf: url)
         let dict = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:String]
         
-        return dict[name]
+        if let fileName = dict[name]{
+            guard let url = Bundle.main.url(forResource: fileName, withExtension: "txt") else {return nil}
+            let explanation = try! String(contentsOf: url,encoding: .utf8)
+            return explanation
+        }
+        return nil
     }
     
     static func loadExperiment(_ experimentName : String) -> Experiment?{

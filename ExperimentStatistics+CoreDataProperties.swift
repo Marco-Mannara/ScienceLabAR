@@ -50,7 +50,6 @@ extension ExperimentStatistics {
     }
     
     static func populate(){
-    
         let context = PersistenceManager.context
         
         guard let properties = ExperimentPersistence.fetchAllExperimentProperties() else{
@@ -61,8 +60,8 @@ extension ExperimentStatistics {
             let stat = ExperimentStatistics(context: context)
             stat.name = prop.storedName
             stat.completed = false
-            print(stat.name ?? "no name")
-            print(stat.completed)
+            //print(stat.name ?? "no name")
+            //print(stat.completed)
         }
         
         PersistenceManager.saveContext()

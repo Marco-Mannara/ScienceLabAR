@@ -63,6 +63,8 @@
 		90A188EA2495409E001A722C /* Pipetta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188E92495409E001A722C /* Pipetta.swift */; };
 		90A188EC24954352001A722C /* NodeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A188EB24954352001A722C /* NodeLoader.swift */; };
 		90A7C7AF24A3915A0028FAB6 /* substance.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90A7C7AE24A3915A0028FAB6 /* substance.plist */; };
+		90A83B9B24FBD3B1009E4ABA /* exp_carb_sacc.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90A83B9A24FBD3B1009E4ABA /* exp_carb_sacc.txt */; };
+		90A83B9E24FBD410009E4ABA /* exp_sagg_fiamma.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90A83B9D24FBD410009E4ABA /* exp_sagg_fiamma.txt */; };
 		90A89C8324F53F9B0086FFC0 /* ReactionDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A89C8224F53F9B0086FFC0 /* ReactionDictionary.swift */; };
 		90A9131E24E91BA300FAC17E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A9131D24E91BA300FAC17E /* Goal.swift */; };
 		90ACF60924F2D3CD000E7049 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ACF60824F2D3CD000E7049 /* Reaction.swift */; };
@@ -187,6 +189,8 @@
 		90A188E92495409E001A722C /* Pipetta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pipetta.swift; sourceTree = "<group>"; };
 		90A188EB24954352001A722C /* NodeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeLoader.swift; sourceTree = "<group>"; };
 		90A7C7AE24A3915A0028FAB6 /* substance.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = substance.plist; sourceTree = "<group>"; };
+		90A83B9A24FBD3B1009E4ABA /* exp_carb_sacc.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = exp_carb_sacc.txt; sourceTree = "<group>"; };
+		90A83B9D24FBD410009E4ABA /* exp_sagg_fiamma.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = exp_sagg_fiamma.txt; sourceTree = "<group>"; };
 		90A89C8224F53F9B0086FFC0 /* ReactionDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDictionary.swift; sourceTree = "<group>"; };
 		90A9131D24E91BA300FAC17E /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		90ACF60824F2D3CD000E7049 /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
@@ -271,15 +275,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		900CD6AE24F9763B001F9FC1 /* Experiment */ = {
+		900CD6AE24F9763B001F9FC1 /* StaticData */ = {
 			isa = PBXGroup;
 			children = (
+				90A83B9C24FBD3CC009E4ABA /* Explanations */,
+				90A7C7AE24A3915A0028FAB6 /* substance.plist */,
+				90077D5924B761B900E5AF7E /* tools.plist */,
 				90ACF60C24F3C6BF000E7049 /* experiment_substances.plist */,
 				90C5FF2424991B890039E2CB /* experiments.plist */,
 				9085E3AF24B3949600A5D27E /* experiment_properties.plist */,
 				9090FF7E24EADCA200A20DB6 /* experiment_explanation.plist */,
 			);
-			path = Experiment;
+			path = StaticData;
 			sourceTree = "<group>";
 		};
 		9010D59424966DA40010F5C9 /* Experiment */ = {
@@ -426,6 +433,15 @@
 				9095AEBC2493DA3E00271E31 /* NodeTechnique.plist */,
 			);
 			path = GlowEffect;
+			sourceTree = "<group>";
+		};
+		90A83B9C24FBD3CC009E4ABA /* Explanations */ = {
+			isa = PBXGroup;
+			children = (
+				90A83B9A24FBD3B1009E4ABA /* exp_carb_sacc.txt */,
+				90A83B9D24FBD410009E4ABA /* exp_sagg_fiamma.txt */,
+			);
+			path = Explanations;
 			sourceTree = "<group>";
 		};
 		90ACF60724F2D398000E7049 /* Reactions */ = {
@@ -588,10 +604,8 @@
 		90C704802493B1F2001ADE03 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				900CD6AE24F9763B001F9FC1 /* Experiment */,
+				900CD6AE24F9763B001F9FC1 /* StaticData */,
 				9077B5122465B6AE0041FDBC /* CoreData */,
-				90A7C7AE24A3915A0028FAB6 /* substance.plist */,
-				90077D5924B761B900E5AF7E /* tools.plist */,
 				9064043A24AF8B3100C94096 /* ExperimentPersistence.swift */,
 			);
 			path = Persistence;
@@ -787,9 +801,11 @@
 				9090FF7F24EADCA200A20DB6 /* experiment_explanation.plist in Resources */,
 				90077D5A24B761B900E5AF7E /* tools.plist in Resources */,
 				90BBAB902443C57D001BEC81 /* Assets.xcassets in Resources */,
+				90A83B9E24FBD410009E4ABA /* exp_sagg_fiamma.txt in Resources */,
 				90BBAB8E2443C57B001BEC81 /* Main.storyboard in Resources */,
 				90A7C7AF24A3915A0028FAB6 /* substance.plist in Resources */,
 				9095AEBE2493DA3E00271E31 /* NodeTechnique.plist in Resources */,
+				90A83B9B24FBD3B1009E4ABA /* exp_carb_sacc.txt in Resources */,
 				90C5FF2524991B890039E2CB /* experiments.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

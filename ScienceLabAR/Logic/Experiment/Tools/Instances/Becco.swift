@@ -25,7 +25,7 @@ class Becco : Container{
     }
     
     override func isCompatible(_ otherTool: Tool) -> Bool {
-        if type(of: otherTool) == Container.self{
+        if otherTool is Container{
            return true
         }
         else if type(of: otherTool) == Bunsen.self{
@@ -39,7 +39,6 @@ class Becco : Container{
             let i = interaction!["piattino"]!
             i.setTools([otherTool])
             i.run()
-            //GameManager.getInstance().sceneManager!.currentExperiment?.goals?.eventNotify(otherTool,self)
         }
         else if let _ = otherTool as? Bunsen{
             let i = interaction!["bunsen"]!
@@ -50,7 +49,6 @@ class Becco : Container{
             let i = interaction!["becker"]!
             i.setTools([otherTool])
             i.run()
-            //GameManager.getInstance().sceneManager!.currentExperiment?.goals?.actionNotify(otherTool,self)
         }
     }
     

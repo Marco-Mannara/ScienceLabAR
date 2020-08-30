@@ -24,6 +24,7 @@ class SubstanceDictionary{
     static func loadSubstance(_ name : String){
         if let properties = fileHandle?[name] as? [String:Any]{
             let substance = Substance(properties)
+            substance.capName = name
             substances[name] = substance
         }
         else{
