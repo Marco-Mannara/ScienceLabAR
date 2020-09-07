@@ -13,6 +13,7 @@ class ExplanationViewController: UIViewController {
     @IBOutlet var gotitButton: UIButton!
     @IBOutlet var explanationLabel: UILabel!
     static var explanation : String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

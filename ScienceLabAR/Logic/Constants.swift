@@ -11,6 +11,6 @@ import ARKit
 
 class Constants{
     public static let ToolStateDebug : Bool = false
-    public static var LoadTestEnvironment : Bool = true
+    public static var LoadTestEnvironment : Bool = false
     public static let ShowPlaneAnchors : Bool = false
 }

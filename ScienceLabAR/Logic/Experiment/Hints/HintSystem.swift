@@ -74,12 +74,13 @@ class HintSystem {
     
     func enableArrow(_ node: SCNNode){
         if let arrow = hintArrowPool.request(){
+            arrow.position = node.position + SCNVector3(0,0.12,0)
             if Constants.LoadTestEnvironment{
-                arrow.position = node.position + SCNVector3(0,0.12,0)
+                arrow.look(at: node.position)
             }else{
-                arrow.position = node.position + SCNVector3(0.12,0,0)
+                arrow.look(at: SCNVector3(0,-10000,0))
             }
-            arrow.look(at: node.position)
+            
             pointedElements[node] = arrow
         }
         else{

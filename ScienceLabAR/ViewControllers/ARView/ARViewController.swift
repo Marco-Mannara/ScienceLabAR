@@ -110,7 +110,9 @@ class ARViewController: UIViewController {
     //MARK: - UIButtons Callbacks
     
     @IBAction func inspectButtonTapped(_ sender: Any) {
-        
+        DispatchQueue.main.async {
+            GameManager.getInstance().sceneManager.currentExperiment!.selection!.selectedTool?.state!.enter(StateInspect.self)
+        }
     }
     
     @IBAction func infoButtonTapped(_ sender: Any) {
