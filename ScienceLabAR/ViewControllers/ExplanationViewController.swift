@@ -12,7 +12,7 @@ class ExplanationViewController: UIViewController {
     
     @IBOutlet var gotitButton: UIButton!
     @IBOutlet var explanationLabel: UILabel!
-    var explanation : String!
+    static var explanation : String!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +27,7 @@ class ExplanationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         explanationLabel.numberOfLines = 0
         
-        explanationLabel.text = explanation
+        explanationLabel.text = ExplanationViewController.explanation
         explanationLabel.sizeToFit()
     }
     

@@ -41,9 +41,8 @@ class LoadingScreenViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "explanation"{
-            let explanationView = segue.destination as! ExplanationViewController
-            explanationView.explanation = experimentExplanation
-        }
+            ExplanationViewController.explanation = experimentExplanation
         //dismiss(animated: false, completion: nil)
+        }
     }
 }

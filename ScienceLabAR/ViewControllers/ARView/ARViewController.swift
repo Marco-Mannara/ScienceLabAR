@@ -100,18 +100,6 @@ class ARViewController: UIViewController {
         sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    @objc func viewAdjustPanHandler(_ gesture: UIPanGestureRecognizer){
-        switch gesture.state{
-        case .began: break
-            //GameManager.getInstance().TouchController?.leftStick?.pressed(gesture.location(in: sceneView))
-        case .changed: break
-            //GameManager.getInstance().TouchController?.leftStick?.updateState(gesture.location(in: sceneView))
-        case .ended: break
-            //GameManager.getInstance().TouchController?.leftStick?.released()
-        default: break
-            //GameManager.getInstance().TouchController?.leftStick?.released()
-        }
-    }
     
     @objc func onTap(_ gesture: UITapGestureRecognizer)
     {
@@ -122,10 +110,6 @@ class ARViewController: UIViewController {
     //MARK: - UIButtons Callbacks
     
     @IBAction func inspectButtonTapped(_ sender: Any) {
-        
-    }
-    
-    @IBAction func resetButtonTapped(_ sender: Any) {
         
     }
     

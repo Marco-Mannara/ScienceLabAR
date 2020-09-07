@@ -79,11 +79,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
             GameManager.getInstance().sceneManager.currentExperiment!.selection!.selectedTool?.state!.enter(StateInspect.self)
         }
     }
-    @IBAction func resetButtonPressed(_ sender: UIButton) {
-        
-    }
     @IBAction func infoButtonPressed(_ sender: UIButton) {
-    
+        performSegue(withIdentifier: "explanation", sender: nil)
     }
     
     

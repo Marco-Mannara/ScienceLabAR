@@ -382,7 +382,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="195"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                                <state key="normal" title="Start"/>
+                                                <state key="normal" title="Comincia"/>
                                                 <connections>
                                                     <segue destination="Fxe-s3-1yR" kind="show" identifier="start" id="5fG-FR-hHP"/>
                                                 </connections>
@@ -418,7 +418,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-LO-9t7">
-                                <rect key="frame" x="64" y="66.5" width="768" height="260"/>
+                                <rect key="frame" x="64" y="88.5" width="768" height="260"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="260" id="Q4J-JA-vON"/>
@@ -578,7 +578,7 @@
                                     <constraint firstAttribute="width" constant="150" id="OLy-oA-0Tx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Got it!"/>
+                                <state key="normal" title="Capito!"/>
                                 <connections>
                                     <action selector="onButtonPressed:" destination="RHS-or-qYe" eventType="touchUpInside" id="SCu-rj-8n3"/>
                                     <action selector="onButtonPressed:" destination="NDg-9B-yd8" eventType="touchUpInside" id="Uer-ve-DDj"/>
@@ -613,7 +613,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Avf-sA-4KP"/>
         <segue reference="Pbk-jv-S1e"/>
-        <segue reference="wZc-Au-Q15"/>
+        <segue reference="5fG-FR-hHP"/>
         <segue reference="8Eb-Ns-h7l"/>
     </inferredMetricsTieBreakers>
     <resources>

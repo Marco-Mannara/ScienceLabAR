@@ -15,6 +15,7 @@ extension ARViewController : ARCoachingOverlayViewDelegate{
     
     func setupSessionCoaching(){
         coachingOverlay.session = sceneView.session
+        coachingOverlay.accessibilityLanguage = "it-IT"
         coachingOverlay.delegate = self
         
         coachingOverlay.translatesAutoresizingMaskIntoConstraints = false

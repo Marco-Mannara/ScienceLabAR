@@ -18,9 +18,9 @@ class OptionsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sectionTitles = ["Tracking Options","Other"]
-        arOptionLabels = [("Retrack Environment", retrackEnvironment)]
-        otherOptionLabels = [("Back to Menu", exitToMenu),("Back to experiment", closeMenu)]
+        sectionTitles = ["Tracking","Other"]
+        arOptionLabels = [("Effettua Retracking", retrackEnvironment)]
+        otherOptionLabels = [("Ritorna al Menu", exitToMenu),("Indietro", closeMenu)]
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
